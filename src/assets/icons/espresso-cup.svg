@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+  <!-- Saucer - bottom layer -->
+  <ellipse id="saucer" cx="100" cy="170" rx="70" ry="12"/>
+
+  <!-- Cup base/bottom -->
+  <ellipse id="cup-bottom" cx="100" cy="155" rx="45" ry="10"/>
+
+  <!-- Cup body left side -->
+  <path id="cup-left" d="M55 155 Q45 130 50 100 Q52 85 60 75"/>
+
+  <!-- Cup body right side -->
+  <path id="cup-right" d="M145 155 Q155 130 150 100 Q148 85 140 75"/>
+
+  <!-- Cup rim -->
+  <ellipse id="cup-rim" cx="100" cy="75" rx="40" ry="8"/>
+
+  <!-- Handle -->
+  <path id="handle" d="M145 95 Q175 95 175 120 Q175 145 145 145"/>
+
+  <!-- Steam line 1 - left -->
+  <path id="steam-1" d="M80 65 Q75 50 80 35 Q85 20 80 5"/>
+
+  <!-- Steam line 2 - center -->
+  <path id="steam-2" d="M100 60 Q105 45 100 30 Q95 15 100 0"/>
+
+  <!-- Steam line 3 - right -->
+  <path id="steam-3" d="M120 65 Q125 50 120 35 Q115 20 120 5"/>
+</svg>
