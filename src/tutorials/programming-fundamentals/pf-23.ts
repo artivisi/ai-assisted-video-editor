@@ -3,8 +3,8 @@ import { VideoOutline } from "../types";
 export const pf23: VideoOutline = {
   episodeId: "pf-23",
   seriesId: "programming-fundamentals",
-  title: "String Methods",
-  description: "Mempelajari methods untuk manipulasi string: case conversion, split, join, strip, dan find.",
+  title: "Sets & Tuples",
+  description: "Mempelajari sets untuk unique values dan tuples untuk immutable collections.",
   duration: 1800,
   fps: 30,
 
@@ -13,85 +13,84 @@ export const pf23: VideoOutline = {
       timestamp: "00:00",
       title: "Intro",
       talkingPoints: [
-        "Recap: data structures",
-        "Hari ini: string manipulation",
-        "String adalah salah satu tipe paling sering dipakai",
+        "Recap: arrays dan dictionaries",
+        "Hari ini: sets dan tuples",
+        "Data structures lain yang berguna",
       ],
       showOnScreen: "webcam",
     },
     {
       timestamp: "02:00",
-      title: "String = Array of Characters",
+      title: "Apa Itu Set?",
       talkingPoints: [
-        "String bisa diakses per karakter",
-        "s[0] = karakter pertama",
-        "Bisa di-loop",
-        "Immutable di semua bahasa",
+        "Kumpulan nilai UNIQUE",
+        "Tidak ada duplikat",
+        "Tidak ada urutan (unordered)",
+        "Fast lookup: O(1)",
       ],
       showOnScreen: "slide",
     },
     {
       timestamp: "05:00",
-      title: "Case Conversion",
+      title: "Set di Python",
       talkingPoints: [
-        "upper() / toUpperCase()",
-        "lower() / toLowerCase()",
-        "capitalize() / title case",
-        "Berguna untuk normalisasi input",
+        "Dibuat dengan {} atau set()",
+        "Otomatis hapus duplikat",
+        "add(), remove(), discard()",
+        "in untuk cek membership",
+      ],
+      notes: "Live coding: Python set",
+      showOnScreen: "code",
+    },
+    {
+      timestamp: "10:00",
+      title: "Set di JavaScript & Java",
+      talkingPoints: [
+        "JS: new Set()",
+        "Java: HashSet<Type>",
+        "add(), delete()/remove(), has()/contains()",
       ],
       showOnScreen: "code",
     },
     {
-      timestamp: "09:00",
-      title: "Split & Join",
+      timestamp: "14:00",
+      title: "Set Operations",
       talkingPoints: [
-        "split(): string → array",
-        "join(): array → string",
-        "Contoh: parse CSV, build path",
-        "Sangat sering dipakai",
-      ],
-      notes: "Live coding: split dan join",
-      showOnScreen: "code",
-    },
-    {
-      timestamp: "15:00",
-      title: "Strip/Trim",
-      talkingPoints: [
-        "Hapus whitespace di awal/akhir",
-        "Python: strip(), lstrip(), rstrip()",
-        "JS: trim(), trimStart(), trimEnd()",
-        "Penting untuk user input",
+        "Union: gabung dua sets",
+        "Intersection: irisan (ada di keduanya)",
+        "Difference: ada di A tapi tidak di B",
+        "Sangat berguna untuk data processing",
       ],
       showOnScreen: "code",
     },
     {
       timestamp: "19:00",
-      title: "Find & Replace",
+      title: "Tuple di Python",
       talkingPoints: [
-        "find() / indexOf(): cari posisi substring",
-        "replace(): ganti substring",
-        "startswith() / endswith()",
-        "Python: in operator untuk contains",
+        "Seperti list tapi IMMUTABLE",
+        "Tidak bisa diubah setelah dibuat",
+        "Dibuat dengan parentheses ()",
+        "Bisa di-unpack",
       ],
+      notes: "Live coding: Python tuple",
       showOnScreen: "code",
     },
     {
       timestamp: "24:00",
-      title: "String Formatting Recap",
+      title: "When to Use What?",
       talkingPoints: [
-        "Python: f-string f'{var}'",
-        "JS: template literal `${var}`",
-        "Java: String.format() atau +",
-        "Best practice: gunakan formatting",
+        "List/Array: ordered, duplicates OK, mutable",
+        "Set: unique, unordered, fast lookup",
+        "Tuple: fixed data, immutable, hashable",
+        "Dict/Object: key-value pairs",
       ],
-      showOnScreen: "code",
+      showOnScreen: "slide",
     },
     {
       timestamp: "27:00",
       title: "Challenge & Git",
       talkingPoints: [
-        "Process user input: trim, lowercase",
-        "Split sentence into words",
+        "Remove duplicates dari list menggunakan set",
         "git add, commit, push",
       ],
       showOnScreen: "demo",
@@ -100,9 +99,9 @@ export const pf23: VideoOutline = {
       timestamp: "29:00",
       title: "Outro",
       talkingPoints: [
-        "Recap: string methods",
-        "Next episode: Regular Expressions",
-        "See you!",
+        "Recap: sets dan tuples",
+        "Next episode: String methods",
+        "Data structures complete!",
       ],
       showOnScreen: "webcam",
     },
@@ -110,7 +109,7 @@ export const pf23: VideoOutline = {
 
   lowerThirds: [
     {
-      title: "String Methods",
+      title: "Sets & Tuples",
       subtitle: "Programming Fundamentals - Episode 23",
       showAtFrame: 90,
       hideAtFrame: 270,
@@ -119,58 +118,54 @@ export const pf23: VideoOutline = {
 
   codeSnippets: [
     {
-      code: `# Python String Methods
-s = "  Hello World  "
+      code: `# Python Set
+colors = {"red", "green", "blue", "red"}  # duplikat dihapus
+print(colors)  # {'red', 'green', 'blue'}
 
-# Case
-print(s.upper())        # "  HELLO WORLD  "
-print(s.lower())        # "  hello world  "
+# Operations
+colors.add("yellow")
+colors.remove("red")
+print("green" in colors)  # True
 
-# Strip whitespace
-print(s.strip())        # "Hello World"
+# Set operations
+a = {1, 2, 3, 4}
+b = {3, 4, 5, 6}
 
-# Split & Join
-words = "apel,jeruk,mangga".split(",")
-print(words)            # ["apel", "jeruk", "mangga"]
+print(a | b)  # Union: {1, 2, 3, 4, 5, 6}
+print(a & b)  # Intersection: {3, 4}
+print(a - b)  # Difference: {1, 2}
 
-path = "/".join(["home", "user", "docs"])
-print(path)             # "home/user/docs"
-
-# Find & Replace
-text = "Hello World"
-print(text.find("World"))     # 6 (index)
-print(text.replace("World", "Python"))  # "Hello Python"
-print("World" in text)        # True`,
-      title: "strings.py",
-      highlightLines: [5, 6, 9, 12, 15, 19, 20, 21],
-      showAtFrame: 7200,
-      hideAtFrame: 34200,
+# Remove duplicates from list
+numbers = [1, 2, 2, 3, 3, 3]
+unique = list(set(numbers))  # [1, 2, 3]`,
+      title: "sets.py",
+      highlightLines: [2, 6, 7, 8, 14, 15, 16, 20],
+      showAtFrame: 9000,
+      hideAtFrame: 25200,
     },
     {
-      code: `// JavaScript String Methods
-let s = "  Hello World  ";
+      code: `# Python Tuple
+# Immutable - tidak bisa diubah
+point = (10, 20)
+# point[0] = 15  # ERROR! Tuple immutable
 
-// Case
-console.log(s.toUpperCase());  // "  HELLO WORLD  "
-console.log(s.toLowerCase());  // "  hello world  "
+# Unpack
+x, y = point
+print(f"x: {x}, y: {y}")
 
-// Trim whitespace
-console.log(s.trim());         // "Hello World"
+# Function return multiple values
+def get_min_max(numbers):
+    return min(numbers), max(numbers)  # returns tuple
 
-// Split & Join
-let words = "apel,jeruk,mangga".split(",");
-console.log(words);            // ["apel", "jeruk", "mangga"]
+minimum, maximum = get_min_max([3, 1, 4, 1, 5])
 
-let path = ["home", "user", "docs"].join("/");
-console.log(path);             // "home/user/docs"
-
-// Find & Replace
-let text = "Hello World";
-console.log(text.indexOf("World"));  // 6
-console.log(text.replace("World", "JS"));  // "Hello JS"
-console.log(text.includes("World"));  // true`,
-      title: "strings.js",
-      highlightLines: [5, 6, 9, 12, 15, 19, 20, 21],
+# Tuple sebagai dictionary key (karena immutable)
+locations = {
+    (0, 0): "Origin",
+    (10, 20): "Point A"
+}`,
+      title: "tuples.py",
+      highlightLines: [3, 7, 8, 12, 14, 17, 18, 19],
       showAtFrame: 34200,
       hideAtFrame: 48600,
     },

@@ -3,8 +3,8 @@ import { VideoOutline } from "../types";
 export const pf11: VideoOutline = {
   episodeId: "pf-11",
   seriesId: "programming-fundamentals",
-  title: "If-Else - Membuat Keputusan",
-  description: "Mempelajari conditional statements untuk membuat program yang bisa mengambil keputusan berdasarkan kondisi.",
+  title: "Comparison & Logical Operators",
+  description: "Mempelajari operator perbandingan dan logika. Fondasi untuk membuat keputusan dalam program.",
   duration: 1800,
   fps: 30,
 
@@ -13,89 +13,91 @@ export const pf11: VideoOutline = {
       timestamp: "00:00",
       title: "Intro",
       talkingPoints: [
-        "Recap: comparison dan logical operators",
-        "Hari ini: if-else statements",
-        "Program yang bisa 'berpikir'",
+        "Recap: arithmetic operators",
+        "Hari ini: comparison dan logical operators",
+        "Fondasi untuk if-else dan loops",
       ],
       showOnScreen: "webcam",
     },
     {
       timestamp: "02:00",
-      title: "Apa Itu Conditional?",
+      title: "Comparison Operators",
       talkingPoints: [
-        "Program mengambil keputusan berdasarkan kondisi",
-        "Analogi: lampu lalu lintas",
-        "Jika merah → berhenti",
-        "Jika hijau → jalan",
-        "Cabang dalam alur program",
+        "== (sama dengan)",
+        "!= (tidak sama dengan)",
+        "> < >= <= (lebih/kurang dari)",
+        "Hasil: boolean (true/false)",
+        "Sama di semua bahasa",
       ],
       showOnScreen: "slide",
     },
     {
-      timestamp: "05:00",
-      title: "If-Else di Python",
+      timestamp: "06:00",
+      title: "Equality: == vs ===",
       talkingPoints: [
-        "if kondisi: (dengan colon)",
-        "Indentation WAJIB - bagian dari syntax",
-        "else: untuk kondisi sebaliknya",
-        "Tidak perlu parentheses",
-        "Tidak perlu curly braces",
+        "Python: == untuk value comparison",
+        "JavaScript: == vs === (strict equality)",
+        "5 == '5' → true (JS, dengan coercion)",
+        "5 === '5' → false (JS, strict)",
+        "SELALU pakai === di JavaScript!",
+        "Java: == untuk primitives, .equals() untuk objects",
       ],
-      notes: "Live coding: if-else Python",
+      notes: "Live coding: demo equality quirks",
       showOnScreen: "code",
     },
     {
-      timestamp: "12:00",
-      title: "If-Else di JavaScript",
+      timestamp: "13:00",
+      title: "Logical Operators",
       talkingPoints: [
-        "if (kondisi) { }",
-        "Parentheses WAJIB untuk kondisi",
-        "Curly braces untuk block code",
-        "else { } untuk kondisi sebaliknya",
-        "Indentation untuk readability",
-      ],
-      notes: "Live coding: if-else JavaScript",
-      showOnScreen: "code",
-    },
-    {
-      timestamp: "18:00",
-      title: "If-Else di Java",
-      talkingPoints: [
-        "Sama dengan JavaScript",
-        "if (kondisi) { }",
-        "Harus dalam method/function",
-        "Semicolon setelah statements",
-      ],
-      notes: "Live coding: if-else Java",
-      showOnScreen: "code",
-    },
-    {
-      timestamp: "22:00",
-      title: "Perbandingan Syntax",
-      talkingPoints: [
-        "Python: no parens, colon, indentation",
-        "JS/Java: parens, curly braces",
-        "Python paling ringkas",
-        "JS/Java lebih explicit",
+        "AND: kedua kondisi harus true",
+        "OR: salah satu kondisi true",
+        "NOT: kebalikan dari kondisi",
+        "Python: and, or, not",
+        "JavaScript & Java: &&, ||, !",
       ],
       showOnScreen: "slide",
     },
     {
-      timestamp: "24:00",
-      title: "Common Mistakes",
+      timestamp: "17:00",
+      title: "Logical Operators Demo",
       talkingPoints: [
-        "= vs == (assignment vs comparison)",
-        "Python: lupa colon",
-        "Python: indentation salah",
-        "JS: lupa curly braces",
+        "true AND true = true",
+        "true AND false = false",
+        "true OR false = true",
+        "NOT true = false",
+        "Contoh: umur >= 17 AND punya_ktp",
       ],
-      showOnScreen: "slide",
+      notes: "Live coding: kombinasi kondisi",
+      showOnScreen: "code",
     },
     {
-      timestamp: "27:00",
+      timestamp: "21:00",
+      title: "Truthy & Falsy Values",
+      talkingPoints: [
+        "Nilai yang dianggap false tanpa explicit boolean",
+        "Python: 0, '', [], None, False",
+        "JavaScript: 0, '', null, undefined, NaN, false",
+        "Java: hanya boolean bisa jadi kondisi",
+        "Berguna untuk cek empty/null",
+      ],
+      showOnScreen: "code",
+    },
+    {
+      timestamp: "25:00",
+      title: "Short-Circuit Evaluation",
+      talkingPoints: [
+        "AND: stop jika ketemu false",
+        "OR: stop jika ketemu true",
+        "Berguna untuk guard conditions",
+        "user && user.name (cek null dulu)",
+      ],
+      showOnScreen: "code",
+    },
+    {
+      timestamp: "28:00",
       title: "Challenge & Git",
       talkingPoints: [
-        "Cek lulus/tidak lulus (nilai >= 60)",
+        "Cek eligibility: umur >= 17 AND punya KTP",
         "Di ketiga bahasa",
         "git add, commit, push",
       ],
@@ -105,9 +107,9 @@ export const pf11: VideoOutline = {
       timestamp: "29:00",
       title: "Outro",
       talkingPoints: [
-        "Recap: if-else untuk keputusan",
-        "Next episode: else-if untuk multiple kondisi",
-        "See you!",
+        "Recap: comparison dan logical operators",
+        "Next episode: if-else statements!",
+        "Keep practicing!",
       ],
       showOnScreen: "webcam",
     },
@@ -115,7 +117,7 @@ export const pf11: VideoOutline = {
 
   lowerThirds: [
     {
-      title: "If-Else Statements",
+      title: "Comparison & Logical",
       subtitle: "Programming Fundamentals - Episode 11",
       showAtFrame: 90,
       hideAtFrame: 270,
@@ -124,42 +126,43 @@ export const pf11: VideoOutline = {
 
   codeSnippets: [
     {
-      code: `# Python If-Else
-umur = 18
+      code: `// JavaScript Equality Quirks
+console.log(5 == "5");    // true (coercion!)
+console.log(5 === "5");   // false (strict)
 
-if umur >= 17:
-    print("Boleh buat SIM")
-else:
-    print("Belum boleh buat SIM")
+console.log(0 == false);  // true
+console.log(0 === false); // false
 
-# Dengan logical operator
-punya_ktp = True
-if umur >= 17 and punya_ktp:
-    print("Syarat lengkap!")`,
-      title: "if_else.py",
-      highlightLines: [4, 5, 6, 7, 11, 12],
-      showAtFrame: 9000,
-      hideAtFrame: 21600,
+console.log(null == undefined);  // true
+console.log(null === undefined); // false
+
+// ALWAYS use === in JavaScript!`,
+      title: "equality.js",
+      highlightLines: [2, 3, 11],
+      showAtFrame: 10800,
+      hideAtFrame: 23400,
     },
     {
-      code: `// JavaScript If-Else
-let umur = 18;
+      code: `# Python Logical Operators
+umur = 20
+punya_ktp = True
+punya_sim = False
 
-if (umur >= 17) {
-    console.log("Boleh buat SIM");
-} else {
-    console.log("Belum boleh buat SIM");
-}
+# AND - kedua harus true
+boleh_nyetir = umur >= 17 and punya_sim
+print(boleh_nyetir)  # False
 
-// Dengan logical operator
-let punyaKtp = true;
-if (umur >= 17 && punyaKtp) {
-    console.log("Syarat lengkap!");
-}`,
-      title: "if_else.js",
-      highlightLines: [4, 5, 6, 7, 12, 13],
-      showAtFrame: 21600,
-      hideAtFrame: 32400,
+# OR - salah satu true
+punya_id = punya_ktp or punya_sim
+print(punya_id)  # True
+
+# NOT - kebalikan
+belum_dewasa = not (umur >= 18)
+print(belum_dewasa)  # False`,
+      title: "logical.py",
+      highlightLines: [7, 11, 15],
+      showAtFrame: 30600,
+      hideAtFrame: 45000,
     },
   ],
 };

@@ -3,8 +3,8 @@ import { VideoOutline } from "../types";
 export const pf19: VideoOutline = {
   episodeId: "pf-19",
   seriesId: "programming-fundamentals",
-  title: "Arrays/Lists - Kumpulan Data",
-  description: "Mempelajari arrays dan lists untuk menyimpan kumpulan data. Indexing, creating, dan basic operations.",
+  title: "Scope & Return Values",
+  description: "Mempelajari scope (visibility) variables dan cara return values dari functions.",
   duration: 1800,
   fps: 30,
 
@@ -13,78 +13,86 @@ export const pf19: VideoOutline = {
       timestamp: "00:00",
       title: "Intro",
       talkingPoints: [
-        "Recap: functions dan scope",
-        "Hari ini: data structures!",
-        "Menyimpan banyak data sekaligus",
+        "Recap: parameters dan arguments",
+        "Hari ini: scope dan return",
+        "Penting untuk avoid bugs",
       ],
       showOnScreen: "webcam",
     },
     {
       timestamp: "02:00",
-      title: "Apa Itu Array/List?",
+      title: "Apa Itu Scope?",
       talkingPoints: [
-        "Kumpulan data dalam satu variable",
-        "Analogi: daftar belanja",
-        "Diakses dengan index (nomor urut)",
-        "Bisa simpan banyak item",
+        "Di mana variable bisa diakses",
+        "Analogi: ruangan dalam rumah",
+        "Variable di dapur tidak terlihat dari kamar",
+        "Scope = visibility boundary",
       ],
       showOnScreen: "slide",
     },
     {
       timestamp: "05:00",
-      title: "List di Python",
+      title: "Local vs Global Scope",
       talkingPoints: [
-        "Dibuat dengan square brackets []",
-        "Bisa campur tipe (tapi hindari)",
-        "Dynamic: bisa grow/shrink",
-        "list.append() untuk tambah",
-      ],
-      notes: "Live coding: Python lists",
-      showOnScreen: "code",
-    },
-    {
-      timestamp: "12:00",
-      title: "Array di JavaScript",
-      talkingPoints: [
-        "Dibuat dengan []",
-        "Bisa campur tipe (dynamic)",
-        "array.push() untuk tambah",
-        "Similar dengan Python list",
-      ],
-      notes: "Live coding: JavaScript arrays",
-      showOnScreen: "code",
-    },
-    {
-      timestamp: "18:00",
-      title: "Array di Java",
-      talkingPoints: [
-        "Fixed size: String[] arr = new String[5]",
-        "Atau: String[] arr = {'a', 'b', 'c'}",
-        "Dynamic: ArrayList<String>",
-        "Harus satu tipe (generics)",
-      ],
-      notes: "Live coding: Java arrays dan ArrayList",
-      showOnScreen: "code",
-    },
-    {
-      timestamp: "23:00",
-      title: "Indexing (Zero-Based)",
-      talkingPoints: [
-        "Index mulai dari 0, bukan 1!",
-        "arr[0] = item pertama",
-        "arr[1] = item kedua",
-        "Common mistake: off-by-one error",
+        "Global: di luar function, bisa diakses semua",
+        "Local: di dalam function, hanya dalam function",
+        "Local variable 'shadow' global",
+        "Best practice: minimize global variables",
       ],
       showOnScreen: "slide",
     },
     {
-      timestamp: "25:00",
-      title: "Negative Indexing (Python)",
+      timestamp: "08:00",
+      title: "Scope di Python",
       talkingPoints: [
-        "Python only!",
-        "arr[-1] = item terakhir",
-        "arr[-2] = item kedua dari belakang",
-        "Sangat berguna",
+        "LEGB rule: Local, Enclosing, Global, Built-in",
+        "global keyword untuk akses global",
+        "Tapi hindari pakai global",
+      ],
+      notes: "Live coding: scope Python",
+      showOnScreen: "code",
+    },
+    {
+      timestamp: "13:00",
+      title: "Scope di JavaScript",
+      talkingPoints: [
+        "var: function scope (hoisted)",
+        "let/const: block scope (curly braces)",
+        "SELALU pakai let/const, hindari var",
+        "Hoisting bisa bikin bug",
+      ],
+      notes: "Live coding: var vs let scope",
+      showOnScreen: "code",
+    },
+    {
+      timestamp: "18:00",
+      title: "Scope di Java",
+      talkingPoints: [
+        "Block scope dengan curly braces",
+        "Class-level (instance variables)",
+        "Method-level (local variables)",
+        "Paling predictable dari ketiga bahasa",
+      ],
+      showOnScreen: "code",
+    },
+    {
+      timestamp: "21:00",
+      title: "Return Values",
+      talkingPoints: [
+        "Function bisa return nilai",
+        "Return menghentikan function",
+        "Bisa return early untuk guard clause",
+        "Void function tidak return (atau return None)",
+      ],
+      showOnScreen: "code",
+    },
+    {
+      timestamp: "24:00",
+      title: "Return Multiple Values",
+      talkingPoints: [
+        "Python: return tuple, unpack saat assign",
+        "JavaScript: return object atau array",
+        "Java: return object atau buat class",
       ],
       showOnScreen: "code",
     },
@@ -92,8 +100,7 @@ export const pf19: VideoOutline = {
       timestamp: "27:00",
       title: "Challenge & Git",
       talkingPoints: [
-        "Buat array/list of fruits",
-        "Print first dan last item",
+        "Function yang return min dan max dari list",
         "git add, commit, push",
       ],
       showOnScreen: "demo",
@@ -102,9 +109,9 @@ export const pf19: VideoOutline = {
       timestamp: "29:00",
       title: "Outro",
       talkingPoints: [
-        "Recap: arrays untuk kumpulan data",
-        "Next episode: array operations",
-        "Keep coding!",
+        "Recap: scope dan return",
+        "Next episode: Arrays/Lists!",
+        "See you!",
       ],
       showOnScreen: "webcam",
     },
@@ -112,7 +119,7 @@ export const pf19: VideoOutline = {
 
   lowerThirds: [
     {
-      title: "Arrays & Lists",
+      title: "Scope & Return",
       subtitle: "Programming Fundamentals - Episode 19",
       showAtFrame: 90,
       hideAtFrame: 270,
@@ -121,47 +128,53 @@ export const pf19: VideoOutline = {
 
   codeSnippets: [
     {
-      code: `# Python List
-fruits = ["apel", "jeruk", "mangga"]
+      code: `# Python Scope
+total = 0  # Global variable
 
-# Akses dengan index (mulai dari 0!)
-print(fruits[0])   # "apel"
-print(fruits[1])   # "jeruk"
-print(fruits[-1])  # "mangga" (terakhir)
+def add_to_total(x):
+    result = x + 1  # Local variable
+    return result
 
-# Tambah item
-fruits.append("durian")
-print(fruits)  # ["apel", "jeruk", "mangga", "durian"]
+# result tidak bisa diakses di sini
+# print(result)  # NameError!
 
-# Length
-print(len(fruits))  # 4`,
-      title: "lists.py",
-      highlightLines: [5, 6, 7, 10],
-      showAtFrame: 9000,
-      hideAtFrame: 21600,
+# Return multiple values
+def min_max(numbers):
+    return min(numbers), max(numbers)
+
+minimum, maximum = min_max([3, 1, 4, 1, 5])
+print(f"Min: {minimum}, Max: {maximum}")`,
+      title: "scope.py",
+      highlightLines: [1, 5, 12, 15],
+      showAtFrame: 14400,
+      hideAtFrame: 32400,
     },
     {
-      code: `// Java Array vs ArrayList
-import java.util.ArrayList;
+      code: `// JavaScript Scope
+let globalVar = "global";
 
-// Fixed-size Array
-String[] fruits = {"apel", "jeruk", "mangga"};
-System.out.println(fruits[0]);  // "apel"
-// fruits.add("durian");  // ERROR! fixed size
+function example() {
+    let localVar = "local";
 
-// Dynamic ArrayList
-ArrayList<String> fruitList = new ArrayList<>();
-fruitList.add("apel");
-fruitList.add("jeruk");
-fruitList.add("mangga");
-fruitList.add("durian");  // OK! dynamic
+    if (true) {
+        let blockVar = "block";  // only in this block
+        var funcVar = "function"; // available in whole function
+    }
 
-System.out.println(fruitList.get(0));  // "apel"
-System.out.println(fruitList.size());  // 4`,
-      title: "Arrays.java",
-      highlightLines: [5, 10, 11, 12, 13, 14],
-      showAtFrame: 32400,
-      hideAtFrame: 45000,
+    console.log(funcVar);   // "function" - var is function-scoped
+    // console.log(blockVar); // Error! - let is block-scoped
+}
+
+// var vs let
+for (var i = 0; i < 3; i++) {}
+console.log(i);  // 3 - var leaks out!
+
+for (let j = 0; j < 3; j++) {}
+// console.log(j);  // Error! - let stays in block`,
+      title: "scope.js",
+      highlightLines: [8, 9, 12, 17, 18],
+      showAtFrame: 23400,
+      hideAtFrame: 37800,
     },
   ],
 };

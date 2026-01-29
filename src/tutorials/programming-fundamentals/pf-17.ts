@@ -3,8 +3,8 @@ import { VideoOutline } from "../types";
 export const pf17: VideoOutline = {
   episodeId: "pf-17",
   seriesId: "programming-fundamentals",
-  title: "Parameters & Arguments",
-  description: "Mempelajari cara passing data ke functions: parameters, arguments, default values, dan variadic functions.",
+  title: "Functions - Kode yang Reusable",
+  description: "Mempelajari functions/methods untuk membuat kode yang reusable dan terorganisir.",
   duration: 1800,
   fps: 30,
 
@@ -13,86 +13,90 @@ export const pf17: VideoOutline = {
       timestamp: "00:00",
       title: "Intro",
       talkingPoints: [
-        "Recap: function basics",
-        "Hari ini: parameters lebih dalam",
-        "Cara passing data ke function",
+        "Recap: loops dan patterns",
+        "Hari ini: functions!",
+        "Salah satu konsep terpenting",
       ],
       showOnScreen: "webcam",
     },
     {
       timestamp: "02:00",
-      title: "Parameter vs Argument",
+      title: "Apa Itu Function?",
       talkingPoints: [
-        "Parameter: variable di definisi function",
-        "Argument: nilai yang dipass saat call",
-        "def sapa(nama): → nama adalah parameter",
-        "sapa('Budi') → 'Budi' adalah argument",
-        "Sering dipakai bergantian",
+        "Blok kode yang bisa dipanggil berkali-kali",
+        "Analogi: mesin kopi",
+        "Input: kopi, air",
+        "Process: seduh",
+        "Output: secangkir kopi",
+        "Reusable tanpa copy-paste",
       ],
       showOnScreen: "slide",
     },
     {
       timestamp: "05:00",
-      title: "Multiple Parameters",
+      title: "Function di Python",
       talkingPoints: [
-        "Function bisa punya banyak parameter",
-        "Dipisah dengan koma",
-        "Urutan penting saat call",
-        "Terlalu banyak = code smell",
+        "def nama_function(params):",
+        "return untuk mengembalikan nilai",
+        "Indentation untuk body",
+        "Call dengan nama(args)",
       ],
+      notes: "Live coding: function pertama Python",
       showOnScreen: "code",
     },
     {
-      timestamp: "09:00",
-      title: "Default Parameters",
+      timestamp: "12:00",
+      title: "Function di JavaScript",
       talkingPoints: [
-        "Nilai default jika tidak dipass",
-        "Python: def sapa(nama, greeting='Halo')",
-        "JavaScript: function sapa(nama, greeting = 'Halo')",
-        "Java: tidak punya, pakai method overloading",
+        "function nama(params) { }",
+        "Arrow function: const nama = (params) => { }",
+        "return untuk mengembalikan nilai",
+        "Arrow function lebih modern",
       ],
-      notes: "Live coding: default params",
-      showOnScreen: "code",
-    },
-    {
-      timestamp: "15:00",
-      title: "Java Method Overloading",
-      talkingPoints: [
-        "Java: multiple methods dengan nama sama",
-        "Berbeda di jumlah/tipe parameter",
-        "Cara Java handle 'default' params",
-      ],
-      notes: "Live coding: method overloading Java",
+      notes: "Live coding: function JavaScript",
       showOnScreen: "code",
     },
     {
       timestamp: "19:00",
-      title: "Named Arguments",
+      title: "Method di Java",
       talkingPoints: [
-        "Pass argument dengan nama",
-        "Urutan tidak penting",
-        "Python: sapa(greeting='Hi', nama='Budi')",
-        "JavaScript: pass object { nama: 'Budi' }",
-        "Java: tidak support langsung",
+        "public static returnType nama(params) { }",
+        "Harus deklarasi return type",
+        "void jika tidak return apapun",
+        "Harus dalam class",
+        "Lebih verbose tapi explicit",
       ],
+      notes: "Live coding: method Java",
       showOnScreen: "code",
     },
     {
-      timestamp: "23:00",
-      title: "Variable Arguments",
+      timestamp: "24:00",
+      title: "Function vs Method",
       talkingPoints: [
-        "Terima jumlah argument yang tidak pasti",
-        "Python: *args (tuple), **kwargs (dict)",
-        "JavaScript: ...args (rest parameter)",
-        "Java: Type... args (varargs)",
+        "Function: standalone (Python, JS)",
+        "Method: milik class/object (Java)",
+        "Secara konsep sama",
+        "Di Java semua adalah method",
       ],
-      showOnScreen: "code",
+      showOnScreen: "slide",
     },
     {
-      timestamp: "27:00",
+      timestamp: "26:00",
+      title: "Kenapa Function Penting?",
+      talkingPoints: [
+        "Reusability: tulis sekali, pakai berkali-kali",
+        "Organization: kode lebih rapi",
+        "Testing: mudah dites per function",
+        "DRY: Don't Repeat Yourself",
+      ],
+      showOnScreen: "slide",
+    },
+    {
+      timestamp: "28:00",
       title: "Challenge & Git",
       talkingPoints: [
-        "Function dengan default greeting",
+        "Buat function hitung_luas_persegi(sisi)",
+        "Di ketiga bahasa",
         "git add, commit, push",
       ],
       showOnScreen: "demo",
@@ -101,9 +105,9 @@ export const pf17: VideoOutline = {
       timestamp: "29:00",
       title: "Outro",
       talkingPoints: [
-        "Recap: parameters dan arguments",
-        "Next episode: scope dan return values",
-        "Keep coding!",
+        "Recap: function untuk reusable code",
+        "Next episode: parameters & arguments",
+        "Functions are your friends!",
       ],
       showOnScreen: "webcam",
     },
@@ -111,7 +115,7 @@ export const pf17: VideoOutline = {
 
   lowerThirds: [
     {
-      title: "Parameters & Arguments",
+      title: "Functions",
       subtitle: "Programming Fundamentals - Episode 17",
       showAtFrame: 90,
       hideAtFrame: 270,
@@ -120,51 +124,74 @@ export const pf17: VideoOutline = {
 
   codeSnippets: [
     {
-      code: `# Python Default & Named Parameters
+      code: `# Python Function
+def sapa(nama):
+    return f"Halo, {nama}!"
 
-# Default parameter
-def sapa(nama, greeting="Halo"):
-    return f"{greeting}, {nama}!"
+# Panggil function
+pesan = sapa("Budi")
+print(pesan)  # "Halo, Budi!"
 
-print(sapa("Budi"))           # "Halo, Budi!"
-print(sapa("Budi", "Hi"))     # "Hi, Budi!"
+# Function dengan multiple params
+def hitung_luas(panjang, lebar):
+    return panjang * lebar
 
-# Named arguments (keyword arguments)
-print(sapa(greeting="Hey", nama="Ani"))  # "Hey, Ani!"
+luas = hitung_luas(10, 5)
+print(f"Luas: {luas}")  # 50`,
+      title: "functions.py",
+      highlightLines: [2, 3, 6, 10, 11],
+      showAtFrame: 9000,
+      hideAtFrame: 21600,
+    },
+    {
+      code: `// JavaScript Functions
 
-# Variable arguments
-def sum_all(*args):
-    return sum(args)
+// Regular function
+function sapa(nama) {
+    return \`Halo, \${nama}!\`;
+}
 
-print(sum_all(1, 2, 3, 4, 5))  # 15`,
-      title: "parameters.py",
-      highlightLines: [4, 8, 11, 14],
-      showAtFrame: 16200,
+// Arrow function (modern)
+const sapa2 = (nama) => {
+    return \`Halo, \${nama}!\`;
+};
+
+// Arrow function shorthand
+const sapa3 = (nama) => \`Halo, \${nama}!\`;
+
+// Call function
+console.log(sapa("Budi"));
+console.log(sapa3("Ani"));`,
+      title: "functions.js",
+      highlightLines: [4, 9, 14],
+      showAtFrame: 21600,
       hideAtFrame: 34200,
     },
     {
-      code: `// Java Method Overloading
-public class Greeter {
+      code: `// Java Method
+public class Functions {
 
-    // Method 1: hanya nama
+    // Method dengan return value
     public static String sapa(String nama) {
-        return sapa(nama, "Halo");  // call method 2
+        return "Halo, " + nama + "!";
     }
 
-    // Method 2: nama + greeting
-    public static String sapa(String nama, String greeting) {
-        return greeting + ", " + nama + "!";
+    // Method tanpa return (void)
+    public static void cetakSapa(String nama) {
+        System.out.println("Halo, " + nama + "!");
     }
 
     public static void main(String[] args) {
-        System.out.println(sapa("Budi"));         // "Halo, Budi!"
-        System.out.println(sapa("Budi", "Hi"));   // "Hi, Budi!"
+        String pesan = sapa("Budi");
+        System.out.println(pesan);
+
+        cetakSapa("Ani");
     }
 }`,
-      title: "Greeter.java",
-      highlightLines: [5, 6, 10, 11],
+      title: "Functions.java",
+      highlightLines: [5, 10, 15, 18],
       showAtFrame: 34200,
-      hideAtFrame: 41400,
+      hideAtFrame: 43200,
     },
   ],
 };

@@ -3,8 +3,8 @@ import { VideoOutline } from "../types";
 export const pf28: VideoOutline = {
   episodeId: "pf-28",
   seriesId: "programming-fundamentals",
-  title: "Project: Calculator App",
-  description: "Final project pertama: membuat calculator app dengan operasi dasar. Implementasi di ketiga bahasa.",
+  title: "Reading & Writing Files",
+  description: "Mempelajari cara membaca dan menulis file. Text files dan JSON.",
   duration: 1800,
   fps: 30,
 
@@ -13,88 +13,80 @@ export const pf28: VideoOutline = {
       timestamp: "00:00",
       title: "Intro",
       talkingPoints: [
-        "Final projects dimulai!",
-        "Project 1: Calculator App",
-        "Apply semua yang sudah dipelajari",
+        "Recap: debugging techniques",
+        "Hari ini: file I/O",
+        "Program yang bisa simpan dan load data",
       ],
       showOnScreen: "webcam",
     },
     {
       timestamp: "02:00",
-      title: "Project Overview",
+      title: "Kenapa File I/O?",
       talkingPoints: [
-        "Calculator dengan +, -, *, /",
-        "Input dari user",
-        "Handle errors (bagi nol, invalid input)",
-        "Loop sampai user quit",
+        "Data persist setelah program selesai",
+        "Load configuration dari file",
+        "Save user data",
+        "Process data dalam file (CSV, JSON, etc)",
       ],
       showOnScreen: "slide",
     },
     {
-      timestamp: "04:00",
-      title: "Buat Repository Baru",
+      timestamp: "05:00",
+      title: "File I/O di Python",
       talkingPoints: [
-        "github.com → New repository",
-        "Nama: calculator-app",
-        "Create codespace",
-        "Buat 3 file: calc.py, calc.js, Calc.java",
+        "open() untuk buka file",
+        "with statement untuk auto-close",
+        "Modes: r (read), w (write), a (append)",
+        "read(), readline(), readlines()",
+        "write() untuk menulis",
       ],
-      showOnScreen: "demo",
-    },
-    {
-      timestamp: "07:00",
-      title: "Planning",
-      talkingPoints: [
-        "1. Display menu",
-        "2. Get user input (num1, operator, num2)",
-        "3. Calculate based on operator",
-        "4. Display result",
-        "5. Loop atau quit",
-      ],
-      showOnScreen: "slide",
-    },
-    {
-      timestamp: "09:00",
-      title: "Python Implementation",
-      talkingPoints: [
-        "Function untuk tiap operasi",
-        "Main loop dengan while True",
-        "Input validation dengan try-except",
-        "Break saat user ketik 'q'",
-      ],
-      notes: "Live coding: calculator Python",
+      notes: "Live coding: Python file I/O",
       showOnScreen: "code",
     },
     {
-      timestamp: "16:00",
-      title: "JavaScript Implementation",
+      timestamp: "12:00",
+      title: "File I/O di JavaScript (Node.js)",
       talkingPoints: [
-        "Node.js dengan readline",
-        "Async input handling",
-        "Switch-case untuk operator",
-        "Similar structure dengan Python",
+        "require('fs') untuk file system",
+        "readFileSync() / writeFileSync()",
+        "Async versions: readFile(), writeFile()",
+        "Specify encoding: 'utf8'",
       ],
-      notes: "Live coding: calculator JavaScript",
+      notes: "Live coding: Node.js file I/O",
+      showOnScreen: "code",
+    },
+    {
+      timestamp: "18:00",
+      title: "File I/O di Java",
+      talkingPoints: [
+        "Files class (modern way)",
+        "Files.readString(), Files.writeString()",
+        "BufferedReader untuk large files",
+        "Try-with-resources untuk auto-close",
+      ],
+      notes: "Live coding: Java file I/O",
       showOnScreen: "code",
     },
     {
       timestamp: "22:00",
-      title: "Java Implementation",
+      title: "Working with JSON",
       talkingPoints: [
-        "Scanner untuk input",
-        "Methods untuk operasi",
-        "More verbose tapi structured",
+        "JSON: universal data format",
+        "Python: json.load(), json.dump()",
+        "JS: JSON.parse(), JSON.stringify()",
+        "Java: Jackson atau Gson library",
+        "Sangat penting untuk APIs",
       ],
-      notes: "Live coding: calculator Java",
+      notes: "Live coding: JSON read/write",
       showOnScreen: "code",
     },
     {
       timestamp: "27:00",
-      title: "Commit & Review",
+      title: "Challenge & Git",
       talkingPoints: [
+        "Simple note-taking app",
+        "Save notes to file, load on start",
         "git add, commit, push",
-        "Review: concepts yang dipakai",
-        "Variables, functions, loops, conditionals, error handling",
       ],
       showOnScreen: "demo",
     },
@@ -102,9 +94,9 @@ export const pf28: VideoOutline = {
       timestamp: "29:00",
       title: "Outro",
       talkingPoints: [
-        "Congratulations! First project done!",
-        "Next project: Todo List App",
-        "Keep building!",
+        "Recap: file I/O dan JSON",
+        "Next episode: Project Calculator!",
+        "Ready for final projects!",
       ],
       showOnScreen: "webcam",
     },
@@ -112,7 +104,7 @@ export const pf28: VideoOutline = {
 
   lowerThirds: [
     {
-      title: "Project: Calculator",
+      title: "Reading & Writing Files",
       subtitle: "Programming Fundamentals - Episode 28",
       showAtFrame: 90,
       hideAtFrame: 270,
@@ -121,51 +113,60 @@ export const pf28: VideoOutline = {
 
   codeSnippets: [
     {
-      code: `# Python Calculator
-def add(a, b): return a + b
-def subtract(a, b): return a - b
-def multiply(a, b): return a * b
-def divide(a, b):
-    if b == 0:
-        raise ValueError("Cannot divide by zero")
-    return a / b
+      code: `# Python File I/O
 
-def calculator():
-    while True:
-        print("\\n=== Calculator ===")
-        print("Enter 'q' to quit")
+# Write to file
+with open("notes.txt", "w") as f:
+    f.write("Belajar Python\\n")
+    f.write("File I/O\\n")
 
-        try:
-            num1 = input("First number: ")
-            if num1.lower() == 'q': break
-            num1 = float(num1)
+# Read from file
+with open("notes.txt", "r") as f:
+    content = f.read()
+    print(content)
 
-            op = input("Operator (+,-,*,/): ")
-            num2 = float(input("Second number: "))
+# JSON
+import json
 
-            if op == '+': result = add(num1, num2)
-            elif op == '-': result = subtract(num1, num2)
-            elif op == '*': result = multiply(num1, num2)
-            elif op == '/': result = divide(num1, num2)
-            else: print("Invalid operator"); continue
+data = {"nama": "Budi", "umur": 25}
 
-            print(f"Result: {result}")
+# Write JSON
+with open("data.json", "w") as f:
+    json.dump(data, f, indent=2)
 
-        except ValueError as e:
-            print(f"Error: {e}")
-
-calculator()`,
-      title: "calc.py",
-      highlightLines: [2, 3, 4, 5, 6, 7, 11, 22, 23, 24, 25, 30, 31],
-      showAtFrame: 16200,
-      hideAtFrame: 28800,
+# Read JSON
+with open("data.json", "r") as f:
+    loaded = json.load(f)
+    print(loaded["nama"])  # "Budi"`,
+      title: "file_io.py",
+      highlightLines: [4, 5, 10, 11, 19, 20, 24, 25],
+      showAtFrame: 9000,
+      hideAtFrame: 27000,
     },
-  ],
-
-  references: [
     {
-      label: "Calculator Repository",
-      url: "github.com/[username]/calculator-app",
+      code: `// JavaScript (Node.js) File I/O
+const fs = require('fs');
+
+// Write to file (sync)
+fs.writeFileSync('notes.txt', 'Belajar JavaScript\\nFile I/O\\n');
+
+// Read from file (sync)
+const content = fs.readFileSync('notes.txt', 'utf8');
+console.log(content);
+
+// JSON
+const data = { nama: "Budi", umur: 25 };
+
+// Write JSON
+fs.writeFileSync('data.json', JSON.stringify(data, null, 2));
+
+// Read JSON
+const loaded = JSON.parse(fs.readFileSync('data.json', 'utf8'));
+console.log(loaded.nama);  // "Budi"`,
+      title: "file_io.js",
+      highlightLines: [5, 8, 15, 18],
+      showAtFrame: 21600,
+      hideAtFrame: 39600,
     },
   ],
 };

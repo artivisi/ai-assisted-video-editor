@@ -3,8 +3,8 @@ import { VideoOutline } from "../types";
 export const pf30: VideoOutline = {
   episodeId: "pf-30",
   seriesId: "programming-fundamentals",
-  title: "Project: Number Guessing Game",
-  description: "Final project ketiga: membuat number guessing game dengan difficulty levels dan score tracking.",
+  title: "Project: Todo List App",
+  description: "Final project kedua: membuat todo list app dengan CRUD operations dan file persistence.",
   duration: 1800,
   fps: 30,
 
@@ -13,21 +13,20 @@ export const pf30: VideoOutline = {
       timestamp: "00:00",
       title: "Intro",
       talkingPoints: [
-        "Project 3: Guessing Game",
-        "Fun project dengan game logic",
-        "Practice loops dan conditionals",
+        "Project 2: Todo List App",
+        "More complex: CRUD + file storage",
+        "Real-world application pattern",
       ],
       showOnScreen: "webcam",
     },
     {
       timestamp: "02:00",
-      title: "Game Overview",
+      title: "Project Overview",
       talkingPoints: [
-        "Computer picks random number",
-        "Player tries to guess",
-        "Hints: too high / too low",
-        "Track number of attempts",
-        "Difficulty levels",
+        "Features: Add, List, Complete, Delete",
+        "Save to file (persist data)",
+        "Load on startup",
+        "Menu-driven interface",
       ],
       showOnScreen: "slide",
     },
@@ -35,77 +34,89 @@ export const pf30: VideoOutline = {
       timestamp: "04:00",
       title: "Buat Repository",
       talkingPoints: [
-        "Nama: guessing-game",
+        "Nama: todo-list-app",
         "Create codespace",
-        "File: game.py (focus Python)",
+        "Kita akan fokus di Python",
+        "Tapi tunjukkan snippet JS dan Java",
       ],
       showOnScreen: "demo",
     },
     {
       timestamp: "06:00",
-      title: "Basic Game Loop",
+      title: "Data Structure",
       talkingPoints: [
-        "Generate random number",
-        "While loop untuk guessing",
-        "Compare guess with secret",
-        "Give hints",
-        "Break when correct",
+        "Todo item: {id, text, completed}",
+        "List of todos",
+        "Save sebagai JSON",
+        "Auto-increment ID",
       ],
-      notes: "Live coding: basic game",
+      showOnScreen: "slide",
+    },
+    {
+      timestamp: "09:00",
+      title: "Core Functions",
+      talkingPoints: [
+        "add_todo(text)",
+        "list_todos()",
+        "complete_todo(id)",
+        "delete_todo(id)",
+        "save_todos() / load_todos()",
+      ],
       showOnScreen: "code",
     },
     {
-      timestamp: "12:00",
-      title: "Add Difficulty Levels",
+      timestamp: "14:00",
+      title: "Implement Add & List",
       talkingPoints: [
-        "Easy: 1-10, unlimited guesses",
-        "Medium: 1-50, 10 guesses",
-        "Hard: 1-100, 5 guesses",
-        "Let player choose",
+        "Add: append to list dengan new ID",
+        "List: print semua dengan status",
+        "[] untuk incomplete, [x] untuk complete",
       ],
-      notes: "Live coding: difficulty levels",
+      notes: "Live coding: add dan list",
       showOnScreen: "code",
     },
     {
       timestamp: "18:00",
-      title: "Score Tracking",
+      title: "Implement Complete & Delete",
       talkingPoints: [
-        "Track attempts",
-        "Calculate score based on attempts",
-        "Fewer attempts = higher score",
-        "Display final score",
+        "Find todo by ID",
+        "Complete: set completed = True",
+        "Delete: remove from list",
+        "Handle ID not found",
       ],
-      notes: "Live coding: scoring",
+      notes: "Live coding: complete dan delete",
       showOnScreen: "code",
     },
     {
       timestamp: "22:00",
-      title: "Play Again Feature",
+      title: "File Persistence",
       talkingPoints: [
-        "Ask to play again",
-        "Track total games and wins",
-        "Show statistics at end",
+        "save_todos(): write JSON to file",
+        "load_todos(): read JSON from file",
+        "Call load on startup",
+        "Call save after every change",
+      ],
+      notes: "Live coding: file persistence",
+      showOnScreen: "code",
+    },
+    {
+      timestamp: "26:00",
+      title: "Main Menu Loop",
+      talkingPoints: [
+        "Display menu options",
+        "Get user choice",
+        "Call appropriate function",
+        "Loop until quit",
       ],
       showOnScreen: "code",
     },
     {
-      timestamp: "25:00",
-      title: "Polish & Enhancements",
-      talkingPoints: [
-        "Input validation",
-        "Clear screen between games",
-        "ASCII art title",
-        "Ideas: leaderboard, hints limit",
-      ],
-      showOnScreen: "code",
-    },
-    {
-      timestamp: "27:00",
-      title: "Final Commit & Review",
+      timestamp: "28:00",
+      title: "Commit & Review",
       talkingPoints: [
         "git add, commit, push",
-        "Review Git history",
-        "All 3 projects complete!",
+        "Concepts: lists, dicts, functions, file I/O, loops",
+        "Ideas for enhancement",
       ],
       showOnScreen: "demo",
     },
@@ -113,9 +124,9 @@ export const pf30: VideoOutline = {
       timestamp: "29:00",
       title: "Outro",
       talkingPoints: [
-        "Guessing Game complete!",
-        "Next: Series wrap-up",
-        "You've built 3 real projects!",
+        "Todo List complete!",
+        "Next project: Number Guessing Game",
+        "You're building real apps!",
       ],
       showOnScreen: "webcam",
     },
@@ -123,7 +134,7 @@ export const pf30: VideoOutline = {
 
   lowerThirds: [
     {
-      title: "Project: Guessing Game",
+      title: "Project: Todo List",
       subtitle: "Programming Fundamentals - Episode 30",
       showAtFrame: 90,
       hideAtFrame: 270,
@@ -132,46 +143,41 @@ export const pf30: VideoOutline = {
 
   codeSnippets: [
     {
-      code: `# Number Guessing Game
-import random
+      code: `# Todo List App - Python
+import json
 
-def play_game(difficulty):
-    ranges = {"easy": (1, 10, 99), "medium": (1, 50, 10), "hard": (1, 100, 5)}
-    min_num, max_num, max_attempts = ranges[difficulty]
+FILENAME = "todos.json"
+todos = []
 
-    secret = random.randint(min_num, max_num)
-    attempts = 0
+def load_todos():
+    global todos
+    try:
+        with open(FILENAME, "r") as f:
+            todos = json.load(f)
+    except FileNotFoundError:
+        todos = []
 
-    print(f"\\nGuess a number between {min_num} and {max_num}")
-    print(f"You have {max_attempts} attempts" if max_attempts < 99 else "")
+def save_todos():
+    with open(FILENAME, "w") as f:
+        json.dump(todos, f, indent=2)
 
-    while attempts < max_attempts:
-        try:
-            guess = int(input("Your guess: "))
-            attempts += 1
+def add_todo(text):
+    new_id = max([t["id"] for t in todos], default=0) + 1
+    todos.append({"id": new_id, "text": text, "completed": False})
+    save_todos()
+    print(f"Added: {text}")
 
-            if guess == secret:
-                score = max(100 - (attempts - 1) * 10, 10)
-                print(f"🎉 Correct! Attempts: {attempts}, Score: {score}")
-                return True, attempts, score
-            elif guess < secret:
-                print("Too low!")
-            else:
-                print("Too high!")
-
-            remaining = max_attempts - attempts
-            if remaining > 0 and max_attempts < 99:
-                print(f"Attempts remaining: {remaining}")
-
-        except ValueError:
-            print("Please enter a valid number")
-
-    print(f"Game over! The number was {secret}")
-    return False, attempts, 0`,
-      title: "game.py",
-      highlightLines: [5, 6, 8, 14, 19, 20, 21, 22, 23, 24],
-      showAtFrame: 10800,
-      hideAtFrame: 32400,
+def list_todos():
+    if not todos:
+        print("No todos yet!")
+        return
+    for todo in todos:
+        status = "[x]" if todo["completed"] else "[ ]"
+        print(f"{todo['id']}. {status} {todo['text']}")`,
+      title: "todo.py",
+      highlightLines: [8, 9, 10, 11, 16, 17, 20, 21, 22, 29, 30],
+      showAtFrame: 16200,
+      hideAtFrame: 39600,
     },
   ],
 };

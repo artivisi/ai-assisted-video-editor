@@ -3,8 +3,8 @@ import { VideoOutline } from "../types";
 export const pf14: VideoOutline = {
   episodeId: "pf-14",
   seriesId: "programming-fundamentals",
-  title: "While Loop & Loop Control",
-  description: "Mempelajari while loop untuk pengulangan dengan kondisi. Break dan continue untuk kontrol loop.",
+  title: "For Loop - Pengulangan Terukur",
+  description: "Mempelajari for loop untuk mengulang kode dengan jumlah iterasi yang diketahui. Iterasi array dan range.",
   duration: 1800,
   fps: 30,
 
@@ -13,99 +13,78 @@ export const pf14: VideoOutline = {
       timestamp: "00:00",
       title: "Intro",
       talkingPoints: [
-        "Recap: for loop untuk iterasi terukur",
-        "Bagaimana kalau tidak tahu jumlah iterasi?",
-        "Hari ini: while loop",
+        "Recap: conditionals untuk keputusan",
+        "Hari ini: loops untuk pengulangan",
+        "Fondasi penting dalam programming",
       ],
       showOnScreen: "webcam",
     },
     {
       timestamp: "02:00",
-      title: "While vs For",
+      title: "Apa Itu Loop?",
       talkingPoints: [
-        "For: tahu berapa kali loop",
-        "While: loop selama kondisi true",
-        "While: tidak tahu kapan berhenti",
-        "Contoh: baca input sampai user ketik 'quit'",
+        "Menjalankan kode berulang kali",
+        "Analogi: repetisi workout (10 push up)",
+        "Tanpa loop: copy-paste 10 kali",
+        "Dengan loop: tulis sekali, ulang 10 kali",
+        "Sangat penting untuk proses data",
       ],
       showOnScreen: "slide",
     },
     {
       timestamp: "05:00",
-      title: "While Loop di Python",
+      title: "For Loop di Python",
       talkingPoints: [
-        "while kondisi:",
-        "Loop selama kondisi True",
-        "Hati-hati infinite loop!",
-        "Pastikan kondisi bisa jadi False",
+        "for item in collection:",
+        "range(5) = 0, 1, 2, 3, 4",
+        "range(1, 6) = 1, 2, 3, 4, 5",
+        "Langsung iterate tanpa index",
+        "Paling mudah dibaca",
       ],
-      notes: "Live coding: while loop Python",
+      notes: "Live coding: berbagai for loop Python",
       showOnScreen: "code",
     },
     {
-      timestamp: "10:00",
-      title: "While Loop di JavaScript & Java",
+      timestamp: "12:00",
+      title: "For Loop di JavaScript",
       talkingPoints: [
-        "while (kondisi) { }",
-        "Sama strukturnya",
-        "Parentheses untuk kondisi",
-        "Curly braces untuk body",
+        "Classic: for (let i = 0; i < 5; i++)",
+        "3 bagian: init, condition, increment",
+        "for...of untuk iterate array",
+        "for...in untuk iterate object keys",
+        "forEach() method juga ada",
       ],
-      notes: "Live coding: while loop JS",
+      notes: "Live coding: berbagai for loop JavaScript",
       showOnScreen: "code",
     },
     {
-      timestamp: "15:00",
-      title: "Infinite Loop",
+      timestamp: "19:00",
+      title: "For Loop di Java",
       talkingPoints: [
-        "while True: (Python) atau while(true)",
-        "Loop yang tidak pernah berhenti",
-        "Butuh break untuk keluar",
-        "Use case: game loop, server",
-        "Ctrl+C untuk stop jika stuck",
+        "Classic: for (int i = 0; i < 5; i++)",
+        "Sama dengan JavaScript",
+        "Enhanced for: for (String item : array)",
+        "Mirip Python for-in",
       ],
+      notes: "Live coding: berbagai for loop Java",
       showOnScreen: "code",
     },
     {
-      timestamp: "18:00",
-      title: "Break Statement",
+      timestamp: "24:00",
+      title: "Iterating Arrays",
       talkingPoints: [
-        "Keluar dari loop sebelum selesai",
-        "Bisa di for atau while",
-        "Keluar dari loop terdalam saja",
-        "Contoh: cari item, stop saat ketemu",
-      ],
-      notes: "Live coding: break examples",
-      showOnScreen: "code",
-    },
-    {
-      timestamp: "22:00",
-      title: "Continue Statement",
-      talkingPoints: [
-        "Skip iterasi saat ini, lanjut ke berikutnya",
-        "Tidak keluar dari loop",
-        "Contoh: skip angka genap",
-      ],
-      notes: "Live coding: continue examples",
-      showOnScreen: "code",
-    },
-    {
-      timestamp: "25:00",
-      title: "Do-While (Java & JavaScript)",
-      talkingPoints: [
-        "Loop minimal 1 kali",
-        "Cek kondisi di akhir",
-        "Python tidak punya do-while",
-        "Jarang dipakai tapi ada",
+        "Proses setiap item dalam array",
+        "Sangat common dalam programming",
+        "Print, transform, filter, accumulate",
       ],
       showOnScreen: "code",
     },
     {
-      timestamp: "28:00",
+      timestamp: "27:00",
       title: "Challenge & Git",
       talkingPoints: [
-        "Guess the number game",
-        "Loop sampai user tebak benar",
+        "Print angka 1-10",
+        "Print setiap item dalam array",
         "git add, commit, push",
       ],
       showOnScreen: "demo",
@@ -114,9 +93,9 @@ export const pf14: VideoOutline = {
       timestamp: "29:00",
       title: "Outro",
       talkingPoints: [
-        "Recap: while, break, continue",
-        "Next episode: nested loops",
-        "See you!",
+        "Recap: for loop untuk iterasi terukur",
+        "Next episode: while loop",
+        "Keep looping!",
       ],
       showOnScreen: "webcam",
     },
@@ -124,7 +103,7 @@ export const pf14: VideoOutline = {
 
   lowerThirds: [
     {
-      title: "While Loop & Control",
+      title: "For Loop",
       subtitle: "Programming Fundamentals - Episode 14",
       showAtFrame: 90,
       hideAtFrame: 270,
@@ -133,54 +112,49 @@ export const pf14: VideoOutline = {
 
   codeSnippets: [
     {
-      code: `# Python While Loop
-count = 0
-while count < 5:
-    print(count)
-    count += 1  # PENTING! tanpa ini = infinite loop
-
-# Break - keluar dari loop
-for i in range(10):
-    if i == 5:
-        break  # stop di 5
+      code: `# Python For Loop
+# Loop dengan range
+for i in range(5):
     print(i)  # 0, 1, 2, 3, 4
 
-# Continue - skip iterasi
-for i in range(5):
-    if i == 2:
-        continue  # skip 2
-    print(i)  # 0, 1, 3, 4`,
-      title: "while_loop.py",
-      highlightLines: [3, 5, 10, 16],
+# Loop dengan range custom
+for i in range(1, 6):
+    print(i)  # 1, 2, 3, 4, 5
+
+# Loop array
+fruits = ["apel", "jeruk", "mangga"]
+for fruit in fruits:
+    print(fruit)
+
+# Dengan index
+for i, fruit in enumerate(fruits):
+    print(f"{i}: {fruit}")`,
+      title: "for_loop.py",
+      highlightLines: [3, 7, 12, 16],
       showAtFrame: 9000,
-      hideAtFrame: 27000,
+      hideAtFrame: 21600,
     },
     {
-      code: `// Guess the Number Game
-import java.util.Scanner;
-import java.util.Random;
+      code: `// JavaScript For Loop
+// Classic for
+for (let i = 0; i < 5; i++) {
+    console.log(i);  // 0, 1, 2, 3, 4
+}
 
-int secret = new Random().nextInt(100) + 1;
-Scanner input = new Scanner(System.in);
-int guess;
+// For...of (array values)
+let fruits = ["apel", "jeruk", "mangga"];
+for (let fruit of fruits) {
+    console.log(fruit);
+}
 
-while (true) {
-    System.out.print("Tebak (1-100): ");
-    guess = input.nextInt();
-
-    if (guess == secret) {
-        System.out.println("Benar!");
-        break;  // Keluar dari loop
-    } else if (guess < secret) {
-        System.out.println("Terlalu kecil");
-    } else {
-        System.out.println("Terlalu besar");
-    }
-}`,
-      title: "GuessGame.java",
-      highlightLines: [9, 15],
-      showAtFrame: 50400,
-      hideAtFrame: 52200,
+// forEach method
+fruits.forEach((fruit, index) => {
+    console.log(\`\${index}: \${fruit}\`);
+});`,
+      title: "for_loop.js",
+      highlightLines: [3, 9, 14],
+      showAtFrame: 21600,
+      hideAtFrame: 34200,
     },
   ],
 };

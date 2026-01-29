@@ -3,9 +3,9 @@ import { VideoOutline } from "../types";
 export const pf03: VideoOutline = {
   episodeId: "pf-03",
   seriesId: "programming-fundamentals",
-  title: "Hello World - Program Pertamamu",
-  description: "Menulis program pertama 'Hello World' dalam 3 bahasa: Python, JavaScript, dan Java. Memahami struktur dasar program dan cara menjalankannya.",
-  duration: 1800,
+  title: "AI untuk Belajar Programming",
+  description: "Cara menggunakan AI (ChatGPT, Claude, Gemini) sebagai tutor programming. Do's and Don'ts agar AI membantu belajar, bukan menghambat.",
+  duration: 2400, // 40 minutes
   fps: 30,
 
   outline: [
@@ -13,113 +13,172 @@ export const pf03: VideoOutline = {
       timestamp: "00:00",
       title: "Intro",
       talkingPoints: [
-        "Recap: GitHub & Codespaces sudah ready",
-        "Hari ini: program pertama kamu!",
-        "Tradisi 'Hello World' dalam programming",
+        "Recap: Setup GitHub & Codespaces sudah siap",
+        "Sebelum mulai coding, ada tool penting: AI",
+        "AI bisa jadi tutor pribadi 24/7",
+        "Tapi harus tahu cara pakai yang BENAR",
       ],
       showOnScreen: "webcam",
     },
     {
       timestamp: "02:00",
-      title: "Tradisi Hello World",
+      title: "AI Tools untuk Programming",
       talkingPoints: [
-        "Sejak 1978 (buku 'The C Programming Language')",
-        "Program pertama yang ditulis saat belajar bahasa baru",
-        "Memastikan environment berjalan dengan benar",
-        "Simple tapi penting!",
+        "ChatGPT (OpenAI) - paling populer",
+        "Claude (Anthropic) - bagus untuk coding",
+        "Gemini (Google) - terintegrasi Google",
+        "GitHub Copilot - langsung di editor",
+        "Semua bisa dipakai GRATIS (ada limit)",
+        "Pilih satu, konsep sama saja",
       ],
       showOnScreen: "slide",
     },
     {
-      timestamp: "04:00",
-      title: "Hello World in Python",
+      timestamp: "05:00",
+      title: "AI sebagai Tutor vs AI sebagai Cheat",
       talkingPoints: [
-        "Buat file baru: hello.py",
-        "Ketik: print(\"Hello, World!\")",
-        "Hanya 1 baris! Python sangat ringkas",
-        "print() = function untuk menampilkan output",
-        "String dalam tanda kutip (\" atau ')",
-        "Run: python hello.py",
+        "TUTOR: membantu kamu MEMAHAMI",
+        "CHEAT: mengerjakan UNTUK kamu",
+        "Bedanya: siapa yang belajar?",
+        "Analogi: personal trainer vs steroid",
+        "Trainer bikin kamu kuat, steroid bikin shortcut",
+        "Kita mau BELAJAR, bukan dapat nilai",
       ],
-      notes: "Live coding: buat dan jalankan hello.py",
-      showOnScreen: "code",
+      showOnScreen: "slide",
     },
     {
-      timestamp: "10:00",
-      title: "Hello World in JavaScript",
+      timestamp: "08:00",
+      title: "DO: Minta Penjelasan Konsep",
       talkingPoints: [
-        "Buat file baru: hello.js",
-        "Ketik: console.log(\"Hello, World!\");",
-        "console.log() = function untuk output",
-        "Semicolon (;) di akhir - optional tapi recommended",
-        "Run: node hello.js",
-        "Node.js = JavaScript di luar browser",
+        "Prompt: 'Jelaskan apa itu variable seperti aku anak SD'",
+        "Prompt: 'Apa bedanya == dan === di JavaScript?'",
+        "Prompt: 'Kenapa Python tidak perlu semicolon?'",
+        "AI sangat bagus untuk explain WHY",
+        "Boleh minta analogi yang relatable",
       ],
-      notes: "Live coding: buat dan jalankan hello.js",
-      showOnScreen: "code",
+      notes: "Demo: tanya AI tentang konsep",
+      showOnScreen: "demo",
+    },
+    {
+      timestamp: "12:00",
+      title: "DO: Generate Latihan/Exercise",
+      talkingPoints: [
+        "Prompt: 'Buat 5 soal latihan tentang if-else di Python'",
+        "Prompt: 'Beri aku challenge tentang loops, level pemula'",
+        "Minta TANPA jawaban dulu",
+        "Kerjakan sendiri, baru minta review",
+        "Ini cara terbaik untuk practice!",
+      ],
+      notes: "Demo: generate exercise dengan AI",
+      showOnScreen: "demo",
     },
     {
       timestamp: "16:00",
-      title: "Hello World in Java",
+      title: "DO: Minta Penjelasan Error",
       talkingPoints: [
-        "Buat file baru: Hello.java (huruf kapital!)",
-        "Ketik kode lengkap (lihat slide)",
-        "Lebih panjang - tapi ada alasannya",
-        "public class Hello - nama class = nama file",
-        "public static void main - entry point program",
-        "System.out.println() - function untuk output",
-        "Run: java Hello.java",
+        "Copy-paste error message ke AI",
+        "Prompt: 'Apa arti error ini? Kenapa bisa terjadi?'",
+        "JANGAN minta: 'Fix this error'",
+        "Minta PENJELASAN, bukan SOLUSI",
+        "Kamu yang harus fix setelah paham",
       ],
-      notes: "Live coding: buat dan jalankan Hello.java",
-      showOnScreen: "code",
+      notes: "Demo: jelaskan error message",
+      showOnScreen: "demo",
     },
     {
-      timestamp: "22:00",
-      title: "Perbandingan 3 Bahasa",
+      timestamp: "20:00",
+      title: "DO: Minta Analogi & Contoh",
       talkingPoints: [
-        "Python: paling ringkas (1 baris)",
-        "JavaScript: medium (1 baris + semicolon)",
-        "Java: paling verbose (5+ baris)",
-        "Kenapa Java lebih panjang?",
-        "Java: structure dari awal, OOP mandatory",
-        "Python/JS: bisa langsung tulis, structure optional",
-        "Masing-masing ada kelebihan",
+        "Prompt: 'Jelaskan recursion pakai contoh dunia nyata'",
+        "Prompt: 'Analogikan array dengan benda sehari-hari'",
+        "AI sangat kreatif untuk analogi",
+        "Kalau analogi tidak cocok, minta yang lain",
+        "Setiap orang beda cara belajarnya",
       ],
-      showOnScreen: "slide",
+      showOnScreen: "demo",
     },
     {
-      timestamp: "24:00",
-      title: "Challenge",
+      timestamp: "23:00",
+      title: "DO: Code Review",
       talkingPoints: [
-        "Ganti 'World' dengan nama kamu",
-        "Coba di ketiga bahasa",
-        "Experiment: hapus tanda kutip, lihat error-nya",
-        "Belajar dari error adalah bagian dari programming!",
+        "Setelah kamu tulis code sendiri...",
+        "Prompt: 'Review code ini, apa yang bisa diperbaiki?'",
+        "Prompt: 'Apakah ada cara lebih efisien?'",
+        "Prompt: 'Apakah naming variable-ku sudah bagus?'",
+        "Ini membantu improve skill",
       ],
       showOnScreen: "demo",
     },
     {
       timestamp: "26:00",
-      title: "Save ke GitHub",
+      title: "DON'T: Minta Solusi Langsung",
       talkingPoints: [
-        "Sekarang kita simpan code ke GitHub",
-        "Buka Terminal",
-        "git add . (tambah semua file)",
-        "git commit -m \"Hello World in 3 languages\"",
-        "git push (upload ke GitHub)",
-        "Cek di github.com - file sudah ada!",
+        "JANGAN: 'Buatkan function untuk hitung faktorial'",
+        "JANGAN: 'Tulis code untuk sorting array'",
+        "Kalau AI yang tulis, KAMU tidak belajar!",
+        "Otot harus dilatih sendiri untuk kuat",
+        "Copy-paste = illusion of learning",
       ],
-      notes: "Screen recording: git workflow",
-      showOnScreen: "demo",
+      showOnScreen: "slide",
     },
     {
       timestamp: "29:00",
+      title: "DON'T: Copy Tanpa Paham",
+      talkingPoints: [
+        "Kalau harus lihat contoh code...",
+        "BACA dan PAHAMI dulu",
+        "Tutup contoh, tulis dari ingatan",
+        "Kalau tidak bisa, berarti belum paham",
+        "Ulangi sampai bisa tulis sendiri",
+      ],
+      showOnScreen: "slide",
+    },
+    {
+      timestamp: "32:00",
+      title: "DON'T: Skip Struggle",
+      talkingPoints: [
+        "Bingung dan stuck itu NORMAL",
+        "Struggle = otak sedang belajar",
+        "Jangan langsung tanya AI saat pertama stuck",
+        "Coba 15-30 menit dulu sendiri",
+        "Baru kalau benar-benar buntu, tanya AI",
+        "Tanya HINT, bukan ANSWER",
+      ],
+      showOnScreen: "slide",
+    },
+    {
+      timestamp: "35:00",
+      title: "Prompt Template untuk Series Ini",
+      talkingPoints: [
+        "Setiap episode akan ada 'AI Prompt' untuk homework",
+        "Contoh: 'Generate 5 exercise tentang [topic]'",
+        "Kamu kerjakan, lalu self-review",
+        "Ini cara efektif untuk reinforce learning",
+        "Jangan skip homework!",
+      ],
+      showOnScreen: "slide",
+    },
+    {
+      timestamp: "37:00",
+      title: "Practice: Generate Exercise",
+      talkingPoints: [
+        "Buka ChatGPT/Claude/Gemini",
+        "Prompt: 'Buat 3 soal latihan tentang print statement di Python, JavaScript, dan Java. Jangan beri jawaban.'",
+        "Coba kerjakan",
+        "Setelah selesai, minta AI review",
+      ],
+      notes: "Live demo: workflow generate dan kerjakan exercise",
+      showOnScreen: "demo",
+    },
+    {
+      timestamp: "39:00",
       title: "Outro",
       talkingPoints: [
-        "Selamat! Program pertamamu sudah jadi",
-        "Code sudah tersimpan di GitHub (portfolio!)",
-        "Next episode: Komentar & struktur code",
-        "Keep coding!",
+        "Recap: AI = tutor, bukan cheat sheet",
+        "DO: explain, exercise, error help, review",
+        "DON'T: solusi langsung, copy tanpa paham",
+        "Next episode: Hello World - program pertama!",
+        "Sekarang kita siap coding!",
       ],
       showOnScreen: "webcam",
     },
@@ -127,43 +186,96 @@ export const pf03: VideoOutline = {
 
   lowerThirds: [
     {
-      title: "Hello World",
+      title: "AI untuk Belajar",
       subtitle: "Programming Fundamentals - Episode 3",
       showAtFrame: 90,
       hideAtFrame: 270,
     },
-  ],
-
-  references: [
     {
-      label: "Repository",
-      url: "github.com/[username]/belajar-programming",
+      title: "DO: Gunakan AI untuk...",
+      subtitle: "Penjelasan, Latihan, Debug, Review",
+      showAtFrame: 14400, // 8:00
+      hideAtFrame: 16200,
+    },
+    {
+      title: "DON'T: Hindari...",
+      subtitle: "Solusi langsung, Copy tanpa paham",
+      showAtFrame: 46800, // 26:00
+      hideAtFrame: 48600,
     },
   ],
 
   codeSnippets: [
     {
-      code: `print("Hello, World!")`,
-      title: "hello.py",
-      showAtFrame: 7200, // 4:00
-      hideAtFrame: 9000,
+      code: `# Prompt untuk minta penjelasan konsep:
+
+"Jelaskan apa itu variable dalam programming.
+Gunakan analogi yang mudah dipahami anak SMA.
+Beri contoh di Python."
+
+# Prompt untuk generate exercise:
+
+"Buat 5 soal latihan tentang if-else di Python.
+Level: pemula.
+Jangan berikan jawaban, saya mau coba sendiri dulu."
+
+# Prompt untuk explain error:
+
+"Saya dapat error ini:
+TypeError: can only concatenate str (not 'int') to str
+
+Apa artinya? Kenapa bisa terjadi?
+Jangan beri solusi, jelaskan saja penyebabnya."`,
+      title: "ai_prompts_do.txt",
+      highlightLines: [1, 7, 13],
+      showAtFrame: 21600, // 12:00
+      hideAtFrame: 39600,
     },
     {
-      code: `console.log("Hello, World!");`,
-      title: "hello.js",
-      showAtFrame: 18000, // 10:00
-      hideAtFrame: 19800,
+      code: `# JANGAN prompt seperti ini:
+
+"Buatkan function Python untuk menghitung faktorial"
+# ❌ AI yang kerja, kamu tidak belajar
+
+"Fix this code: [paste code]"
+# ❌ Kamu tidak paham kenapa error
+
+"Write a program to sort an array"
+# ❌ Tidak ada learning process
+
+# GANTI dengan:
+
+"Jelaskan algoritma untuk menghitung faktorial"
+# ✓ Kamu paham konsep, lalu tulis sendiri
+
+"Kenapa code ini error? [paste code + error]"
+# ✓ Kamu paham masalah, lalu fix sendiri
+
+"Apa langkah-langkah untuk sorting array?"
+# ✓ Kamu paham proses, lalu implement sendiri`,
+      title: "ai_prompts_dont.txt",
+      highlightLines: [3, 6, 9, 13, 16, 19],
+      showAtFrame: 46800, // 26:00
+      hideAtFrame: 57600,
+    },
+  ],
+
+  references: [
+    {
+      label: "ChatGPT",
+      url: "chat.openai.com",
     },
     {
-      code: `public class Hello {
-    public static void main(String[] args) {
-        System.out.println("Hello, World!");
-    }
-}`,
-      title: "Hello.java",
-      highlightLines: [3],
-      showAtFrame: 28800, // 16:00
-      hideAtFrame: 32400,
+      label: "Claude",
+      url: "claude.ai",
+    },
+    {
+      label: "Gemini",
+      url: "gemini.google.com",
+    },
+    {
+      label: "GitHub Copilot",
+      url: "github.com/features/copilot",
     },
   ],
 };

@@ -3,8 +3,8 @@ import { VideoOutline } from "../types";
 export const pf29: VideoOutline = {
   episodeId: "pf-29",
   seriesId: "programming-fundamentals",
-  title: "Project: Todo List App",
-  description: "Final project kedua: membuat todo list app dengan CRUD operations dan file persistence.",
+  title: "Project: Calculator App",
+  description: "Final project pertama: membuat calculator app dengan operasi dasar. Implementasi di ketiga bahasa.",
   duration: 1800,
   fps: 30,
 
@@ -13,9 +13,9 @@ export const pf29: VideoOutline = {
       timestamp: "00:00",
       title: "Intro",
       talkingPoints: [
-        "Project 2: Todo List App",
-        "More complex: CRUD + file storage",
-        "Real-world application pattern",
+        "Final projects dimulai!",
+        "Project 1: Calculator App",
+        "Apply semua yang sudah dipelajari",
       ],
       showOnScreen: "webcam",
     },
@@ -23,100 +23,78 @@ export const pf29: VideoOutline = {
       timestamp: "02:00",
       title: "Project Overview",
       talkingPoints: [
-        "Features: Add, List, Complete, Delete",
-        "Save to file (persist data)",
-        "Load on startup",
-        "Menu-driven interface",
+        "Calculator dengan +, -, *, /",
+        "Input dari user",
+        "Handle errors (bagi nol, invalid input)",
+        "Loop sampai user quit",
       ],
       showOnScreen: "slide",
     },
     {
       timestamp: "04:00",
-      title: "Buat Repository",
+      title: "Buat Repository Baru",
       talkingPoints: [
-        "Nama: todo-list-app",
+        "github.com → New repository",
+        "Nama: calculator-app",
         "Create codespace",
-        "Kita akan fokus di Python",
-        "Tapi tunjukkan snippet JS dan Java",
+        "Buat 3 file: calc.py, calc.js, Calc.java",
       ],
       showOnScreen: "demo",
     },
     {
-      timestamp: "06:00",
-      title: "Data Structure",
+      timestamp: "07:00",
+      title: "Planning",
       talkingPoints: [
-        "Todo item: {id, text, completed}",
-        "List of todos",
-        "Save sebagai JSON",
-        "Auto-increment ID",
+        "1. Display menu",
+        "2. Get user input (num1, operator, num2)",
+        "3. Calculate based on operator",
+        "4. Display result",
+        "5. Loop atau quit",
       ],
       showOnScreen: "slide",
     },
     {
       timestamp: "09:00",
-      title: "Core Functions",
+      title: "Python Implementation",
       talkingPoints: [
-        "add_todo(text)",
-        "list_todos()",
-        "complete_todo(id)",
-        "delete_todo(id)",
-        "save_todos() / load_todos()",
+        "Function untuk tiap operasi",
+        "Main loop dengan while True",
+        "Input validation dengan try-except",
+        "Break saat user ketik 'q'",
       ],
+      notes: "Live coding: calculator Python",
       showOnScreen: "code",
     },
     {
-      timestamp: "14:00",
-      title: "Implement Add & List",
+      timestamp: "16:00",
+      title: "JavaScript Implementation",
       talkingPoints: [
-        "Add: append to list dengan new ID",
-        "List: print semua dengan status",
-        "[] untuk incomplete, [x] untuk complete",
+        "Node.js dengan readline",
+        "Async input handling",
+        "Switch-case untuk operator",
+        "Similar structure dengan Python",
       ],
-      notes: "Live coding: add dan list",
-      showOnScreen: "code",
-    },
-    {
-      timestamp: "18:00",
-      title: "Implement Complete & Delete",
-      talkingPoints: [
-        "Find todo by ID",
-        "Complete: set completed = True",
-        "Delete: remove from list",
-        "Handle ID not found",
-      ],
-      notes: "Live coding: complete dan delete",
+      notes: "Live coding: calculator JavaScript",
       showOnScreen: "code",
     },
     {
       timestamp: "22:00",
-      title: "File Persistence",
+      title: "Java Implementation",
       talkingPoints: [
-        "save_todos(): write JSON to file",
-        "load_todos(): read JSON from file",
-        "Call load on startup",
-        "Call save after every change",
+        "Scanner untuk input",
+        "Methods untuk operasi",
+        "More verbose tapi structured",
       ],
-      notes: "Live coding: file persistence",
+      notes: "Live coding: calculator Java",
       showOnScreen: "code",
     },
     {
-      timestamp: "26:00",
-      title: "Main Menu Loop",
-      talkingPoints: [
-        "Display menu options",
-        "Get user choice",
-        "Call appropriate function",
-        "Loop until quit",
-      ],
-      showOnScreen: "code",
-    },
-    {
-      timestamp: "28:00",
+      timestamp: "27:00",
       title: "Commit & Review",
       talkingPoints: [
         "git add, commit, push",
-        "Concepts: lists, dicts, functions, file I/O, loops",
-        "Ideas for enhancement",
+        "Review: concepts yang dipakai",
+        "Variables, functions, loops, conditionals, error handling",
       ],
       showOnScreen: "demo",
     },
@@ -124,9 +102,9 @@ export const pf29: VideoOutline = {
       timestamp: "29:00",
       title: "Outro",
       talkingPoints: [
-        "Todo List complete!",
-        "Next project: Number Guessing Game",
-        "You're building real apps!",
+        "Congratulations! First project done!",
+        "Next project: Todo List App",
+        "Keep building!",
       ],
       showOnScreen: "webcam",
     },
@@ -134,7 +112,7 @@ export const pf29: VideoOutline = {
 
   lowerThirds: [
     {
-      title: "Project: Todo List",
+      title: "Project: Calculator",
       subtitle: "Programming Fundamentals - Episode 29",
       showAtFrame: 90,
       hideAtFrame: 270,
@@ -143,41 +121,51 @@ export const pf29: VideoOutline = {
 
   codeSnippets: [
     {
-      code: `# Todo List App - Python
-import json
+      code: `# Python Calculator
+def add(a, b): return a + b
+def subtract(a, b): return a - b
+def multiply(a, b): return a * b
+def divide(a, b):
+    if b == 0:
+        raise ValueError("Cannot divide by zero")
+    return a / b
 
-FILENAME = "todos.json"
-todos = []
+def calculator():
+    while True:
+        print("\\n=== Calculator ===")
+        print("Enter 'q' to quit")
 
-def load_todos():
-    global todos
-    try:
-        with open(FILENAME, "r") as f:
-            todos = json.load(f)
-    except FileNotFoundError:
-        todos = []
+        try:
+            num1 = input("First number: ")
+            if num1.lower() == 'q': break
+            num1 = float(num1)
 
-def save_todos():
-    with open(FILENAME, "w") as f:
-        json.dump(todos, f, indent=2)
+            op = input("Operator (+,-,*,/): ")
+            num2 = float(input("Second number: "))
 
-def add_todo(text):
-    new_id = max([t["id"] for t in todos], default=0) + 1
-    todos.append({"id": new_id, "text": text, "completed": False})
-    save_todos()
-    print(f"Added: {text}")
+            if op == '+': result = add(num1, num2)
+            elif op == '-': result = subtract(num1, num2)
+            elif op == '*': result = multiply(num1, num2)
+            elif op == '/': result = divide(num1, num2)
+            else: print("Invalid operator"); continue
 
-def list_todos():
-    if not todos:
-        print("No todos yet!")
-        return
-    for todo in todos:
-        status = "[x]" if todo["completed"] else "[ ]"
-        print(f"{todo['id']}. {status} {todo['text']}")`,
-      title: "todo.py",
-      highlightLines: [8, 9, 10, 11, 16, 17, 20, 21, 22, 29, 30],
+            print(f"Result: {result}")
+
+        except ValueError as e:
+            print(f"Error: {e}")
+
+calculator()`,
+      title: "calc.py",
+      highlightLines: [2, 3, 4, 5, 6, 7, 11, 22, 23, 24, 25, 30, 31],
       showAtFrame: 16200,
-      hideAtFrame: 39600,
+      hideAtFrame: 28800,
+    },
+  ],
+
+  references: [
+    {
+      label: "Calculator Repository",
+      url: "github.com/[username]/calculator-app",
     },
   ],
 };

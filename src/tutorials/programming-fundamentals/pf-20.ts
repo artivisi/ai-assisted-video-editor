@@ -3,8 +3,8 @@ import { VideoOutline } from "../types";
 export const pf20: VideoOutline = {
   episodeId: "pf-20",
   seriesId: "programming-fundamentals",
-  title: "Array Operations & Methods",
-  description: "Mempelajari operasi umum pada arrays: add, remove, find, sort, dan slice.",
+  title: "Arrays/Lists - Kumpulan Data",
+  description: "Mempelajari arrays dan lists untuk menyimpan kumpulan data. Indexing, creating, dan basic operations.",
   duration: 1800,
   fps: 30,
 
@@ -13,68 +13,78 @@ export const pf20: VideoOutline = {
       timestamp: "00:00",
       title: "Intro",
       talkingPoints: [
-        "Recap: membuat array/list",
-        "Hari ini: memanipulasi array",
-        "Operasi yang sering dipakai",
+        "Recap: functions dan scope",
+        "Hari ini: data structures!",
+        "Menyimpan banyak data sekaligus",
       ],
       showOnScreen: "webcam",
     },
     {
       timestamp: "02:00",
-      title: "Add Operations",
+      title: "Apa Itu Array/List?",
       talkingPoints: [
-        "Tambah di akhir: append/push/add",
-        "Tambah di posisi tertentu: insert",
-        "Python: append(), insert()",
-        "JS: push(), splice()",
-        "Java: add(), add(index, item)",
+        "Kumpulan data dalam satu variable",
+        "Analogi: daftar belanja",
+        "Diakses dengan index (nomor urut)",
+        "Bisa simpan banyak item",
       ],
+      showOnScreen: "slide",
+    },
+    {
+      timestamp: "05:00",
+      title: "List di Python",
+      talkingPoints: [
+        "Dibuat dengan square brackets []",
+        "Bisa campur tipe (tapi hindari)",
+        "Dynamic: bisa grow/shrink",
+        "list.append() untuk tambah",
+      ],
+      notes: "Live coding: Python lists",
       showOnScreen: "code",
     },
     {
-      timestamp: "08:00",
-      title: "Remove Operations",
+      timestamp: "12:00",
+      title: "Array di JavaScript",
       talkingPoints: [
-        "Hapus berdasarkan index",
-        "Hapus berdasarkan value",
-        "Python: pop(), remove()",
-        "JS: pop(), splice()",
-        "Java: remove(index), remove(object)",
+        "Dibuat dengan []",
+        "Bisa campur tipe (dynamic)",
+        "array.push() untuk tambah",
+        "Similar dengan Python list",
       ],
+      notes: "Live coding: JavaScript arrays",
       showOnScreen: "code",
     },
     {
-      timestamp: "14:00",
-      title: "Find Operations",
+      timestamp: "18:00",
+      title: "Array di Java",
       talkingPoints: [
-        "Cari apakah item ada",
-        "Cari index dari item",
-        "Python: in, index()",
-        "JS: includes(), indexOf()",
-        "Java: contains(), indexOf()",
+        "Fixed size: String[] arr = new String[5]",
+        "Atau: String[] arr = {'a', 'b', 'c'}",
+        "Dynamic: ArrayList<String>",
+        "Harus satu tipe (generics)",
       ],
-      showOnScreen: "code",
-    },
-    {
-      timestamp: "19:00",
-      title: "Sort Operations",
-      talkingPoints: [
-        "Python: sort() (in-place), sorted() (new list)",
-        "JS: sort() (in-place, warning: string comparison!)",
-        "Java: Collections.sort()",
-        "Reverse: reverse()",
-      ],
+      notes: "Live coding: Java arrays dan ArrayList",
       showOnScreen: "code",
     },
     {
       timestamp: "23:00",
-      title: "Slicing",
+      title: "Indexing (Zero-Based)",
       talkingPoints: [
-        "Ambil sebagian array",
-        "Python: arr[1:4] (index 1, 2, 3)",
-        "JS: arr.slice(1, 4)",
-        "Java: subList(1, 4)",
-        "Start inclusive, end exclusive",
+        "Index mulai dari 0, bukan 1!",
+        "arr[0] = item pertama",
+        "arr[1] = item kedua",
+        "Common mistake: off-by-one error",
+      ],
+      showOnScreen: "slide",
+    },
+    {
+      timestamp: "25:00",
+      title: "Negative Indexing (Python)",
+      talkingPoints: [
+        "Python only!",
+        "arr[-1] = item terakhir",
+        "arr[-2] = item kedua dari belakang",
+        "Sangat berguna",
       ],
       showOnScreen: "code",
     },
@@ -82,7 +92,8 @@ export const pf20: VideoOutline = {
       timestamp: "27:00",
       title: "Challenge & Git",
       talkingPoints: [
-        "Todo list: add, remove, list",
+        "Buat array/list of fruits",
+        "Print first dan last item",
         "git add, commit, push",
       ],
       showOnScreen: "demo",
@@ -91,9 +102,9 @@ export const pf20: VideoOutline = {
       timestamp: "29:00",
       title: "Outro",
       talkingPoints: [
-        "Recap: array operations",
-        "Next episode: Dictionaries/Objects",
-        "See you!",
+        "Recap: arrays untuk kumpulan data",
+        "Next episode: array operations",
+        "Keep coding!",
       ],
       showOnScreen: "webcam",
     },
@@ -101,7 +112,7 @@ export const pf20: VideoOutline = {
 
   lowerThirds: [
     {
-      title: "Array Operations",
+      title: "Arrays & Lists",
       subtitle: "Programming Fundamentals - Episode 20",
       showAtFrame: 90,
       hideAtFrame: 270,
@@ -110,58 +121,47 @@ export const pf20: VideoOutline = {
 
   codeSnippets: [
     {
-      code: `# Python List Operations
-fruits = ["apel", "jeruk"]
+      code: `# Python List
+fruits = ["apel", "jeruk", "mangga"]
 
-# Add
-fruits.append("mangga")       # di akhir
-fruits.insert(1, "durian")    # di index 1
+# Akses dengan index (mulai dari 0!)
+print(fruits[0])   # "apel"
+print(fruits[1])   # "jeruk"
+print(fruits[-1])  # "mangga" (terakhir)
 
-# Remove
-fruits.pop()                  # hapus terakhir
-fruits.remove("durian")       # hapus by value
+# Tambah item
+fruits.append("durian")
+print(fruits)  # ["apel", "jeruk", "mangga", "durian"]
 
-# Find
-print("apel" in fruits)       # True
-print(fruits.index("jeruk"))  # index of "jeruk"
-
-# Sort
-fruits.sort()                 # ascending
-fruits.sort(reverse=True)     # descending
-
-# Slice
-print(fruits[1:3])            # index 1 dan 2`,
-      title: "array_ops.py",
-      highlightLines: [5, 6, 9, 10, 13, 14, 17, 18, 21],
-      showAtFrame: 3600,
-      hideAtFrame: 23400,
+# Length
+print(len(fruits))  # 4`,
+      title: "lists.py",
+      highlightLines: [5, 6, 7, 10],
+      showAtFrame: 9000,
+      hideAtFrame: 21600,
     },
     {
-      code: `// JavaScript Array Operations
-let fruits = ["apel", "jeruk"];
+      code: `// Java Array vs ArrayList
+import java.util.ArrayList;
 
-// Add
-fruits.push("mangga");           // di akhir
-fruits.splice(1, 0, "durian");   // insert di index 1
+// Fixed-size Array
+String[] fruits = {"apel", "jeruk", "mangga"};
+System.out.println(fruits[0]);  // "apel"
+// fruits.add("durian");  // ERROR! fixed size
 
-// Remove
-fruits.pop();                    // hapus terakhir
-fruits.splice(1, 1);             // hapus 1 item di index 1
+// Dynamic ArrayList
+ArrayList<String> fruitList = new ArrayList<>();
+fruitList.add("apel");
+fruitList.add("jeruk");
+fruitList.add("mangga");
+fruitList.add("durian");  // OK! dynamic
 
-// Find
-console.log(fruits.includes("apel"));  // true
-console.log(fruits.indexOf("jeruk"));  // index
-
-// Sort (HATI-HATI dengan numbers!)
-fruits.sort();
-// Untuk numbers: arr.sort((a, b) => a - b);
-
-// Slice
-console.log(fruits.slice(1, 3));  // index 1 dan 2`,
-      title: "array_ops.js",
-      highlightLines: [5, 6, 9, 10, 13, 14, 17, 21],
-      showAtFrame: 23400,
-      hideAtFrame: 48600,
+System.out.println(fruitList.get(0));  // "apel"
+System.out.println(fruitList.size());  // 4`,
+      title: "Arrays.java",
+      highlightLines: [5, 10, 11, 12, 13, 14],
+      showAtFrame: 32400,
+      hideAtFrame: 45000,
     },
   ],
 };

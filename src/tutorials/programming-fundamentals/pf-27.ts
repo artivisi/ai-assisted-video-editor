@@ -3,8 +3,8 @@ import { VideoOutline } from "../types";
 export const pf27: VideoOutline = {
   episodeId: "pf-27",
   seriesId: "programming-fundamentals",
-  title: "Reading & Writing Files",
-  description: "Mempelajari cara membaca dan menulis file. Text files dan JSON.",
+  title: "Debugging Techniques",
+  description: "Mempelajari teknik debugging: print debugging, using debugger, dan reading error messages.",
   duration: 1800,
   fps: 30,
 
@@ -13,79 +13,91 @@ export const pf27: VideoOutline = {
       timestamp: "00:00",
       title: "Intro",
       talkingPoints: [
-        "Recap: debugging techniques",
-        "Hari ini: file I/O",
-        "Program yang bisa simpan dan load data",
+        "Recap: error handling dengan try-catch",
+        "Hari ini: menemukan dan memperbaiki bugs",
+        "Essential skill untuk semua programmer",
       ],
       showOnScreen: "webcam",
     },
     {
       timestamp: "02:00",
-      title: "Kenapa File I/O?",
+      title: "Apa Itu Bug?",
       talkingPoints: [
-        "Data persist setelah program selesai",
-        "Load configuration dari file",
-        "Save user data",
-        "Process data dalam file (CSV, JSON, etc)",
+        "Bug = perilaku program tidak sesuai harapan",
+        "Bukan selalu error/crash",
+        "Bisa: wrong output, infinite loop, etc",
+        "Debugging = proses menemukan dan fix bug",
       ],
       showOnScreen: "slide",
     },
     {
       timestamp: "05:00",
-      title: "File I/O di Python",
+      title: "Print Debugging",
       talkingPoints: [
-        "open() untuk buka file",
-        "with statement untuk auto-close",
-        "Modes: r (read), w (write), a (append)",
-        "read(), readline(), readlines()",
-        "write() untuk menulis",
+        "Cara paling simple dan universal",
+        "Print nilai variable di berbagai titik",
+        "Trace alur eksekusi program",
+        "Semua bahasa bisa pakai",
+        "Cukup untuk banyak kasus",
       ],
-      notes: "Live coding: Python file I/O",
+      notes: "Live coding: print debugging",
       showOnScreen: "code",
     },
     {
-      timestamp: "12:00",
-      title: "File I/O di JavaScript (Node.js)",
+      timestamp: "11:00",
+      title: "Reading Error Messages",
       talkingPoints: [
-        "require('fs') untuk file system",
-        "readFileSync() / writeFileSync()",
-        "Async versions: readFile(), writeFile()",
-        "Specify encoding: 'utf8'",
+        "Error message adalah clue!",
+        "Baca dari bawah ke atas (stack trace)",
+        "Cari: tipe error, file, line number",
+        "Google error message jika bingung",
+        "Stack Overflow adalah teman",
       ],
-      notes: "Live coding: Node.js file I/O",
-      showOnScreen: "code",
+      showOnScreen: "slide",
     },
     {
-      timestamp: "18:00",
-      title: "File I/O di Java",
+      timestamp: "15:00",
+      title: "Using Debugger - VS Code",
       talkingPoints: [
-        "Files class (modern way)",
-        "Files.readString(), Files.writeString()",
-        "BufferedReader untuk large files",
-        "Try-with-resources untuk auto-close",
+        "Lebih powerful dari print",
+        "Breakpoints: pause di line tertentu",
+        "Step over: jalankan line, lanjut",
+        "Step into: masuk ke function",
+        "Watch: monitor nilai variable",
       ],
-      notes: "Live coding: Java file I/O",
-      showOnScreen: "code",
+      notes: "Demo VS Code debugger",
+      showOnScreen: "demo",
     },
     {
-      timestamp: "22:00",
-      title: "Working with JSON",
+      timestamp: "21:00",
+      title: "Common Bugs & Fixes",
       talkingPoints: [
-        "JSON: universal data format",
-        "Python: json.load(), json.dump()",
-        "JS: JSON.parse(), JSON.stringify()",
-        "Java: Jackson atau Gson library",
-        "Sangat penting untuk APIs",
+        "Off-by-one error: index atau loop boundary salah",
+        "Null/undefined errors: akses property dari null",
+        "Type errors: operasi dengan tipe salah",
+        "Logic errors: kondisi if salah",
+        "Infinite loop: kondisi while tidak pernah false",
       ],
-      notes: "Live coding: JSON read/write",
-      showOnScreen: "code",
+      showOnScreen: "slide",
     },
     {
-      timestamp: "27:00",
+      timestamp: "25:00",
+      title: "Debugging Mindset",
+      talkingPoints: [
+        "Reproduce bug secara konsisten",
+        "Isolate: cari kode yang bermasalah",
+        "Form hypothesis, test, iterate",
+        "Jangan random change - understand first",
+        "Take breaks if stuck",
+      ],
+      showOnScreen: "slide",
+    },
+    {
+      timestamp: "28:00",
       title: "Challenge & Git",
       talkingPoints: [
-        "Simple note-taking app",
-        "Save notes to file, load on start",
+        "Debug kode yang ada bug",
+        "Temukan dan fix 3 bugs",
         "git add, commit, push",
       ],
       showOnScreen: "demo",
@@ -94,9 +106,9 @@ export const pf27: VideoOutline = {
       timestamp: "29:00",
       title: "Outro",
       talkingPoints: [
-        "Recap: file I/O dan JSON",
-        "Next episode: Project Calculator!",
-        "Ready for final projects!",
+        "Recap: debugging techniques",
+        "Next episode: File I/O",
+        "Everyone writes bugs - debugging is the skill!",
       ],
       showOnScreen: "webcam",
     },
@@ -104,7 +116,7 @@ export const pf27: VideoOutline = {
 
   lowerThirds: [
     {
-      title: "Reading & Writing Files",
+      title: "Debugging Techniques",
       subtitle: "Programming Fundamentals - Episode 27",
       showAtFrame: 90,
       hideAtFrame: 270,
@@ -113,60 +125,61 @@ export const pf27: VideoOutline = {
 
   codeSnippets: [
     {
-      code: `# Python File I/O
+      code: `# Print Debugging Example
+def calculate_average(numbers):
+    print(f"Input: {numbers}")  # Debug: cek input
 
-# Write to file
-with open("notes.txt", "w") as f:
-    f.write("Belajar Python\\n")
-    f.write("File I/O\\n")
+    total = 0
+    for i, num in enumerate(numbers):
+        total += num
+        print(f"  i={i}, num={num}, total={total}")  # Debug
 
-# Read from file
-with open("notes.txt", "r") as f:
-    content = f.read()
-    print(content)
+    average = total / len(numbers)
+    print(f"Average: {average}")  # Debug: cek output
 
-# JSON
-import json
+    return average
 
-data = {"nama": "Budi", "umur": 25}
-
-# Write JSON
-with open("data.json", "w") as f:
-    json.dump(data, f, indent=2)
-
-# Read JSON
-with open("data.json", "r") as f:
-    loaded = json.load(f)
-    print(loaded["nama"])  # "Budi"`,
-      title: "file_io.py",
-      highlightLines: [4, 5, 10, 11, 19, 20, 24, 25],
+# Bug: empty list akan crash
+# Fix: tambah check di awal
+def calculate_average_fixed(numbers):
+    if not numbers:
+        print("Warning: empty list")  # Debug
+        return 0
+    return sum(numbers) / len(numbers)`,
+      title: "debug.py",
+      highlightLines: [3, 8, 11, 19, 20],
       showAtFrame: 9000,
-      hideAtFrame: 27000,
+      hideAtFrame: 19800,
     },
     {
-      code: `// JavaScript (Node.js) File I/O
-const fs = require('fs');
+      code: `// Common Bug: Off-by-one Error
 
-// Write to file (sync)
-fs.writeFileSync('notes.txt', 'Belajar JavaScript\\nFile I/O\\n');
+// BUG: loop satu kali kurang
+function printArray(arr) {
+    for (let i = 0; i < arr.length - 1; i++) {  // BUG!
+        console.log(arr[i]);
+    }
+}
 
-// Read from file (sync)
-const content = fs.readFileSync('notes.txt', 'utf8');
-console.log(content);
+// FIX: gunakan < arr.length
+function printArrayFixed(arr) {
+    for (let i = 0; i < arr.length; i++) {  // FIXED
+        console.log(arr[i]);
+    }
+}
 
-// JSON
-const data = { nama: "Budi", umur: 25 };
+// BUG: null reference
+let user = null;
+console.log(user.name);  // TypeError!
 
-// Write JSON
-fs.writeFileSync('data.json', JSON.stringify(data, null, 2));
-
-// Read JSON
-const loaded = JSON.parse(fs.readFileSync('data.json', 'utf8'));
-console.log(loaded.nama);  // "Budi"`,
-      title: "file_io.js",
-      highlightLines: [5, 8, 15, 18],
-      showAtFrame: 21600,
-      hideAtFrame: 39600,
+// FIX: null check
+if (user && user.name) {
+    console.log(user.name);
+}`,
+      title: "common_bugs.js",
+      highlightLines: [5, 12, 19, 22, 23],
+      showAtFrame: 37800,
+      hideAtFrame: 48600,
     },
   ],
 };

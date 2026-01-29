@@ -3,8 +3,8 @@ import { VideoOutline } from "../types";
 export const pf22: VideoOutline = {
   episodeId: "pf-22",
   seriesId: "programming-fundamentals",
-  title: "Sets & Tuples",
-  description: "Mempelajari sets untuk unique values dan tuples untuk immutable collections.",
+  title: "Dictionaries/Objects - Key-Value Pairs",
+  description: "Mempelajari dictionary (Python), object (JavaScript), dan HashMap (Java) untuk menyimpan data key-value.",
   duration: 1800,
   fps: 30,
 
@@ -13,84 +13,76 @@ export const pf22: VideoOutline = {
       timestamp: "00:00",
       title: "Intro",
       talkingPoints: [
-        "Recap: arrays dan dictionaries",
-        "Hari ini: sets dan tuples",
-        "Data structures lain yang berguna",
+        "Recap: arrays untuk list data",
+        "Bagaimana kalau perlu label?",
+        "Hari ini: key-value pairs",
       ],
       showOnScreen: "webcam",
     },
     {
       timestamp: "02:00",
-      title: "Apa Itu Set?",
+      title: "Apa Itu Dictionary/Object?",
       talkingPoints: [
-        "Kumpulan nilai UNIQUE",
-        "Tidak ada duplikat",
-        "Tidak ada urutan (unordered)",
-        "Fast lookup: O(1)",
+        "Data dengan label (key)",
+        "Analogi: kamus (kata → definisi)",
+        "Analogi: phonebook (nama → nomor)",
+        "Akses dengan key, bukan index",
       ],
       showOnScreen: "slide",
     },
     {
       timestamp: "05:00",
-      title: "Set di Python",
+      title: "Dictionary di Python",
       talkingPoints: [
-        "Dibuat dengan {} atau set()",
-        "Otomatis hapus duplikat",
-        "add(), remove(), discard()",
-        "in untuk cek membership",
+        "Dibuat dengan curly braces {}",
+        "key: value pairs",
+        "Akses: dict['key'] atau dict.get('key')",
+        "Keys harus unique",
       ],
-      notes: "Live coding: Python set",
+      notes: "Live coding: Python dictionary",
       showOnScreen: "code",
     },
     {
-      timestamp: "10:00",
-      title: "Set di JavaScript & Java",
+      timestamp: "12:00",
+      title: "Object di JavaScript",
       talkingPoints: [
-        "JS: new Set()",
-        "Java: HashSet<Type>",
-        "add(), delete()/remove(), has()/contains()",
+        "Dibuat dengan {}",
+        "key: value (tanpa quotes untuk key)",
+        "Akses: obj.key atau obj['key']",
+        "Dot notation lebih common",
       ],
+      notes: "Live coding: JavaScript object",
       showOnScreen: "code",
     },
     {
-      timestamp: "14:00",
-      title: "Set Operations",
+      timestamp: "18:00",
+      title: "HashMap di Java",
       talkingPoints: [
-        "Union: gabung dua sets",
-        "Intersection: irisan (ada di keduanya)",
-        "Difference: ada di A tapi tidak di B",
-        "Sangat berguna untuk data processing",
+        "HashMap<KeyType, ValueType>",
+        "put(key, value) untuk add",
+        "get(key) untuk akses",
+        "Lebih verbose tapi type-safe",
       ],
+      notes: "Live coding: Java HashMap",
       showOnScreen: "code",
     },
     {
-      timestamp: "19:00",
-      title: "Tuple di Python",
+      timestamp: "23:00",
+      title: "Iterating Over Keys/Values",
       talkingPoints: [
-        "Seperti list tapi IMMUTABLE",
-        "Tidak bisa diubah setelah dibuat",
-        "Dibuat dengan parentheses ()",
-        "Bisa di-unpack",
+        "Loop semua keys",
+        "Loop semua values",
+        "Loop key-value pairs",
+        "Berbeda syntax tiap bahasa",
       ],
-      notes: "Live coding: Python tuple",
       showOnScreen: "code",
-    },
-    {
-      timestamp: "24:00",
-      title: "When to Use What?",
-      talkingPoints: [
-        "List/Array: ordered, duplicates OK, mutable",
-        "Set: unique, unordered, fast lookup",
-        "Tuple: fixed data, immutable, hashable",
-        "Dict/Object: key-value pairs",
-      ],
-      showOnScreen: "slide",
     },
     {
       timestamp: "27:00",
       title: "Challenge & Git",
       talkingPoints: [
-        "Remove duplicates dari list menggunakan set",
+        "Buat contact book",
+        "Nama → nomor telepon",
         "git add, commit, push",
       ],
       showOnScreen: "demo",
@@ -99,9 +91,9 @@ export const pf22: VideoOutline = {
       timestamp: "29:00",
       title: "Outro",
       talkingPoints: [
-        "Recap: sets dan tuples",
-        "Next episode: String methods",
-        "Data structures complete!",
+        "Recap: key-value storage",
+        "Next episode: Sets & Tuples",
+        "Keep coding!",
       ],
       showOnScreen: "webcam",
     },
@@ -109,7 +101,7 @@ export const pf22: VideoOutline = {
 
   lowerThirds: [
     {
-      title: "Sets & Tuples",
+      title: "Dictionaries & Objects",
       subtitle: "Programming Fundamentals - Episode 22",
       showAtFrame: 90,
       hideAtFrame: 270,
@@ -118,56 +110,61 @@ export const pf22: VideoOutline = {
 
   codeSnippets: [
     {
-      code: `# Python Set
-colors = {"red", "green", "blue", "red"}  # duplikat dihapus
-print(colors)  # {'red', 'green', 'blue'}
+      code: `# Python Dictionary
+person = {
+    "nama": "Budi",
+    "umur": 25,
+    "kota": "Jakarta"
+}
 
-# Operations
-colors.add("yellow")
-colors.remove("red")
-print("green" in colors)  # True
+# Akses
+print(person["nama"])      # "Budi"
+print(person.get("umur"))  # 25 (safer, returns None if missing)
 
-# Set operations
-a = {1, 2, 3, 4}
-b = {3, 4, 5, 6}
+# Tambah/Update
+person["email"] = "budi@email.com"
+person["umur"] = 26
 
-print(a | b)  # Union: {1, 2, 3, 4, 5, 6}
-print(a & b)  # Intersection: {3, 4}
-print(a - b)  # Difference: {1, 2}
+# Iterate
+for key in person:
+    print(f"{key}: {person[key]}")
 
-# Remove duplicates from list
-numbers = [1, 2, 2, 3, 3, 3]
-unique = list(set(numbers))  # [1, 2, 3]`,
-      title: "sets.py",
-      highlightLines: [2, 6, 7, 8, 14, 15, 16, 20],
+for key, value in person.items():
+    print(f"{key}: {value}")`,
+      title: "dictionary.py",
+      highlightLines: [2, 3, 4, 9, 10, 13, 14, 17, 20],
       showAtFrame: 9000,
-      hideAtFrame: 25200,
+      hideAtFrame: 21600,
     },
     {
-      code: `# Python Tuple
-# Immutable - tidak bisa diubah
-point = (10, 20)
-# point[0] = 15  # ERROR! Tuple immutable
+      code: `// JavaScript Object
+let person = {
+    nama: "Budi",
+    umur: 25,
+    kota: "Jakarta"
+};
 
-# Unpack
-x, y = point
-print(f"x: {x}, y: {y}")
+// Akses
+console.log(person.nama);      // "Budi"
+console.log(person["umur"]);   // 25
 
-# Function return multiple values
-def get_min_max(numbers):
-    return min(numbers), max(numbers)  # returns tuple
+// Tambah/Update
+person.email = "budi@email.com";
+person["umur"] = 26;
 
-minimum, maximum = get_min_max([3, 1, 4, 1, 5])
+// Iterate
+for (let key in person) {
+    console.log(\`\${key}: \${person[key]}\`);
+}
 
-# Tuple sebagai dictionary key (karena immutable)
-locations = {
-    (0, 0): "Origin",
-    (10, 20): "Point A"
+// Object.entries
+for (let [key, value] of Object.entries(person)) {
+    console.log(\`\${key}: \${value}\`);
 }`,
-      title: "tuples.py",
-      highlightLines: [3, 7, 8, 12, 14, 17, 18, 19],
-      showAtFrame: 34200,
-      hideAtFrame: 48600,
+      title: "object.js",
+      highlightLines: [2, 3, 4, 9, 10, 13, 14, 17, 22],
+      showAtFrame: 21600,
+      hideAtFrame: 32400,
     },
   ],
 };

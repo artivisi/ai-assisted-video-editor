@@ -3,8 +3,8 @@ import { VideoOutline } from "../types";
 export const pf26: VideoOutline = {
   episodeId: "pf-26",
   seriesId: "programming-fundamentals",
-  title: "Debugging Techniques",
-  description: "Mempelajari teknik debugging: print debugging, using debugger, dan reading error messages.",
+  title: "Exceptions & Try-Catch",
+  description: "Mempelajari error handling dengan try-catch untuk membuat program yang robust.",
   duration: 1800,
   fps: 30,
 
@@ -13,82 +13,80 @@ export const pf26: VideoOutline = {
       timestamp: "00:00",
       title: "Intro",
       talkingPoints: [
-        "Recap: error handling dengan try-catch",
-        "Hari ini: menemukan dan memperbaiki bugs",
-        "Essential skill untuk semua programmer",
+        "Recap: regex untuk pattern matching",
+        "Hari ini: error handling",
+        "Program yang tidak crash saat ada error",
       ],
       showOnScreen: "webcam",
     },
     {
       timestamp: "02:00",
-      title: "Apa Itu Bug?",
+      title: "Apa Itu Exception?",
       talkingPoints: [
-        "Bug = perilaku program tidak sesuai harapan",
-        "Bukan selalu error/crash",
-        "Bisa: wrong output, infinite loop, etc",
-        "Debugging = proses menemukan dan fix bug",
+        "Error yang terjadi saat program jalan",
+        "Berbeda dengan syntax error (compile time)",
+        "Contoh: bagi dengan nol, file tidak ada",
+        "Tanpa handling: program crash",
       ],
       showOnScreen: "slide",
     },
     {
       timestamp: "05:00",
-      title: "Print Debugging",
+      title: "Common Exceptions",
       talkingPoints: [
-        "Cara paling simple dan universal",
-        "Print nilai variable di berbagai titik",
-        "Trace alur eksekusi program",
-        "Semua bahasa bisa pakai",
-        "Cukup untuk banyak kasus",
+        "ZeroDivisionError / ArithmeticException",
+        "TypeError / ClassCastException",
+        "ValueError / NumberFormatException",
+        "IndexError / ArrayIndexOutOfBounds",
+        "FileNotFoundError / IOException",
       ],
-      notes: "Live coding: print debugging",
+      showOnScreen: "slide",
+    },
+    {
+      timestamp: "09:00",
+      title: "Try-Catch di Python",
+      talkingPoints: [
+        "try: kode yang mungkin error",
+        "except: handle error",
+        "finally: selalu dijalankan",
+        "else: jika tidak ada error",
+        "Bisa catch specific exception",
+      ],
+      notes: "Live coding: try-except Python",
       showOnScreen: "code",
     },
     {
-      timestamp: "11:00",
-      title: "Reading Error Messages",
+      timestamp: "16:00",
+      title: "Try-Catch di JavaScript",
       talkingPoints: [
-        "Error message adalah clue!",
-        "Baca dari bawah ke atas (stack trace)",
-        "Cari: tipe error, file, line number",
-        "Google error message jika bingung",
-        "Stack Overflow adalah teman",
+        "try { } catch (error) { }",
+        "finally { } untuk cleanup",
+        "throw new Error() untuk raise",
+        "error.message untuk pesan",
       ],
-      showOnScreen: "slide",
-    },
-    {
-      timestamp: "15:00",
-      title: "Using Debugger - VS Code",
-      talkingPoints: [
-        "Lebih powerful dari print",
-        "Breakpoints: pause di line tertentu",
-        "Step over: jalankan line, lanjut",
-        "Step into: masuk ke function",
-        "Watch: monitor nilai variable",
-      ],
-      notes: "Demo VS Code debugger",
-      showOnScreen: "demo",
+      notes: "Live coding: try-catch JavaScript",
+      showOnScreen: "code",
     },
     {
       timestamp: "21:00",
-      title: "Common Bugs & Fixes",
+      title: "Try-Catch di Java",
       talkingPoints: [
-        "Off-by-one error: index atau loop boundary salah",
-        "Null/undefined errors: akses property dari null",
-        "Type errors: operasi dengan tipe salah",
-        "Logic errors: kondisi if salah",
-        "Infinite loop: kondisi while tidak pernah false",
+        "try { } catch (ExceptionType e) { }",
+        "Bisa multiple catch blocks",
+        "finally untuk cleanup",
+        "Checked vs Unchecked exceptions",
       ],
-      showOnScreen: "slide",
+      notes: "Live coding: try-catch Java",
+      showOnScreen: "code",
     },
     {
       timestamp: "25:00",
-      title: "Debugging Mindset",
+      title: "Best Practices",
       talkingPoints: [
-        "Reproduce bug secara konsisten",
-        "Isolate: cari kode yang bermasalah",
-        "Form hypothesis, test, iterate",
-        "Jangan random change - understand first",
-        "Take breaks if stuck",
+        "Catch specific exceptions, bukan semua",
+        "Jangan silent catch (empty catch block)",
+        "Log atau handle dengan proper",
+        "Use finally untuk cleanup resources",
       ],
       showOnScreen: "slide",
     },
@@ -96,8 +94,8 @@ export const pf26: VideoOutline = {
       timestamp: "28:00",
       title: "Challenge & Git",
       talkingPoints: [
-        "Debug kode yang ada bug",
-        "Temukan dan fix 3 bugs",
+        "Handle user input errors",
+        "Catch ValueError saat convert string ke int",
         "git add, commit, push",
       ],
       showOnScreen: "demo",
@@ -106,9 +104,9 @@ export const pf26: VideoOutline = {
       timestamp: "29:00",
       title: "Outro",
       talkingPoints: [
-        "Recap: debugging techniques",
-        "Next episode: File I/O",
-        "Everyone writes bugs - debugging is the skill!",
+        "Recap: try-catch untuk error handling",
+        "Next episode: Debugging techniques",
+        "Handle errors gracefully!",
       ],
       showOnScreen: "webcam",
     },
@@ -116,7 +114,7 @@ export const pf26: VideoOutline = {
 
   lowerThirds: [
     {
-      title: "Debugging Techniques",
+      title: "Exceptions & Try-Catch",
       subtitle: "Programming Fundamentals - Episode 26",
       showAtFrame: 90,
       hideAtFrame: 270,
@@ -125,61 +123,59 @@ export const pf26: VideoOutline = {
 
   codeSnippets: [
     {
-      code: `# Print Debugging Example
-def calculate_average(numbers):
-    print(f"Input: {numbers}")  # Debug: cek input
+      code: `# Python Try-Except
+def divide(a, b):
+    try:
+        result = a / b
+        return result
+    except ZeroDivisionError:
+        print("Error: Cannot divide by zero")
+        return None
+    finally:
+        print("Division attempted")
 
-    total = 0
-    for i, num in enumerate(numbers):
-        total += num
-        print(f"  i={i}, num={num}, total={total}")  # Debug
+print(divide(10, 2))   # 5.0
+print(divide(10, 0))   # None (with error message)
 
-    average = total / len(numbers)
-    print(f"Average: {average}")  # Debug: cek output
-
-    return average
-
-# Bug: empty list akan crash
-# Fix: tambah check di awal
-def calculate_average_fixed(numbers):
-    if not numbers:
-        print("Warning: empty list")  # Debug
-        return 0
-    return sum(numbers) / len(numbers)`,
-      title: "debug.py",
-      highlightLines: [3, 8, 11, 19, 20],
-      showAtFrame: 9000,
-      hideAtFrame: 19800,
+# Handle user input
+try:
+    age = int(input("Umur: "))
+    print(f"Tahun lahir: {2024 - age}")
+except ValueError:
+    print("Error: Masukkan angka yang valid")`,
+      title: "exceptions.py",
+      highlightLines: [3, 6, 7, 9, 17, 20],
+      showAtFrame: 16200,
+      hideAtFrame: 28800,
     },
     {
-      code: `// Common Bug: Off-by-one Error
-
-// BUG: loop satu kali kurang
-function printArray(arr) {
-    for (let i = 0; i < arr.length - 1; i++) {  // BUG!
-        console.log(arr[i]);
+      code: `// JavaScript Try-Catch
+function parseJSON(str) {
+    try {
+        const data = JSON.parse(str);
+        return data;
+    } catch (error) {
+        console.log("Error parsing JSON:", error.message);
+        return null;
+    } finally {
+        console.log("Parse attempted");
     }
 }
 
-// FIX: gunakan < arr.length
-function printArrayFixed(arr) {
-    for (let i = 0; i < arr.length; i++) {  // FIXED
-        console.log(arr[i]);
+console.log(parseJSON('{"name":"Budi"}'));  // {name: "Budi"}
+console.log(parseJSON('invalid json'));      // null
+
+// Throw custom error
+function validateAge(age) {
+    if (age < 0) {
+        throw new Error("Age cannot be negative");
     }
-}
-
-// BUG: null reference
-let user = null;
-console.log(user.name);  // TypeError!
-
-// FIX: null check
-if (user && user.name) {
-    console.log(user.name);
+    return age;
 }`,
-      title: "common_bugs.js",
-      highlightLines: [5, 12, 19, 22, 23],
-      showAtFrame: 37800,
-      hideAtFrame: 48600,
+      title: "exceptions.js",
+      highlightLines: [4, 6, 7, 9, 19, 20],
+      showAtFrame: 28800,
+      hideAtFrame: 45000,
     },
   ],
 };

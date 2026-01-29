@@ -3,8 +3,8 @@ import { VideoOutline } from "../types";
 export const pf25: VideoOutline = {
   episodeId: "pf-25",
   seriesId: "programming-fundamentals",
-  title: "Exceptions & Try-Catch",
-  description: "Mempelajari error handling dengan try-catch untuk membuat program yang robust.",
+  title: "Regular Expressions Intro",
+  description: "Pengenalan regular expressions untuk pattern matching. Basic patterns dan common use cases.",
   duration: 1800,
   fps: 30,
 
@@ -13,80 +13,92 @@ export const pf25: VideoOutline = {
       timestamp: "00:00",
       title: "Intro",
       talkingPoints: [
-        "Recap: regex untuk pattern matching",
-        "Hari ini: error handling",
-        "Program yang tidak crash saat ada error",
+        "Recap: string methods",
+        "Hari ini: regular expressions (regex)",
+        "Powerful tool untuk text processing",
       ],
       showOnScreen: "webcam",
     },
     {
       timestamp: "02:00",
-      title: "Apa Itu Exception?",
+      title: "Apa Itu Regex?",
       talkingPoints: [
-        "Error yang terjadi saat program jalan",
-        "Berbeda dengan syntax error (compile time)",
-        "Contoh: bagi dengan nol, file tidak ada",
-        "Tanpa handling: program crash",
+        "Pattern untuk match text",
+        "Seperti search tapi lebih powerful",
+        "Bisa match pattern, bukan exact text",
+        "Contoh: cari semua email dalam text",
       ],
       showOnScreen: "slide",
     },
     {
       timestamp: "05:00",
-      title: "Common Exceptions",
+      title: "Basic Patterns",
       talkingPoints: [
-        "ZeroDivisionError / ArithmeticException",
-        "TypeError / ClassCastException",
-        "ValueError / NumberFormatException",
-        "IndexError / ArrayIndexOutOfBounds",
-        "FileNotFoundError / IOException",
+        ". (dot): match any single character",
+        "* : zero or more",
+        "+ : one or more",
+        "? : zero or one",
+        "^ : start of string",
+        "$ : end of string",
       ],
       showOnScreen: "slide",
     },
     {
       timestamp: "09:00",
-      title: "Try-Catch di Python",
+      title: "Character Classes",
       talkingPoints: [
-        "try: kode yang mungkin error",
-        "except: handle error",
-        "finally: selalu dijalankan",
-        "else: jika tidak ada error",
-        "Bisa catch specific exception",
+        "\\d : digit (0-9)",
+        "\\w : word character (a-z, A-Z, 0-9, _)",
+        "\\s : whitespace",
+        "[abc] : a or b or c",
+        "[a-z] : a to z",
       ],
-      notes: "Live coding: try-except Python",
+      showOnScreen: "slide",
+    },
+    {
+      timestamp: "13:00",
+      title: "Regex di Python",
+      talkingPoints: [
+        "import re",
+        "re.match(): match di awal string",
+        "re.search(): cari di mana saja",
+        "re.findall(): cari semua",
+        "Raw string: r'pattern'",
+      ],
+      notes: "Live coding: regex Python",
       showOnScreen: "code",
     },
     {
-      timestamp: "16:00",
-      title: "Try-Catch di JavaScript",
+      timestamp: "18:00",
+      title: "Regex di JavaScript",
       talkingPoints: [
-        "try { } catch (error) { }",
-        "finally { } untuk cleanup",
-        "throw new Error() untuk raise",
-        "error.message untuk pesan",
+        "Pattern: /pattern/ atau new RegExp()",
+        "str.match(): cari match",
+        "pattern.test(): return boolean",
+        "str.replace() dengan regex",
       ],
-      notes: "Live coding: try-catch JavaScript",
+      notes: "Live coding: regex JavaScript",
       showOnScreen: "code",
     },
     {
-      timestamp: "21:00",
-      title: "Try-Catch di Java",
+      timestamp: "22:00",
+      title: "Common Use Cases",
       talkingPoints: [
-        "try { } catch (ExceptionType e) { }",
-        "Bisa multiple catch blocks",
-        "finally untuk cleanup",
-        "Checked vs Unchecked exceptions",
+        "Validate email format",
+        "Validate phone number",
+        "Extract numbers from text",
+        "Replace patterns",
       ],
-      notes: "Live coding: try-catch Java",
       showOnScreen: "code",
     },
     {
-      timestamp: "25:00",
-      title: "Best Practices",
+      timestamp: "26:00",
+      title: "Regex Tips",
       talkingPoints: [
-        "Catch specific exceptions, bukan semua",
-        "Jangan silent catch (empty catch block)",
-        "Log atau handle dengan proper",
-        "Use finally untuk cleanup resources",
+        "Start simple, add complexity",
+        "Test with regex101.com",
+        "Comments dan named groups untuk readability",
+        "Jangan over-use - kadang split() cukup",
       ],
       showOnScreen: "slide",
     },
@@ -94,8 +106,7 @@ export const pf25: VideoOutline = {
       timestamp: "28:00",
       title: "Challenge & Git",
       talkingPoints: [
-        "Handle user input errors",
-        "Catch ValueError saat convert string ke int",
+        "Validate email format",
         "git add, commit, push",
       ],
       showOnScreen: "demo",
@@ -104,9 +115,9 @@ export const pf25: VideoOutline = {
       timestamp: "29:00",
       title: "Outro",
       talkingPoints: [
-        "Recap: try-catch untuk error handling",
-        "Next episode: Debugging techniques",
-        "Handle errors gracefully!",
+        "Recap: regex basics",
+        "Next episode: Error Handling",
+        "Regex takes practice!",
       ],
       showOnScreen: "webcam",
     },
@@ -114,7 +125,7 @@ export const pf25: VideoOutline = {
 
   lowerThirds: [
     {
-      title: "Exceptions & Try-Catch",
+      title: "Regular Expressions",
       subtitle: "Programming Fundamentals - Episode 25",
       showAtFrame: 90,
       hideAtFrame: 270,
@@ -123,59 +134,63 @@ export const pf25: VideoOutline = {
 
   codeSnippets: [
     {
-      code: `# Python Try-Except
-def divide(a, b):
-    try:
-        result = a / b
-        return result
-    except ZeroDivisionError:
-        print("Error: Cannot divide by zero")
-        return None
-    finally:
-        print("Division attempted")
+      code: `# Python Regular Expressions
+import re
 
-print(divide(10, 2))   # 5.0
-print(divide(10, 0))   # None (with error message)
+# Pattern untuk tanggal: YYYY-MM-DD
+pattern = r"\\d{4}-\\d{2}-\\d{2}"
 
-# Handle user input
-try:
-    age = int(input("Umur: "))
-    print(f"Tahun lahir: {2024 - age}")
-except ValueError:
-    print("Error: Masukkan angka yang valid")`,
-      title: "exceptions.py",
-      highlightLines: [3, 6, 7, 9, 17, 20],
-      showAtFrame: 16200,
-      hideAtFrame: 28800,
+text = "Meeting on 2024-01-15 and 2024-02-20"
+
+# Find all matches
+dates = re.findall(pattern, text)
+print(dates)  # ["2024-01-15", "2024-02-20"]
+
+# Validate email
+email_pattern = r"^[\\w.-]+@[\\w.-]+\\.\\w+$"
+email = "user@example.com"
+
+if re.match(email_pattern, email):
+    print("Valid email")
+else:
+    print("Invalid email")`,
+      title: "regex.py",
+      highlightLines: [5, 10, 11, 14, 17, 18],
+      showAtFrame: 23400,
+      hideAtFrame: 39600,
     },
     {
-      code: `// JavaScript Try-Catch
-function parseJSON(str) {
-    try {
-        const data = JSON.parse(str);
-        return data;
-    } catch (error) {
-        console.log("Error parsing JSON:", error.message);
-        return null;
-    } finally {
-        console.log("Parse attempted");
-    }
-}
+      code: `// JavaScript Regular Expressions
 
-console.log(parseJSON('{"name":"Budi"}'));  // {name: "Budi"}
-console.log(parseJSON('invalid json'));      // null
+// Pattern untuk tanggal
+let pattern = /\\d{4}-\\d{2}-\\d{2}/g;
 
-// Throw custom error
-function validateAge(age) {
-    if (age < 0) {
-        throw new Error("Age cannot be negative");
-    }
-    return age;
+let text = "Meeting on 2024-01-15 and 2024-02-20";
+
+// Find all matches
+let dates = text.match(pattern);
+console.log(dates);  // ["2024-01-15", "2024-02-20"]
+
+// Validate email
+let emailPattern = /^[\\w.-]+@[\\w.-]+\\.\\w+$/;
+let email = "user@example.com";
+
+if (emailPattern.test(email)) {
+    console.log("Valid email");
+} else {
+    console.log("Invalid email");
 }`,
-      title: "exceptions.js",
-      highlightLines: [4, 6, 7, 9, 19, 20],
-      showAtFrame: 28800,
-      hideAtFrame: 45000,
+      title: "regex.js",
+      highlightLines: [4, 9, 10, 13, 16],
+      showAtFrame: 32400,
+      hideAtFrame: 46800,
+    },
+  ],
+
+  references: [
+    {
+      label: "Regex101 - Test Regex",
+      url: "regex101.com",
     },
   ],
 };

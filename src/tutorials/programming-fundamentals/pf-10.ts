@@ -3,8 +3,8 @@ import { VideoOutline } from "../types";
 export const pf10: VideoOutline = {
   episodeId: "pf-10",
   seriesId: "programming-fundamentals",
-  title: "Comparison & Logical Operators",
-  description: "Mempelajari operator perbandingan dan logika. Fondasi untuk membuat keputusan dalam program.",
+  title: "Arithmetic & Assignment Operators",
+  description: "Mempelajari operator matematika dan assignment. Termasuk modulo, increment/decrement, dan operator shorthand.",
   duration: 1800,
   fps: 30,
 
@@ -13,92 +13,90 @@ export const pf10: VideoOutline = {
       timestamp: "00:00",
       title: "Intro",
       talkingPoints: [
-        "Recap: arithmetic operators",
-        "Hari ini: comparison dan logical operators",
-        "Fondasi untuk if-else dan loops",
+        "Recap: type conversion",
+        "Hari ini: operator - simbol untuk operasi",
+        "Matematika dasar dalam programming",
       ],
       showOnScreen: "webcam",
     },
     {
       timestamp: "02:00",
-      title: "Comparison Operators",
+      title: "Arithmetic Operators",
       talkingPoints: [
-        "== (sama dengan)",
-        "!= (tidak sama dengan)",
-        "> < >= <= (lebih/kurang dari)",
-        "Hasil: boolean (true/false)",
-        "Sama di semua bahasa",
+        "+ (tambah), - (kurang), * (kali), / (bagi)",
+        "Sama di semua bahasa!",
+        "% modulo (sisa bagi) - sangat berguna",
+        "** power (Python) vs Math.pow (JS/Java)",
       ],
       showOnScreen: "slide",
     },
     {
       timestamp: "06:00",
-      title: "Equality: == vs ===",
+      title: "Modulo Operator (%)",
       talkingPoints: [
-        "Python: == untuk value comparison",
-        "JavaScript: == vs === (strict equality)",
-        "5 == '5' → true (JS, dengan coercion)",
-        "5 === '5' → false (JS, strict)",
-        "SELALU pakai === di JavaScript!",
-        "Java: == untuk primitives, .equals() untuk objects",
+        "Mengembalikan sisa pembagian",
+        "10 % 3 = 1 (10 dibagi 3 = 3 sisa 1)",
+        "Use case: cek genap/ganjil (n % 2)",
+        "Use case: wrap around (jam, index array)",
+        "Use case: kelipatan (n % 5 == 0)",
       ],
-      notes: "Live coding: demo equality quirks",
+      notes: "Live coding: contoh modulo",
       showOnScreen: "code",
     },
     {
-      timestamp: "13:00",
-      title: "Logical Operators",
+      timestamp: "12:00",
+      title: "Integer Division",
       talkingPoints: [
-        "AND: kedua kondisi harus true",
-        "OR: salah satu kondisi true",
-        "NOT: kebalikan dari kondisi",
-        "Python: and, or, not",
-        "JavaScript & Java: &&, ||, !",
+        "Python: // untuk integer division",
+        "7 // 2 = 3 (bukan 3.5)",
+        "JavaScript: Math.floor(7 / 2)",
+        "Java: 7 / 2 = 3 (int / int = int)",
+        "Hati-hati dengan pembagian!",
+      ],
+      showOnScreen: "code",
+    },
+    {
+      timestamp: "16:00",
+      title: "Assignment Operators",
+      talkingPoints: [
+        "= assignment dasar",
+        "+= -= *= /= shorthand",
+        "x += 5 sama dengan x = x + 5",
+        "Lebih singkat dan readable",
+      ],
+      showOnScreen: "code",
+    },
+    {
+      timestamp: "20:00",
+      title: "Increment & Decrement",
+      talkingPoints: [
+        "++ dan -- (JavaScript & Java only)",
+        "i++ sama dengan i = i + 1",
+        "Python tidak punya, pakai i += 1",
+        "Pre vs Post increment (++i vs i++)",
+        "Dalam loop biasanya tidak masalah",
+      ],
+      showOnScreen: "code",
+    },
+    {
+      timestamp: "24:00",
+      title: "Operator Precedence",
+      talkingPoints: [
+        "Urutan operasi: PEMDAS/BODMAS",
+        "Parentheses, Exponents, Multiply/Divide, Add/Subtract",
+        "2 + 3 * 4 = 14 (bukan 20)",
+        "Gunakan parentheses untuk clarity",
+        "(2 + 3) * 4 = 20",
       ],
       showOnScreen: "slide",
     },
     {
-      timestamp: "17:00",
-      title: "Logical Operators Demo",
-      talkingPoints: [
-        "true AND true = true",
-        "true AND false = false",
-        "true OR false = true",
-        "NOT true = false",
-        "Contoh: umur >= 17 AND punya_ktp",
-      ],
-      notes: "Live coding: kombinasi kondisi",
-      showOnScreen: "code",
-    },
-    {
-      timestamp: "21:00",
-      title: "Truthy & Falsy Values",
-      talkingPoints: [
-        "Nilai yang dianggap false tanpa explicit boolean",
-        "Python: 0, '', [], None, False",
-        "JavaScript: 0, '', null, undefined, NaN, false",
-        "Java: hanya boolean bisa jadi kondisi",
-        "Berguna untuk cek empty/null",
-      ],
-      showOnScreen: "code",
-    },
-    {
-      timestamp: "25:00",
-      title: "Short-Circuit Evaluation",
-      talkingPoints: [
-        "AND: stop jika ketemu false",
-        "OR: stop jika ketemu true",
-        "Berguna untuk guard conditions",
-        "user && user.name (cek null dulu)",
-      ],
-      showOnScreen: "code",
-    },
-    {
-      timestamp: "28:00",
+      timestamp: "27:00",
       title: "Challenge & Git",
       talkingPoints: [
-        "Cek eligibility: umur >= 17 AND punya KTP",
-        "Di ketiga bahasa",
+        "Hitung luas dan keliling persegi panjang",
+        "Input: panjang dan lebar",
+        "Output: luas dan keliling",
         "git add, commit, push",
       ],
       showOnScreen: "demo",
@@ -107,9 +105,9 @@ export const pf10: VideoOutline = {
       timestamp: "29:00",
       title: "Outro",
       talkingPoints: [
-        "Recap: comparison dan logical operators",
-        "Next episode: if-else statements!",
-        "Keep practicing!",
+        "Recap: arithmetic dan assignment operators",
+        "Next episode: comparison dan logical operators",
+        "See you!",
       ],
       showOnScreen: "webcam",
     },
@@ -117,7 +115,7 @@ export const pf10: VideoOutline = {
 
   lowerThirds: [
     {
-      title: "Comparison & Logical",
+      title: "Arithmetic & Assignment",
       subtitle: "Programming Fundamentals - Episode 10",
       showAtFrame: 90,
       hideAtFrame: 270,
@@ -126,43 +124,45 @@ export const pf10: VideoOutline = {
 
   codeSnippets: [
     {
-      code: `// JavaScript Equality Quirks
-console.log(5 == "5");    // true (coercion!)
-console.log(5 === "5");   // false (strict)
+      code: `# Modulo - sisa pembagian
+print(10 % 3)   # 1 (10 = 3*3 + 1)
+print(15 % 5)   # 0 (15 = 5*3 + 0)
 
-console.log(0 == false);  // true
-console.log(0 === false); // false
+# Cek genap/ganjil
+angka = 7
+if angka % 2 == 0:
+    print("Genap")
+else:
+    print("Ganjil")
 
-console.log(null == undefined);  // true
-console.log(null === undefined); // false
-
-// ALWAYS use === in JavaScript!`,
-      title: "equality.js",
-      highlightLines: [2, 3, 11],
+# Wrap around (0-11 untuk jam)
+jam = 14
+jam_12 = jam % 12  # 2 (2 PM)`,
+      title: "modulo.py",
+      highlightLines: [2, 3, 7, 14],
       showAtFrame: 10800,
-      hideAtFrame: 23400,
+      hideAtFrame: 21600,
     },
     {
-      code: `# Python Logical Operators
-umur = 20
-punya_ktp = True
-punya_sim = False
+      code: `// Assignment operators
+let x = 10;
 
-# AND - kedua harus true
-boleh_nyetir = umur >= 17 and punya_sim
-print(boleh_nyetir)  # False
+x += 5;   // x = x + 5 = 15
+x -= 3;   // x = x - 3 = 12
+x *= 2;   // x = x * 2 = 24
+x /= 4;   // x = x / 4 = 6
 
-# OR - salah satu true
-punya_id = punya_ktp or punya_sim
-print(punya_id)  # True
+// Increment/Decrement (JS & Java)
+let i = 0;
+i++;      // i = 1
+i--;      // i = 0
 
-# NOT - kebalikan
-belum_dewasa = not (umur >= 18)
-print(belum_dewasa)  # False`,
-      title: "logical.py",
-      highlightLines: [7, 11, 15],
-      showAtFrame: 30600,
-      hideAtFrame: 45000,
+// Python tidak punya ++
+# i += 1  # gunakan ini`,
+      title: "assignment.js",
+      highlightLines: [4, 5, 6, 7, 11, 12],
+      showAtFrame: 28800,
+      hideAtFrame: 43200,
     },
   ],
 };

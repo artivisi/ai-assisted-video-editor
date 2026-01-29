@@ -3,8 +3,8 @@ import { VideoOutline } from "../types";
 export const pf15: VideoOutline = {
   episodeId: "pf-15",
   seriesId: "programming-fundamentals",
-  title: "Nested Loops & Common Patterns",
-  description: "Mempelajari nested loops dan pattern umum: accumulator, search, dan filter.",
+  title: "While Loop & Loop Control",
+  description: "Mempelajari while loop untuk pengulangan dengan kondisi. Break dan continue untuk kontrol loop.",
   duration: 1800,
   fps: 30,
 
@@ -13,96 +13,99 @@ export const pf15: VideoOutline = {
       timestamp: "00:00",
       title: "Intro",
       talkingPoints: [
-        "Recap: for dan while loop",
-        "Hari ini: loop di dalam loop",
-        "Pattern yang sering dipakai",
+        "Recap: for loop untuk iterasi terukur",
+        "Bagaimana kalau tidak tahu jumlah iterasi?",
+        "Hari ini: while loop",
       ],
       showOnScreen: "webcam",
     },
     {
       timestamp: "02:00",
-      title: "Nested Loops",
+      title: "While vs For",
       talkingPoints: [
-        "Loop di dalam loop",
-        "Outer loop dan inner loop",
-        "Total iterasi: outer × inner",
-        "Contoh: matrix, multiplication table",
+        "For: tahu berapa kali loop",
+        "While: loop selama kondisi true",
+        "While: tidak tahu kapan berhenti",
+        "Contoh: baca input sampai user ketik 'quit'",
       ],
       showOnScreen: "slide",
     },
     {
       timestamp: "05:00",
-      title: "Multiplication Table",
+      title: "While Loop di Python",
       talkingPoints: [
-        "Classic example nested loop",
-        "Outer: baris (1-10)",
-        "Inner: kolom (1-10)",
-        "Print: baris × kolom",
+        "while kondisi:",
+        "Loop selama kondisi True",
+        "Hati-hati infinite loop!",
+        "Pastikan kondisi bisa jadi False",
       ],
-      notes: "Live coding: tabel perkalian",
+      notes: "Live coding: while loop Python",
       showOnScreen: "code",
     },
     {
-      timestamp: "11:00",
-      title: "Pattern Printing",
+      timestamp: "10:00",
+      title: "While Loop di JavaScript & Java",
       talkingPoints: [
-        "Print pattern dengan *",
-        "Segitiga, pyramid",
-        "Kontrol jumlah * per baris",
-        "Good exercise untuk nested loop",
+        "while (kondisi) { }",
+        "Sama strukturnya",
+        "Parentheses untuk kondisi",
+        "Curly braces untuk body",
       ],
-      notes: "Live coding: star patterns",
+      notes: "Live coding: while loop JS",
       showOnScreen: "code",
     },
     {
-      timestamp: "16:00",
-      title: "Accumulator Pattern",
+      timestamp: "15:00",
+      title: "Infinite Loop",
       talkingPoints: [
-        "Kumpulkan nilai dalam loop",
-        "Sum, count, average",
-        "Inisialisasi sebelum loop",
-        "Update dalam loop",
-        "Hasil setelah loop",
-      ],
-      showOnScreen: "code",
-    },
-    {
-      timestamp: "20:00",
-      title: "Search Pattern",
-      talkingPoints: [
-        "Cari item dalam collection",
-        "Return/break saat ketemu",
-        "Flag variable untuk track",
+        "while True: (Python) atau while(true)",
+        "Loop yang tidak pernah berhenti",
+        "Butuh break untuk keluar",
+        "Use case: game loop, server",
+        "Ctrl+C untuk stop jika stuck",
       ],
       showOnScreen: "code",
     },
     {
-      timestamp: "23:00",
-      title: "Filter Pattern",
+      timestamp: "18:00",
+      title: "Break Statement",
       talkingPoints: [
-        "Kumpulkan item yang match kondisi",
-        "Start dengan empty list",
-        "Append jika match",
+        "Keluar dari loop sebelum selesai",
+        "Bisa di for atau while",
+        "Keluar dari loop terdalam saja",
+        "Contoh: cari item, stop saat ketemu",
       ],
+      notes: "Live coding: break examples",
       showOnScreen: "code",
     },
     {
-      timestamp: "26:00",
-      title: "Performance Note",
+      timestamp: "22:00",
+      title: "Continue Statement",
       talkingPoints: [
-        "Nested loop = O(n²) complexity",
-        "10 × 10 = 100 iterasi",
-        "1000 × 1000 = 1 juta iterasi",
-        "Hindari nested loop jika bisa",
+        "Skip iterasi saat ini, lanjut ke berikutnya",
+        "Tidak keluar dari loop",
+        "Contoh: skip angka genap",
       ],
-      showOnScreen: "slide",
+      notes: "Live coding: continue examples",
+      showOnScreen: "code",
+    },
+    {
+      timestamp: "25:00",
+      title: "Do-While (Java & JavaScript)",
+      talkingPoints: [
+        "Loop minimal 1 kali",
+        "Cek kondisi di akhir",
+        "Python tidak punya do-while",
+        "Jarang dipakai tapi ada",
+      ],
+      showOnScreen: "code",
     },
     {
       timestamp: "28:00",
       title: "Challenge & Git",
       talkingPoints: [
-        "Print multiplication table 1-10",
-        "Atau: print star triangle",
+        "Guess the number game",
+        "Loop sampai user tebak benar",
         "git add, commit, push",
       ],
       showOnScreen: "demo",
@@ -111,9 +114,9 @@ export const pf15: VideoOutline = {
       timestamp: "29:00",
       title: "Outro",
       talkingPoints: [
-        "Recap: nested loops dan patterns",
-        "Next episode: Functions!",
-        "Almost halfway there!",
+        "Recap: while, break, continue",
+        "Next episode: nested loops",
+        "See you!",
       ],
       showOnScreen: "webcam",
     },
@@ -121,7 +124,7 @@ export const pf15: VideoOutline = {
 
   lowerThirds: [
     {
-      title: "Nested Loops & Patterns",
+      title: "While Loop & Control",
       subtitle: "Programming Fundamentals - Episode 15",
       showAtFrame: 90,
       hideAtFrame: 270,
@@ -130,54 +133,54 @@ export const pf15: VideoOutline = {
 
   codeSnippets: [
     {
-      code: `# Multiplication Table
-for i in range(1, 11):
-    for j in range(1, 11):
-        print(f"{i} x {j} = {i*j:3}", end="  ")
-    print()  # new line setelah tiap baris
+      code: `# Python While Loop
+count = 0
+while count < 5:
+    print(count)
+    count += 1  # PENTING! tanpa ini = infinite loop
 
-# Star Triangle
-#     *
-#    * *
-#   * * *
-for i in range(1, 6):
-    spaces = " " * (5 - i)
-    stars = "* " * i
-    print(spaces + stars)`,
-      title: "nested_loops.py",
-      highlightLines: [2, 3, 11, 12, 13],
+# Break - keluar dari loop
+for i in range(10):
+    if i == 5:
+        break  # stop di 5
+    print(i)  # 0, 1, 2, 3, 4
+
+# Continue - skip iterasi
+for i in range(5):
+    if i == 2:
+        continue  # skip 2
+    print(i)  # 0, 1, 3, 4`,
+      title: "while_loop.py",
+      highlightLines: [3, 5, 10, 16],
       showAtFrame: 9000,
-      hideAtFrame: 28800,
+      hideAtFrame: 27000,
     },
     {
-      code: `# Common Loop Patterns
+      code: `// Guess the Number Game
+import java.util.Scanner;
+import java.util.Random;
 
-# 1. Accumulator - sum all numbers
-numbers = [1, 2, 3, 4, 5]
-total = 0  # initialize
-for num in numbers:
-    total += num  # accumulate
-print(total)  # 15
+int secret = new Random().nextInt(100) + 1;
+Scanner input = new Scanner(System.in);
+int guess;
 
-# 2. Search - find item
-fruits = ["apel", "jeruk", "mangga"]
-found = False
-for fruit in fruits:
-    if fruit == "jeruk":
-        found = True
-        break
+while (true) {
+    System.out.print("Tebak (1-100): ");
+    guess = input.nextInt();
 
-# 3. Filter - collect matching items
-numbers = [1, 2, 3, 4, 5, 6]
-evens = []  # empty list
-for num in numbers:
-    if num % 2 == 0:
-        evens.append(num)
-print(evens)  # [2, 4, 6]`,
-      title: "loop_patterns.py",
-      highlightLines: [5, 6, 7, 13, 14, 15, 20, 21, 22],
-      showAtFrame: 28800,
-      hideAtFrame: 46800,
+    if (guess == secret) {
+        System.out.println("Benar!");
+        break;  // Keluar dari loop
+    } else if (guess < secret) {
+        System.out.println("Terlalu kecil");
+    } else {
+        System.out.println("Terlalu besar");
+    }
+}`,
+      title: "GuessGame.java",
+      highlightLines: [9, 15],
+      showAtFrame: 50400,
+      hideAtFrame: 52200,
     },
   ],
 };

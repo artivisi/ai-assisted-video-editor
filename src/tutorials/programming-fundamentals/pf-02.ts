@@ -142,7 +142,7 @@ export const pf02: VideoOutline = {
       talkingPoints: [
         "Recap: GitHub account + Codespaces ready",
         "Homework: explore interface Codespaces",
-        "Next episode: Hello World - program pertama!",
+        "Next episode: AI untuk Belajar Programming",
         "Jangan lupa subscribe!",
       ],
       showOnScreen: "webcam",

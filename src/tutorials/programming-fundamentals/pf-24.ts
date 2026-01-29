@@ -3,8 +3,8 @@ import { VideoOutline } from "../types";
 export const pf24: VideoOutline = {
   episodeId: "pf-24",
   seriesId: "programming-fundamentals",
-  title: "Regular Expressions Intro",
-  description: "Pengenalan regular expressions untuk pattern matching. Basic patterns dan common use cases.",
+  title: "String Methods",
+  description: "Mempelajari methods untuk manipulasi string: case conversion, split, join, strip, dan find.",
   duration: 1800,
   fps: 30,
 
@@ -13,100 +13,85 @@ export const pf24: VideoOutline = {
       timestamp: "00:00",
       title: "Intro",
       talkingPoints: [
-        "Recap: string methods",
-        "Hari ini: regular expressions (regex)",
-        "Powerful tool untuk text processing",
+        "Recap: data structures",
+        "Hari ini: string manipulation",
+        "String adalah salah satu tipe paling sering dipakai",
       ],
       showOnScreen: "webcam",
     },
     {
       timestamp: "02:00",
-      title: "Apa Itu Regex?",
+      title: "String = Array of Characters",
       talkingPoints: [
-        "Pattern untuk match text",
-        "Seperti search tapi lebih powerful",
-        "Bisa match pattern, bukan exact text",
-        "Contoh: cari semua email dalam text",
+        "String bisa diakses per karakter",
+        "s[0] = karakter pertama",
+        "Bisa di-loop",
+        "Immutable di semua bahasa",
       ],
       showOnScreen: "slide",
     },
     {
       timestamp: "05:00",
-      title: "Basic Patterns",
+      title: "Case Conversion",
       talkingPoints: [
-        ". (dot): match any single character",
-        "* : zero or more",
-        "+ : one or more",
-        "? : zero or one",
-        "^ : start of string",
-        "$ : end of string",
+        "upper() / toUpperCase()",
+        "lower() / toLowerCase()",
+        "capitalize() / title case",
+        "Berguna untuk normalisasi input",
       ],
-      showOnScreen: "slide",
+      showOnScreen: "code",
     },
     {
       timestamp: "09:00",
-      title: "Character Classes",
+      title: "Split & Join",
       talkingPoints: [
-        "\\d : digit (0-9)",
-        "\\w : word character (a-z, A-Z, 0-9, _)",
-        "\\s : whitespace",
-        "[abc] : a or b or c",
-        "[a-z] : a to z",
+        "split(): string → array",
+        "join(): array → string",
+        "Contoh: parse CSV, build path",
+        "Sangat sering dipakai",
       ],
-      showOnScreen: "slide",
-    },
-    {
-      timestamp: "13:00",
-      title: "Regex di Python",
-      talkingPoints: [
-        "import re",
-        "re.match(): match di awal string",
-        "re.search(): cari di mana saja",
-        "re.findall(): cari semua",
-        "Raw string: r'pattern'",
-      ],
-      notes: "Live coding: regex Python",
+      notes: "Live coding: split dan join",
       showOnScreen: "code",
     },
     {
-      timestamp: "18:00",
-      title: "Regex di JavaScript",
+      timestamp: "15:00",
+      title: "Strip/Trim",
       talkingPoints: [
-        "Pattern: /pattern/ atau new RegExp()",
-        "str.match(): cari match",
-        "pattern.test(): return boolean",
-        "str.replace() dengan regex",
-      ],
-      notes: "Live coding: regex JavaScript",
-      showOnScreen: "code",
-    },
-    {
-      timestamp: "22:00",
-      title: "Common Use Cases",
-      talkingPoints: [
-        "Validate email format",
-        "Validate phone number",
-        "Extract numbers from text",
-        "Replace patterns",
+        "Hapus whitespace di awal/akhir",
+        "Python: strip(), lstrip(), rstrip()",
+        "JS: trim(), trimStart(), trimEnd()",
+        "Penting untuk user input",
       ],
       showOnScreen: "code",
     },
     {
-      timestamp: "26:00",
-      title: "Regex Tips",
+      timestamp: "19:00",
+      title: "Find & Replace",
       talkingPoints: [
-        "Start simple, add complexity",
-        "Test with regex101.com",
-        "Comments dan named groups untuk readability",
-        "Jangan over-use - kadang split() cukup",
+        "find() / indexOf(): cari posisi substring",
+        "replace(): ganti substring",
+        "startswith() / endswith()",
+        "Python: in operator untuk contains",
       ],
-      showOnScreen: "slide",
+      showOnScreen: "code",
     },
     {
-      timestamp: "28:00",
+      timestamp: "24:00",
+      title: "String Formatting Recap",
+      talkingPoints: [
+        "Python: f-string f'{var}'",
+        "JS: template literal `${var}`",
+        "Java: String.format() atau +",
+        "Best practice: gunakan formatting",
+      ],
+      showOnScreen: "code",
+    },
+    {
+      timestamp: "27:00",
       title: "Challenge & Git",
       talkingPoints: [
-        "Validate email format",
+        "Process user input: trim, lowercase",
+        "Split sentence into words",
         "git add, commit, push",
       ],
       showOnScreen: "demo",
@@ -115,9 +100,9 @@ export const pf24: VideoOutline = {
       timestamp: "29:00",
       title: "Outro",
       talkingPoints: [
-        "Recap: regex basics",
-        "Next episode: Error Handling",
-        "Regex takes practice!",
+        "Recap: string methods",
+        "Next episode: Regular Expressions",
+        "See you!",
       ],
       showOnScreen: "webcam",
     },
@@ -125,7 +110,7 @@ export const pf24: VideoOutline = {
 
   lowerThirds: [
     {
-      title: "Regular Expressions",
+      title: "String Methods",
       subtitle: "Programming Fundamentals - Episode 24",
       showAtFrame: 90,
       hideAtFrame: 270,
@@ -134,63 +119,60 @@ export const pf24: VideoOutline = {
 
   codeSnippets: [
     {
-      code: `# Python Regular Expressions
-import re
+      code: `# Python String Methods
+s = "  Hello World  "
 
-# Pattern untuk tanggal: YYYY-MM-DD
-pattern = r"\\d{4}-\\d{2}-\\d{2}"
+# Case
+print(s.upper())        # "  HELLO WORLD  "
+print(s.lower())        # "  hello world  "
 
-text = "Meeting on 2024-01-15 and 2024-02-20"
+# Strip whitespace
+print(s.strip())        # "Hello World"
 
-# Find all matches
-dates = re.findall(pattern, text)
-print(dates)  # ["2024-01-15", "2024-02-20"]
+# Split & Join
+words = "apel,jeruk,mangga".split(",")
+print(words)            # ["apel", "jeruk", "mangga"]
 
-# Validate email
-email_pattern = r"^[\\w.-]+@[\\w.-]+\\.\\w+$"
-email = "user@example.com"
+path = "/".join(["home", "user", "docs"])
+print(path)             # "home/user/docs"
 
-if re.match(email_pattern, email):
-    print("Valid email")
-else:
-    print("Invalid email")`,
-      title: "regex.py",
-      highlightLines: [5, 10, 11, 14, 17, 18],
-      showAtFrame: 23400,
-      hideAtFrame: 39600,
+# Find & Replace
+text = "Hello World"
+print(text.find("World"))     # 6 (index)
+print(text.replace("World", "Python"))  # "Hello Python"
+print("World" in text)        # True`,
+      title: "strings.py",
+      highlightLines: [5, 6, 9, 12, 15, 19, 20, 21],
+      showAtFrame: 7200,
+      hideAtFrame: 34200,
     },
     {
-      code: `// JavaScript Regular Expressions
+      code: `// JavaScript String Methods
+let s = "  Hello World  ";
 
-// Pattern untuk tanggal
-let pattern = /\\d{4}-\\d{2}-\\d{2}/g;
+// Case
+console.log(s.toUpperCase());  // "  HELLO WORLD  "
+console.log(s.toLowerCase());  // "  hello world  "
 
-let text = "Meeting on 2024-01-15 and 2024-02-20";
+// Trim whitespace
+console.log(s.trim());         // "Hello World"
 
-// Find all matches
-let dates = text.match(pattern);
-console.log(dates);  // ["2024-01-15", "2024-02-20"]
+// Split & Join
+let words = "apel,jeruk,mangga".split(",");
+console.log(words);            // ["apel", "jeruk", "mangga"]
 
-// Validate email
-let emailPattern = /^[\\w.-]+@[\\w.-]+\\.\\w+$/;
-let email = "user@example.com";
+let path = ["home", "user", "docs"].join("/");
+console.log(path);             // "home/user/docs"
 
-if (emailPattern.test(email)) {
-    console.log("Valid email");
-} else {
-    console.log("Invalid email");
-}`,
-      title: "regex.js",
-      highlightLines: [4, 9, 10, 13, 16],
-      showAtFrame: 32400,
-      hideAtFrame: 46800,
-    },
-  ],
-
-  references: [
-    {
-      label: "Regex101 - Test Regex",
-      url: "regex101.com",
+// Find & Replace
+let text = "Hello World";
+console.log(text.indexOf("World"));  // 6
+console.log(text.replace("World", "JS"));  // "Hello JS"
+console.log(text.includes("World"));  // true`,
+      title: "strings.js",
+      highlightLines: [5, 6, 9, 12, 15, 19, 20, 21],
+      showAtFrame: 34200,
+      hideAtFrame: 48600,
     },
   ],
 };

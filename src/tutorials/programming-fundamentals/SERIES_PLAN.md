@@ -141,14 +141,52 @@
 
 ---
 
-### Module 2: First Program & Basic Syntax (Episodes 3-4)
+### Module 2: AI & First Program (Episodes 3-5)
 
-> **Git Workflow:** Mulai dari Episode 3, setiap akhir episode students akan:
+#### Episode 3: AI untuk Belajar Programming
+**Duration:** 40 min
+
+**Outline:**
+- [00:00] Intro - AI sebagai tool belajar
+- [02:00] AI Tools untuk Programming
+  - ChatGPT (OpenAI), Claude (Anthropic), Gemini (Google)
+  - GitHub Copilot - langsung di editor
+  - Semua bisa dipakai gratis (ada limit)
+- [05:00] AI sebagai Tutor vs AI sebagai Cheat
+  - Tutor: membantu MEMAHAMI
+  - Cheat: mengerjakan UNTUK kamu
+  - Analogi: personal trainer vs steroid
+- [08:00] DO: Minta Penjelasan Konsep
+  - "Jelaskan apa itu variable seperti aku anak SD"
+  - AI sangat bagus untuk explain WHY
+- [12:00] DO: Generate Latihan/Exercise
+  - "Buat 5 soal latihan tentang if-else, jangan beri jawaban"
+  - Kerjakan sendiri, baru minta review
+- [16:00] DO: Minta Penjelasan Error
+  - Copy-paste error message, minta PENJELASAN bukan SOLUSI
+- [20:00] DO: Minta Analogi & Contoh
+- [23:00] DO: Code Review setelah kamu tulis sendiri
+- [26:00] DON'T: Minta Solusi Langsung
+  - Copy-paste = illusion of learning
+- [29:00] DON'T: Copy Tanpa Paham
+- [32:00] DON'T: Skip Struggle (bingung itu normal!)
+- [35:00] Prompt Template untuk Series Ini
+  - Setiap episode akan ada AI Prompt untuk homework
+- [39:00] Outro
+
+**Infographics:**
+- AI Tools comparison table
+- DO vs DON'T checklist
+- Prompt template examples
+
+---
+
+> **Git Workflow:** Mulai dari Episode 4, setiap akhir episode students akan:
 > 1. Save files (auto-save in Codespaces)
 > 2. Buka Terminal → `git add .` → `git commit -m "pesan"` → `git push`
 > 3. Cek repository di GitHub (reinforcement)
 
-#### Episode 3: Hello World - Program Pertamamu
+#### Episode 4: Hello World - Program Pertamamu
 **Duration:** 30 min
 
 **Outline:**
@@ -198,7 +236,7 @@
 
 ---
 
-#### Episode 4: Komentar & Struktur Kode
+#### Episode 5: Komentar & Struktur Kode
 **Duration:** 30 min
 
 **Outline:**
@@ -244,9 +282,9 @@
 
 ---
 
-### Module 3: Variables & Data Types (Episodes 5-8)
+### Module 3: Variables & Data Types (Episodes 6-9)
 
-#### Episode 5: Variables - Menyimpan Data
+#### Episode 6: Variables - Menyimpan Data
 **Duration:** 30 min
 
 **Outline:**
@@ -288,7 +326,7 @@
 
 ---
 
-#### Episode 6: Data Types & Typing Systems
+#### Episode 7: Data Types & Typing Systems
 **Duration:** 45 min
 
 **Outline:**
@@ -400,7 +438,7 @@
 
 ---
 
-#### Episode 7: Number Systems: Binary, Octal, Decimal, Hexadecimal
+#### Episode 8: Number Systems: Binary, Octal, Decimal, Hexadecimal
 **Duration:** 30 min
 
 **Outline:**
@@ -454,7 +492,7 @@
 
 ---
 
-#### Episode 8: Type Conversion & String Operations
+#### Episode 9: Type Conversion & String Operations
 **Duration:** 30 min
 
 **Outline:**
@@ -510,9 +548,9 @@
 
 ---
 
-### Module 4: Operators (Episodes 9-10)
+### Module 4: Operators (Episodes 10-11)
 
-#### Episode 9: Arithmetic & Assignment Operators
+#### Episode 10: Arithmetic & Assignment Operators
 **Duration:** 30 min
 
 **Outline:**
@@ -539,7 +577,7 @@
 
 ---
 
-#### Episode 10: Comparison & Logical Operators
+#### Episode 11: Comparison & Logical Operators
 **Duration:** 30 min
 
 **Outline:**
@@ -567,9 +605,9 @@
 
 ---
 
-### Module 5: Control Flow - Conditionals (Episodes 11-12)
+### Module 5: Control Flow - Conditionals (Episodes 12-13)
 
-#### Episode 11: If-Else - Membuat Keputusan
+#### Episode 12: If-Else - Membuat Keputusan
 **Duration:** 30 min
 
 **Outline:**
@@ -615,7 +653,7 @@
 
 ---
 
-#### Episode 12: Else-If & Nested Conditions
+#### Episode 13: Else-If & Nested Conditions
 **Duration:** 30 min
 
 **Outline:**
@@ -663,9 +701,9 @@
 
 ---
 
-### Module 6: Control Flow - Loops (Episodes 13-15)
+### Module 6: Control Flow - Loops (Episodes 14-16)
 
-#### Episode 13: For Loop - Pengulangan Terukur
+#### Episode 14: For Loop - Pengulangan Terukur
 **Duration:** 30 min
 
 **Outline:**
@@ -712,7 +750,7 @@
 
 ---
 
-#### Episode 14: While Loop & Loop Control
+#### Episode 15: While Loop & Loop Control
 **Duration:** 30 min
 
 **Outline:**
@@ -752,7 +790,7 @@
 
 ---
 
-#### Episode 15: Nested Loops & Common Patterns
+#### Episode 16: Nested Loops & Common Patterns
 **Duration:** 30 min
 
 **Outline:**
@@ -779,9 +817,9 @@
 
 ---
 
-### Module 7: Functions (Episodes 16-18)
+### Module 7: Functions (Episodes 17-19)
 
-#### Episode 16: Functions - Kode yang Reusable
+#### Episode 17: Functions - Kode yang Reusable
 **Duration:** 30 min
 
 **Outline:**
@@ -821,7 +859,7 @@
 
 ---
 
-#### Episode 17: Parameters & Arguments
+#### Episode 18: Parameters & Arguments
 **Duration:** 30 min
 
 **Outline:**
@@ -861,7 +899,7 @@
 
 ---
 
-#### Episode 18: Scope & Return Values
+#### Episode 19: Scope & Return Values
 **Duration:** 30 min
 
 **Outline:**
@@ -896,9 +934,9 @@
 
 ---
 
-### Module 8: Data Structures (Episodes 19-22)
+### Module 8: Data Structures (Episodes 20-23)
 
-#### Episode 19: Arrays/Lists - Kumpulan Data
+#### Episode 20: Arrays/Lists - Kumpulan Data
 **Duration:** 30 min
 
 **Outline:**
@@ -938,7 +976,7 @@
 
 ---
 
-#### Episode 20: Array Operations & Methods
+#### Episode 21: Array Operations & Methods
 **Duration:** 30 min
 
 **Outline:**
@@ -981,7 +1019,7 @@
 
 ---
 
-#### Episode 21: Dictionaries/Objects - Key-Value Pairs
+#### Episode 22: Dictionaries/Objects - Key-Value Pairs
 **Duration:** 30 min
 
 **Outline:**
@@ -1026,7 +1064,7 @@
 
 ---
 
-#### Episode 22: Sets & Tuples
+#### Episode 23: Sets & Tuples
 **Duration:** 30 min
 
 **Outline:**
@@ -1057,9 +1095,9 @@
 
 ---
 
-### Module 9: String Manipulation (Episodes 23-24)
+### Module 9: String Manipulation (Episodes 24-25)
 
-#### Episode 23: String Methods
+#### Episode 24: String Methods
 **Duration:** 30 min
 
 **Outline:**
@@ -1088,7 +1126,7 @@
 
 ---
 
-#### Episode 24: Regular Expressions Intro
+#### Episode 25: Regular Expressions Intro
 **Duration:** 30 min
 
 **Outline:**
@@ -1120,9 +1158,9 @@
 
 ---
 
-### Module 10: Error Handling (Episodes 25-26)
+### Module 10: Error Handling (Episodes 26-27)
 
-#### Episode 25: Exceptions & Try-Catch
+#### Episode 26: Exceptions & Try-Catch
 **Duration:** 30 min
 
 **Outline:**
@@ -1163,7 +1201,7 @@
 
 ---
 
-#### Episode 26: Debugging Techniques
+#### Episode 27: Debugging Techniques
 **Duration:** 30 min
 
 **Outline:**
@@ -1188,9 +1226,9 @@
 
 ---
 
-### Module 11: File I/O (Episode 27)
+### Module 11: File I/O (Episode 28)
 
-#### Episode 27: Reading & Writing Files
+#### Episode 28: Reading & Writing Files
 **Duration:** 30 min
 
 **Outline:**
@@ -1224,9 +1262,9 @@
 
 ---
 
-### Module 12: Final Projects (Episodes 28-31)
+### Module 12: Final Projects (Episodes 29-32)
 
-#### Episode 28: Project - Calculator App
+#### Episode 29: Project - Calculator App
 **Duration:** 30 min
 
 **Outline:**
@@ -1242,7 +1280,7 @@
 
 ---
 
-#### Episode 29: Project - Todo List App
+#### Episode 30: Project - Todo List App
 **Duration:** 30 min
 
 **Outline:**
@@ -1257,7 +1295,7 @@
 
 ---
 
-#### Episode 30: Project - Number Guessing Game
+#### Episode 31: Project - Number Guessing Game
 **Duration:** 30 min
 
 **Outline:**
@@ -1272,7 +1310,7 @@
 
 ---
 
-#### Episode 31: Series Wrap-Up & Next Steps
+#### Episode 32: Series Wrap-Up & Next Steps
 **Duration:** 30 min
 
 **Outline:**

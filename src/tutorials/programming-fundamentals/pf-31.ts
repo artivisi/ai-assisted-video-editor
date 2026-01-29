@@ -3,8 +3,8 @@ import { VideoOutline } from "../types";
 export const pf31: VideoOutline = {
   episodeId: "pf-31",
   seriesId: "programming-fundamentals",
-  title: "Series Wrap-Up & Next Steps",
-  description: "Recap semua yang dipelajari, portfolio review, dan panduan untuk langkah selanjutnya.",
+  title: "Project: Number Guessing Game",
+  description: "Final project ketiga: membuat number guessing game dengan difficulty levels dan score tracking.",
   duration: 1800,
   fps: 30,
 
@@ -13,115 +13,109 @@ export const pf31: VideoOutline = {
       timestamp: "00:00",
       title: "Intro",
       talkingPoints: [
-        "Episode terakhir!",
-        "30 episodes complete",
-        "Congratulations!",
+        "Project 3: Guessing Game",
+        "Fun project dengan game logic",
+        "Practice loops dan conditionals",
       ],
       showOnScreen: "webcam",
     },
     {
       timestamp: "02:00",
-      title: "Apa yang Sudah Dipelajari",
+      title: "Game Overview",
       talkingPoints: [
-        "3 programming languages",
-        "Core concepts yang universal",
-        "Typing systems, data types",
-        "Control flow, loops, functions",
-        "Data structures",
-        "Error handling, debugging",
-        "File I/O",
+        "Computer picks random number",
+        "Player tries to guess",
+        "Hints: too high / too low",
+        "Track number of attempts",
+        "Difficulty levels",
       ],
       showOnScreen: "slide",
     },
     {
-      timestamp: "08:00",
-      title: "Projects yang Sudah Dibuat",
+      timestamp: "04:00",
+      title: "Buat Repository",
       talkingPoints: [
-        "Calculator App",
-        "Todo List App",
-        "Number Guessing Game",
-        "Semua ada di GitHub portfolio kamu",
-        "Ini bukti skill kamu!",
-      ],
-      showOnScreen: "slide",
-    },
-    {
-      timestamp: "12:00",
-      title: "Review GitHub Profile",
-      talkingPoints: [
-        "Buka github.com/[username]",
-        "4 repositories: belajar-programming, 3 projects",
-        "Green contribution graph",
-        "Ini adalah portfolio kamu",
+        "Nama: guessing-game",
+        "Create codespace",
+        "File: game.py (focus Python)",
       ],
       showOnScreen: "demo",
     },
     {
-      timestamp: "16:00",
-      title: "Next Steps: Python Path",
+      timestamp: "06:00",
+      title: "Basic Game Loop",
       talkingPoints: [
-        "Web Development: Django, Flask, FastAPI",
-        "Data Science: Pandas, NumPy, Matplotlib",
-        "Machine Learning: scikit-learn, TensorFlow",
-        "Automation: scripting, web scraping",
+        "Generate random number",
+        "While loop untuk guessing",
+        "Compare guess with secret",
+        "Give hints",
+        "Break when correct",
       ],
-      showOnScreen: "slide",
+      notes: "Live coding: basic game",
+      showOnScreen: "code",
     },
     {
-      timestamp: "19:00",
-      title: "Next Steps: JavaScript Path",
+      timestamp: "12:00",
+      title: "Add Difficulty Levels",
       talkingPoints: [
-        "Frontend: React, Vue, Angular",
-        "Backend: Node.js, Express, NestJS",
-        "Mobile: React Native, Expo",
-        "Full-stack: Next.js, Remix",
+        "Easy: 1-10, unlimited guesses",
+        "Medium: 1-50, 10 guesses",
+        "Hard: 1-100, 5 guesses",
+        "Let player choose",
       ],
-      showOnScreen: "slide",
+      notes: "Live coding: difficulty levels",
+      showOnScreen: "code",
+    },
+    {
+      timestamp: "18:00",
+      title: "Score Tracking",
+      talkingPoints: [
+        "Track attempts",
+        "Calculate score based on attempts",
+        "Fewer attempts = higher score",
+        "Display final score",
+      ],
+      notes: "Live coding: scoring",
+      showOnScreen: "code",
     },
     {
       timestamp: "22:00",
-      title: "Next Steps: Java Path",
+      title: "Play Again Feature",
       talkingPoints: [
-        "Backend: Spring Boot, Jakarta EE",
-        "Android: Android SDK, Kotlin",
-        "Enterprise: Microservices, Cloud",
-        "Big Data: Hadoop, Spark",
+        "Ask to play again",
+        "Track total games and wins",
+        "Show statistics at end",
       ],
-      showOnScreen: "slide",
+      showOnScreen: "code",
     },
     {
       timestamp: "25:00",
-      title: "Learning Resources",
+      title: "Polish & Enhancements",
       talkingPoints: [
-        "Documentation official tiap bahasa",
-        "freeCodeCamp, The Odin Project",
-        "YouTube channels untuk programming",
-        "Build projects - best way to learn!",
-        "Join communities: Discord, Reddit",
+        "Input validation",
+        "Clear screen between games",
+        "ASCII art title",
+        "Ideas: leaderboard, hints limit",
       ],
-      showOnScreen: "slide",
+      showOnScreen: "code",
     },
     {
       timestamp: "27:00",
-      title: "Tips for Continuous Learning",
+      title: "Final Commit & Review",
       talkingPoints: [
-        "Code every day, even 30 minutes",
-        "Build projects, not just tutorials",
-        "Read other people's code",
-        "Contribute to open source",
-        "Teach others - solidifies knowledge",
+        "git add, commit, push",
+        "Review Git history",
+        "All 3 projects complete!",
       ],
-      showOnScreen: "slide",
+      showOnScreen: "demo",
     },
     {
       timestamp: "29:00",
-      title: "Closing",
+      title: "Outro",
       talkingPoints: [
-        "Terima kasih sudah mengikuti series ini!",
-        "You're now a programmer!",
-        "Keep coding, keep learning",
-        "Subscribe untuk series selanjutnya",
-        "Good luck on your journey!",
+        "Guessing Game complete!",
+        "Next: Series wrap-up",
+        "You've built 3 real projects!",
       ],
       showOnScreen: "webcam",
     },
@@ -129,39 +123,55 @@ export const pf31: VideoOutline = {
 
   lowerThirds: [
     {
-      title: "Series Wrap-Up",
+      title: "Project: Guessing Game",
       subtitle: "Programming Fundamentals - Episode 31",
       showAtFrame: 90,
       hideAtFrame: 270,
     },
-    {
-      title: "Congratulations!",
-      subtitle: "You completed 30 episodes!",
-      showAtFrame: 3600,
-      hideAtFrame: 5400,
-    },
   ],
 
-  references: [
+  codeSnippets: [
     {
-      label: "Python Docs",
-      url: "docs.python.org",
-    },
-    {
-      label: "MDN Web Docs (JavaScript)",
-      url: "developer.mozilla.org",
-    },
-    {
-      label: "Java Tutorials",
-      url: "dev.java/learn",
-    },
-    {
-      label: "freeCodeCamp",
-      url: "freecodecamp.org",
-    },
-    {
-      label: "The Odin Project",
-      url: "theodinproject.com",
+      code: `# Number Guessing Game
+import random
+
+def play_game(difficulty):
+    ranges = {"easy": (1, 10, 99), "medium": (1, 50, 10), "hard": (1, 100, 5)}
+    min_num, max_num, max_attempts = ranges[difficulty]
+
+    secret = random.randint(min_num, max_num)
+    attempts = 0
+
+    print(f"\\nGuess a number between {min_num} and {max_num}")
+    print(f"You have {max_attempts} attempts" if max_attempts < 99 else "")
+
+    while attempts < max_attempts:
+        try:
+            guess = int(input("Your guess: "))
+            attempts += 1
+
+            if guess == secret:
+                score = max(100 - (attempts - 1) * 10, 10)
+                print(f"🎉 Correct! Attempts: {attempts}, Score: {score}")
+                return True, attempts, score
+            elif guess < secret:
+                print("Too low!")
+            else:
+                print("Too high!")
+
+            remaining = max_attempts - attempts
+            if remaining > 0 and max_attempts < 99:
+                print(f"Attempts remaining: {remaining}")
+
+        except ValueError:
+            print("Please enter a valid number")
+
+    print(f"Game over! The number was {secret}")
+    return False, attempts, 0`,
+      title: "game.py",
+      highlightLines: [5, 6, 8, 14, 19, 20, 21, 22, 23, 24],
+      showAtFrame: 10800,
+      hideAtFrame: 32400,
     },
   ],
 };

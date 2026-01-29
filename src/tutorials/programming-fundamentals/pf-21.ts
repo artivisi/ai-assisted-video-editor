@@ -3,8 +3,8 @@ import { VideoOutline } from "../types";
 export const pf21: VideoOutline = {
   episodeId: "pf-21",
   seriesId: "programming-fundamentals",
-  title: "Dictionaries/Objects - Key-Value Pairs",
-  description: "Mempelajari dictionary (Python), object (JavaScript), dan HashMap (Java) untuk menyimpan data key-value.",
+  title: "Array Operations & Methods",
+  description: "Mempelajari operasi umum pada arrays: add, remove, find, sort, dan slice.",
   duration: 1800,
   fps: 30,
 
@@ -13,67 +13,68 @@ export const pf21: VideoOutline = {
       timestamp: "00:00",
       title: "Intro",
       talkingPoints: [
-        "Recap: arrays untuk list data",
-        "Bagaimana kalau perlu label?",
-        "Hari ini: key-value pairs",
+        "Recap: membuat array/list",
+        "Hari ini: memanipulasi array",
+        "Operasi yang sering dipakai",
       ],
       showOnScreen: "webcam",
     },
     {
       timestamp: "02:00",
-      title: "Apa Itu Dictionary/Object?",
+      title: "Add Operations",
       talkingPoints: [
-        "Data dengan label (key)",
-        "Analogi: kamus (kata → definisi)",
-        "Analogi: phonebook (nama → nomor)",
-        "Akses dengan key, bukan index",
+        "Tambah di akhir: append/push/add",
+        "Tambah di posisi tertentu: insert",
+        "Python: append(), insert()",
+        "JS: push(), splice()",
+        "Java: add(), add(index, item)",
       ],
-      showOnScreen: "slide",
-    },
-    {
-      timestamp: "05:00",
-      title: "Dictionary di Python",
-      talkingPoints: [
-        "Dibuat dengan curly braces {}",
-        "key: value pairs",
-        "Akses: dict['key'] atau dict.get('key')",
-        "Keys harus unique",
-      ],
-      notes: "Live coding: Python dictionary",
       showOnScreen: "code",
     },
     {
-      timestamp: "12:00",
-      title: "Object di JavaScript",
+      timestamp: "08:00",
+      title: "Remove Operations",
       talkingPoints: [
-        "Dibuat dengan {}",
-        "key: value (tanpa quotes untuk key)",
-        "Akses: obj.key atau obj['key']",
-        "Dot notation lebih common",
+        "Hapus berdasarkan index",
+        "Hapus berdasarkan value",
+        "Python: pop(), remove()",
+        "JS: pop(), splice()",
+        "Java: remove(index), remove(object)",
       ],
-      notes: "Live coding: JavaScript object",
       showOnScreen: "code",
     },
     {
-      timestamp: "18:00",
-      title: "HashMap di Java",
+      timestamp: "14:00",
+      title: "Find Operations",
       talkingPoints: [
-        "HashMap<KeyType, ValueType>",
-        "put(key, value) untuk add",
-        "get(key) untuk akses",
-        "Lebih verbose tapi type-safe",
+        "Cari apakah item ada",
+        "Cari index dari item",
+        "Python: in, index()",
+        "JS: includes(), indexOf()",
+        "Java: contains(), indexOf()",
       ],
-      notes: "Live coding: Java HashMap",
+      showOnScreen: "code",
+    },
+    {
+      timestamp: "19:00",
+      title: "Sort Operations",
+      talkingPoints: [
+        "Python: sort() (in-place), sorted() (new list)",
+        "JS: sort() (in-place, warning: string comparison!)",
+        "Java: Collections.sort()",
+        "Reverse: reverse()",
+      ],
       showOnScreen: "code",
     },
     {
       timestamp: "23:00",
-      title: "Iterating Over Keys/Values",
+      title: "Slicing",
       talkingPoints: [
-        "Loop semua keys",
-        "Loop semua values",
-        "Loop key-value pairs",
-        "Berbeda syntax tiap bahasa",
+        "Ambil sebagian array",
+        "Python: arr[1:4] (index 1, 2, 3)",
+        "JS: arr.slice(1, 4)",
+        "Java: subList(1, 4)",
+        "Start inclusive, end exclusive",
       ],
       showOnScreen: "code",
     },
@@ -81,8 +82,7 @@ export const pf21: VideoOutline = {
       timestamp: "27:00",
       title: "Challenge & Git",
       talkingPoints: [
-        "Buat contact book",
-        "Nama → nomor telepon",
+        "Todo list: add, remove, list",
         "git add, commit, push",
       ],
       showOnScreen: "demo",
@@ -91,9 +91,9 @@ export const pf21: VideoOutline = {
       timestamp: "29:00",
       title: "Outro",
       talkingPoints: [
-        "Recap: key-value storage",
-        "Next episode: Sets & Tuples",
-        "Keep coding!",
+        "Recap: array operations",
+        "Next episode: Dictionaries/Objects",
+        "See you!",
       ],
       showOnScreen: "webcam",
     },
@@ -101,7 +101,7 @@ export const pf21: VideoOutline = {
 
   lowerThirds: [
     {
-      title: "Dictionaries & Objects",
+      title: "Array Operations",
       subtitle: "Programming Fundamentals - Episode 21",
       showAtFrame: 90,
       hideAtFrame: 270,
@@ -110,61 +110,58 @@ export const pf21: VideoOutline = {
 
   codeSnippets: [
     {
-      code: `# Python Dictionary
-person = {
-    "nama": "Budi",
-    "umur": 25,
-    "kota": "Jakarta"
-}
+      code: `# Python List Operations
+fruits = ["apel", "jeruk"]
 
-# Akses
-print(person["nama"])      # "Budi"
-print(person.get("umur"))  # 25 (safer, returns None if missing)
+# Add
+fruits.append("mangga")       # di akhir
+fruits.insert(1, "durian")    # di index 1
 
-# Tambah/Update
-person["email"] = "budi@email.com"
-person["umur"] = 26
+# Remove
+fruits.pop()                  # hapus terakhir
+fruits.remove("durian")       # hapus by value
 
-# Iterate
-for key in person:
-    print(f"{key}: {person[key]}")
+# Find
+print("apel" in fruits)       # True
+print(fruits.index("jeruk"))  # index of "jeruk"
 
-for key, value in person.items():
-    print(f"{key}: {value}")`,
-      title: "dictionary.py",
-      highlightLines: [2, 3, 4, 9, 10, 13, 14, 17, 20],
-      showAtFrame: 9000,
-      hideAtFrame: 21600,
+# Sort
+fruits.sort()                 # ascending
+fruits.sort(reverse=True)     # descending
+
+# Slice
+print(fruits[1:3])            # index 1 dan 2`,
+      title: "array_ops.py",
+      highlightLines: [5, 6, 9, 10, 13, 14, 17, 18, 21],
+      showAtFrame: 3600,
+      hideAtFrame: 23400,
     },
     {
-      code: `// JavaScript Object
-let person = {
-    nama: "Budi",
-    umur: 25,
-    kota: "Jakarta"
-};
+      code: `// JavaScript Array Operations
+let fruits = ["apel", "jeruk"];
 
-// Akses
-console.log(person.nama);      // "Budi"
-console.log(person["umur"]);   // 25
+// Add
+fruits.push("mangga");           // di akhir
+fruits.splice(1, 0, "durian");   // insert di index 1
 
-// Tambah/Update
-person.email = "budi@email.com";
-person["umur"] = 26;
+// Remove
+fruits.pop();                    // hapus terakhir
+fruits.splice(1, 1);             // hapus 1 item di index 1
 
-// Iterate
-for (let key in person) {
-    console.log(\`\${key}: \${person[key]}\`);
-}
+// Find
+console.log(fruits.includes("apel"));  // true
+console.log(fruits.indexOf("jeruk"));  // index
 
-// Object.entries
-for (let [key, value] of Object.entries(person)) {
-    console.log(\`\${key}: \${value}\`);
-}`,
-      title: "object.js",
-      highlightLines: [2, 3, 4, 9, 10, 13, 14, 17, 22],
-      showAtFrame: 21600,
-      hideAtFrame: 32400,
+// Sort (HATI-HATI dengan numbers!)
+fruits.sort();
+// Untuk numbers: arr.sort((a, b) => a - b);
+
+// Slice
+console.log(fruits.slice(1, 3));  // index 1 dan 2`,
+      title: "array_ops.js",
+      highlightLines: [5, 6, 9, 10, 13, 14, 17, 21],
+      showAtFrame: 23400,
+      hideAtFrame: 48600,
     },
   ],
 };

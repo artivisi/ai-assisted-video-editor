@@ -3,8 +3,8 @@ import { VideoOutline } from "../types";
 export const pf12: VideoOutline = {
   episodeId: "pf-12",
   seriesId: "programming-fundamentals",
-  title: "Else-If & Nested Conditions",
-  description: "Mempelajari multiple conditions dengan else-if dan switch-case. Juga nested conditions untuk logika kompleks.",
+  title: "If-Else - Membuat Keputusan",
+  description: "Mempelajari conditional statements untuk membuat program yang bisa mengambil keputusan berdasarkan kondisi.",
   duration: 1800,
   fps: 30,
 
@@ -13,85 +13,89 @@ export const pf12: VideoOutline = {
       timestamp: "00:00",
       title: "Intro",
       talkingPoints: [
-        "Recap: if-else untuk 2 pilihan",
-        "Bagaimana kalau lebih dari 2?",
-        "Hari ini: else-if dan switch",
+        "Recap: comparison dan logical operators",
+        "Hari ini: if-else statements",
+        "Program yang bisa 'berpikir'",
       ],
       showOnScreen: "webcam",
     },
     {
       timestamp: "02:00",
-      title: "Multiple Conditions",
+      title: "Apa Itu Conditional?",
       talkingPoints: [
-        "Contoh: grade A, B, C, D, E",
-        "Tidak cukup if-else saja",
-        "Perlu else-if chain",
-        "Dicek berurutan dari atas",
+        "Program mengambil keputusan berdasarkan kondisi",
+        "Analogi: lampu lalu lintas",
+        "Jika merah → berhenti",
+        "Jika hijau → jalan",
+        "Cabang dalam alur program",
       ],
       showOnScreen: "slide",
     },
     {
       timestamp: "05:00",
-      title: "Else-If di Python",
+      title: "If-Else di Python",
       talkingPoints: [
-        "elif (bukan else if)",
-        "Bisa banyak elif",
-        "else di akhir untuk default",
-        "Urutan penting! Cek dari paling spesifik",
+        "if kondisi: (dengan colon)",
+        "Indentation WAJIB - bagian dari syntax",
+        "else: untuk kondisi sebaliknya",
+        "Tidak perlu parentheses",
+        "Tidak perlu curly braces",
       ],
-      notes: "Live coding: grade converter Python",
+      notes: "Live coding: if-else Python",
       showOnScreen: "code",
     },
     {
-      timestamp: "11:00",
-      title: "Else-If di JavaScript & Java",
+      timestamp: "12:00",
+      title: "If-Else di JavaScript",
       talkingPoints: [
-        "else if (dua kata)",
-        "Syntax sama untuk keduanya",
-        "Curly braces untuk tiap block",
+        "if (kondisi) { }",
+        "Parentheses WAJIB untuk kondisi",
+        "Curly braces untuk block code",
+        "else { } untuk kondisi sebaliknya",
+        "Indentation untuk readability",
       ],
-      notes: "Live coding: grade converter JS",
+      notes: "Live coding: if-else JavaScript",
       showOnScreen: "code",
     },
     {
-      timestamp: "16:00",
-      title: "Switch-Case",
+      timestamp: "18:00",
+      title: "If-Else di Java",
       talkingPoints: [
-        "Alternatif untuk banyak kondisi",
-        "Lebih cocok untuk exact match",
-        "JavaScript dan Java punya switch",
-        "Python 3.10+: match-case",
-        "break penting di JS/Java!",
+        "Sama dengan JavaScript",
+        "if (kondisi) { }",
+        "Harus dalam method/function",
+        "Semicolon setelah statements",
       ],
-      notes: "Live coding: day of week dengan switch",
+      notes: "Live coding: if-else Java",
       showOnScreen: "code",
     },
     {
       timestamp: "22:00",
-      title: "Nested Conditions",
+      title: "Perbandingan Syntax",
       talkingPoints: [
-        "If di dalam if",
-        "Untuk logika yang lebih kompleks",
-        "Hati-hati: jangan terlalu dalam",
-        "Max 2-3 level, lebih = refactor",
-      ],
-      showOnScreen: "code",
-    },
-    {
-      timestamp: "26:00",
-      title: "Best Practices",
-      talkingPoints: [
-        "Early return untuk kurangi nesting",
-        "Guard clauses di awal",
-        "Readable > clever",
+        "Python: no parens, colon, indentation",
+        "JS/Java: parens, curly braces",
+        "Python paling ringkas",
+        "JS/Java lebih explicit",
       ],
       showOnScreen: "slide",
     },
     {
-      timestamp: "28:00",
+      timestamp: "24:00",
+      title: "Common Mistakes",
+      talkingPoints: [
+        "= vs == (assignment vs comparison)",
+        "Python: lupa colon",
+        "Python: indentation salah",
+        "JS: lupa curly braces",
+      ],
+      showOnScreen: "slide",
+    },
+    {
+      timestamp: "27:00",
       title: "Challenge & Git",
       talkingPoints: [
-        "Konversi nilai ke grade (A/B/C/D/E)",
+        "Cek lulus/tidak lulus (nilai >= 60)",
         "Di ketiga bahasa",
         "git add, commit, push",
       ],
@@ -101,9 +105,9 @@ export const pf12: VideoOutline = {
       timestamp: "29:00",
       title: "Outro",
       talkingPoints: [
-        "Recap: else-if dan switch",
-        "Next episode: Loops - pengulangan!",
-        "Keep coding!",
+        "Recap: if-else untuk keputusan",
+        "Next episode: else-if untuk multiple kondisi",
+        "See you!",
       ],
       showOnScreen: "webcam",
     },
@@ -111,7 +115,7 @@ export const pf12: VideoOutline = {
 
   lowerThirds: [
     {
-      title: "Else-If & Switch",
+      title: "If-Else Statements",
       subtitle: "Programming Fundamentals - Episode 12",
       showAtFrame: 90,
       hideAtFrame: 270,
@@ -120,51 +124,42 @@ export const pf12: VideoOutline = {
 
   codeSnippets: [
     {
-      code: `# Python Grade Converter
-nilai = 85
+      code: `# Python If-Else
+umur = 18
 
-if nilai >= 90:
-    grade = "A"
-elif nilai >= 80:
-    grade = "B"
-elif nilai >= 70:
-    grade = "C"
-elif nilai >= 60:
-    grade = "D"
+if umur >= 17:
+    print("Boleh buat SIM")
 else:
-    grade = "E"
+    print("Belum boleh buat SIM")
 
-print(f"Nilai {nilai} = Grade {grade}")`,
-      title: "grade.py",
-      highlightLines: [4, 6, 8, 10, 12],
+# Dengan logical operator
+punya_ktp = True
+if umur >= 17 and punya_ktp:
+    print("Syarat lengkap!")`,
+      title: "if_else.py",
+      highlightLines: [4, 5, 6, 7, 11, 12],
       showAtFrame: 9000,
-      hideAtFrame: 19800,
+      hideAtFrame: 21600,
     },
     {
-      code: `// JavaScript Switch-Case
-let day = 3;
-let dayName;
+      code: `// JavaScript If-Else
+let umur = 18;
 
-switch (day) {
-    case 1:
-        dayName = "Senin";
-        break;
-    case 2:
-        dayName = "Selasa";
-        break;
-    case 3:
-        dayName = "Rabu";
-        break;
-    // ... dst
-    default:
-        dayName = "Invalid";
+if (umur >= 17) {
+    console.log("Boleh buat SIM");
+} else {
+    console.log("Belum boleh buat SIM");
 }
 
-console.log(dayName);  // "Rabu"`,
-      title: "switch.js",
-      highlightLines: [6, 7, 8, 16, 17],
-      showAtFrame: 28800,
-      hideAtFrame: 39600,
+// Dengan logical operator
+let punyaKtp = true;
+if (umur >= 17 && punyaKtp) {
+    console.log("Syarat lengkap!");
+}`,
+      title: "if_else.js",
+      highlightLines: [4, 5, 6, 7, 12, 13],
+      showAtFrame: 21600,
+      hideAtFrame: 32400,
     },
   ],
 };

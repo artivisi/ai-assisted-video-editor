@@ -3,8 +3,8 @@ import { VideoOutline } from "../types";
 export const pf09: VideoOutline = {
   episodeId: "pf-09",
   seriesId: "programming-fundamentals",
-  title: "Arithmetic & Assignment Operators",
-  description: "Mempelajari operator matematika dan assignment. Termasuk modulo, increment/decrement, dan operator shorthand.",
+  title: "Type Conversion & String Operations",
+  description: "Belajar mengkonversi tipe data dan operasi dasar pada string. Memahami implicit vs explicit conversion.",
   duration: 1800,
   fps: 30,
 
@@ -13,90 +13,91 @@ export const pf09: VideoOutline = {
       timestamp: "00:00",
       title: "Intro",
       talkingPoints: [
-        "Recap: type conversion",
-        "Hari ini: operator - simbol untuk operasi",
-        "Matematika dasar dalam programming",
+        "Recap: data types dan typing systems",
+        "Hari ini: konversi antar tipe data",
+        "Plus: operasi string dasar",
       ],
       showOnScreen: "webcam",
     },
     {
       timestamp: "02:00",
-      title: "Arithmetic Operators",
+      title: "Kenapa Perlu Konversi Tipe?",
       talkingPoints: [
-        "+ (tambah), - (kurang), * (kali), / (bagi)",
-        "Sama di semua bahasa!",
-        "% modulo (sisa bagi) - sangat berguna",
-        "** power (Python) vs Math.pow (JS/Java)",
+        "Input dari user selalu string",
+        "Perlu konversi ke number untuk matematika",
+        "Gabung string dengan number untuk output",
+        "Data dari file/API perlu dikonversi",
       ],
       showOnScreen: "slide",
     },
     {
-      timestamp: "06:00",
-      title: "Modulo Operator (%)",
+      timestamp: "04:00",
+      title: "Type Conversion di Python",
       talkingPoints: [
-        "Mengembalikan sisa pembagian",
-        "10 % 3 = 1 (10 dibagi 3 = 3 sisa 1)",
-        "Use case: cek genap/ganjil (n % 2)",
-        "Use case: wrap around (jam, index array)",
-        "Use case: kelipatan (n % 5 == 0)",
+        "int() - konversi ke integer",
+        "float() - konversi ke float",
+        "str() - konversi ke string",
+        "bool() - konversi ke boolean",
+        "Contoh: int('42') = 42",
       ],
-      notes: "Live coding: contoh modulo",
+      notes: "Live coding: berbagai konversi Python",
       showOnScreen: "code",
     },
     {
-      timestamp: "12:00",
-      title: "Integer Division",
+      timestamp: "10:00",
+      title: "Type Conversion di JavaScript",
       talkingPoints: [
-        "Python: // untuk integer division",
-        "7 // 2 = 3 (bukan 3.5)",
-        "JavaScript: Math.floor(7 / 2)",
-        "Java: 7 / 2 = 3 (int / int = int)",
-        "Hati-hati dengan pembagian!",
+        "parseInt(), parseFloat() - ke number",
+        "String() atau .toString() - ke string",
+        "Number() - ke number",
+        "Boolean() - ke boolean",
+        "Shortcut: +'42' = 42 (unary plus)",
       ],
+      notes: "Live coding: berbagai konversi JavaScript",
       showOnScreen: "code",
     },
     {
       timestamp: "16:00",
-      title: "Assignment Operators",
+      title: "Type Conversion di Java",
       talkingPoints: [
-        "= assignment dasar",
-        "+= -= *= /= shorthand",
-        "x += 5 sama dengan x = x + 5",
-        "Lebih singkat dan readable",
+        "Integer.parseInt() - string ke int",
+        "Double.parseDouble() - string ke double",
+        "String.valueOf() - apapun ke string",
+        "Casting: (int) 3.14 = 3",
+        "Wrapper classes: Integer, Double, etc.",
+      ],
+      notes: "Live coding: berbagai konversi Java",
+      showOnScreen: "code",
+    },
+    {
+      timestamp: "21:00",
+      title: "String Concatenation",
+      talkingPoints: [
+        "Menggabungkan string",
+        "Python: + atau f-string",
+        "JavaScript: + atau template literal",
+        "Java: + atau StringBuilder",
+        "f-string dan template literal lebih readable",
       ],
       showOnScreen: "code",
     },
     {
-      timestamp: "20:00",
-      title: "Increment & Decrement",
+      timestamp: "26:00",
+      title: "Conversion Errors",
       talkingPoints: [
-        "++ dan -- (JavaScript & Java only)",
-        "i++ sama dengan i = i + 1",
-        "Python tidak punya, pakai i += 1",
-        "Pre vs Post increment (++i vs i++)",
-        "Dalam loop biasanya tidak masalah",
+        "int('hello') → Error!",
+        "parseInt('hello') → NaN (JavaScript)",
+        "Selalu validate input sebelum convert",
+        "try-catch untuk handle error",
       ],
       showOnScreen: "code",
     },
     {
-      timestamp: "24:00",
-      title: "Operator Precedence",
-      talkingPoints: [
-        "Urutan operasi: PEMDAS/BODMAS",
-        "Parentheses, Exponents, Multiply/Divide, Add/Subtract",
-        "2 + 3 * 4 = 14 (bukan 20)",
-        "Gunakan parentheses untuk clarity",
-        "(2 + 3) * 4 = 20",
-      ],
-      showOnScreen: "slide",
-    },
-    {
-      timestamp: "27:00",
+      timestamp: "28:00",
       title: "Challenge & Git",
       talkingPoints: [
-        "Hitung luas dan keliling persegi panjang",
-        "Input: panjang dan lebar",
-        "Output: luas dan keliling",
+        "Buat program: input umur, hitung tahun lahir",
+        "Gabungkan output ke kalimat",
         "git add, commit, push",
       ],
       showOnScreen: "demo",
@@ -105,9 +106,9 @@ export const pf09: VideoOutline = {
       timestamp: "29:00",
       title: "Outro",
       talkingPoints: [
-        "Recap: arithmetic dan assignment operators",
-        "Next episode: comparison dan logical operators",
-        "See you!",
+        "Recap: konversi tipe dan string",
+        "Next episode: Operators (matematika)",
+        "Keep coding!",
       ],
       showOnScreen: "webcam",
     },
@@ -115,7 +116,7 @@ export const pf09: VideoOutline = {
 
   lowerThirds: [
     {
-      title: "Arithmetic & Assignment",
+      title: "Type Conversion & Strings",
       subtitle: "Programming Fundamentals - Episode 9",
       showAtFrame: 90,
       hideAtFrame: 270,
@@ -124,45 +125,36 @@ export const pf09: VideoOutline = {
 
   codeSnippets: [
     {
-      code: `# Modulo - sisa pembagian
-print(10 % 3)   # 1 (10 = 3*3 + 1)
-print(15 % 5)   # 0 (15 = 5*3 + 0)
+      code: `# Python Type Conversion
+umur_str = "25"
+umur_int = int(umur_str)      # 25 (integer)
+umur_float = float(umur_str)  # 25.0 (float)
 
-# Cek genap/ganjil
-angka = 7
-if angka % 2 == 0:
-    print("Genap")
-else:
-    print("Ganjil")
+harga = 99.99
+harga_str = str(harga)        # "99.99"
 
-# Wrap around (0-11 untuk jam)
-jam = 14
-jam_12 = jam % 12  # 2 (2 PM)`,
-      title: "modulo.py",
-      highlightLines: [2, 3, 7, 14],
-      showAtFrame: 10800,
-      hideAtFrame: 21600,
+# f-string untuk gabung
+nama = "Budi"
+pesan = f"Halo {nama}, umur {umur_int} tahun"`,
+      title: "conversion.py",
+      showAtFrame: 7200,
+      hideAtFrame: 18000,
     },
     {
-      code: `// Assignment operators
-let x = 10;
+      code: `// JavaScript Type Conversion
+let umurStr = "25";
+let umurInt = parseInt(umurStr);    // 25
+let umurFloat = parseFloat(umurStr); // 25
 
-x += 5;   // x = x + 5 = 15
-x -= 3;   // x = x - 3 = 12
-x *= 2;   // x = x * 2 = 24
-x /= 4;   // x = x / 4 = 6
+// Shortcut dengan unary plus
+let angka = +"42";  // 42 (number)
 
-// Increment/Decrement (JS & Java)
-let i = 0;
-i++;      // i = 1
-i--;      // i = 0
-
-// Python tidak punya ++
-# i += 1  # gunakan ini`,
-      title: "assignment.js",
-      highlightLines: [4, 5, 6, 7, 11, 12],
-      showAtFrame: 28800,
-      hideAtFrame: 43200,
+// Template literal untuk gabung
+let nama = "Budi";
+let pesan = \`Halo \${nama}, umur \${umurInt} tahun\`;`,
+      title: "conversion.js",
+      showAtFrame: 18000,
+      hideAtFrame: 28800,
     },
   ],
 };

@@ -3,8 +3,8 @@ import { VideoOutline } from "../types";
 export const pf05: VideoOutline = {
   episodeId: "pf-05",
   seriesId: "programming-fundamentals",
-  title: "Variables - Menyimpan Data",
-  description: "Memahami konsep variables sebagai tempat menyimpan data. Belajar cara membuat variables di Python, JavaScript, dan Java dengan perbedaan masing-masing.",
+  title: "Komentar & Struktur Kode",
+  description: "Belajar menulis komentar dalam code dan memahami struktur kode yang rapi. Komentar membantu kita dan orang lain memahami code.",
   duration: 1800,
   fps: 30,
 
@@ -13,76 +13,95 @@ export const pf05: VideoOutline = {
       timestamp: "00:00",
       title: "Intro",
       talkingPoints: [
-        "Recap: komentar dan struktur code",
-        "Hari ini: variables!",
-        "Fondasi penting dalam programming",
+        "Recap: Hello World di 3 bahasa",
+        "Hari ini: komentar dan struktur code",
+        "Kenapa ini penting?",
       ],
       showOnScreen: "webcam",
     },
     {
       timestamp: "02:00",
-      title: "Apa Itu Variable?",
+      title: "Apa Itu Komentar?",
       talkingPoints: [
-        "Tempat menyimpan data",
-        "Analogi: kotak penyimpanan dengan label",
-        "Kotak = memory komputer",
-        "Label = nama variable",
-        "Isi kotak = nilai/value",
-        "Bisa diambil, diganti, dipakai berkali-kali",
+        "Catatan untuk manusia, diabaikan oleh komputer",
+        "Menjelaskan 'kenapa' bukan 'apa'",
+        "Membantu diri sendiri di masa depan",
+        "Membantu orang lain yang baca code kamu",
+        "Code ditulis sekali, dibaca berkali-kali",
       ],
       showOnScreen: "slide",
     },
     {
       timestamp: "05:00",
-      title: "Variables di Python",
+      title: "Komentar di Python",
       talkingPoints: [
-        "Langsung tulis: nama = nilai",
-        "Tidak perlu deklarasi tipe",
-        "Dynamic typing: tipe ditentukan otomatis",
-        "Contoh: nama, umur, tinggi, sudah_menikah",
-        "snake_case convention",
+        "Single line: # (hash/pagar)",
+        "Multi-line: \"\"\" triple quotes \"\"\"",
+        "Docstring: dokumentasi function/class",
+        "Contoh penggunaan yang baik",
       ],
-      notes: "Live coding: buat berbagai variable Python",
+      notes: "Live coding: berbagai jenis komentar Python",
       showOnScreen: "code",
     },
     {
-      timestamp: "12:00",
-      title: "Variables di JavaScript",
+      timestamp: "10:00",
+      title: "Komentar di JavaScript",
       talkingPoints: [
-        "let: variable yang bisa diubah",
-        "const: konstanta, tidak bisa diubah",
-        "var: cara lama, hindari!",
-        "Kenapa const lebih disukai?",
-        "camelCase convention",
-        "Contoh penggunaan let vs const",
+        "Single line: // (double slash)",
+        "Multi-line: /* ... */",
+        "JSDoc: /** ... */ untuk dokumentasi",
+        "Sama dengan banyak bahasa lain (C, C++, Java)",
       ],
-      notes: "Live coding: buat variable dengan let dan const",
+      notes: "Live coding: berbagai jenis komentar JavaScript",
       showOnScreen: "code",
     },
     {
-      timestamp: "19:00",
-      title: "Variables di Java",
+      timestamp: "15:00",
+      title: "Komentar di Java",
       talkingPoints: [
-        "HARUS deklarasi tipe data",
-        "String nama = \"Budi\";",
-        "int umur = 25;",
-        "double tinggi = 175.5;",
-        "boolean sudahMenikah = false;",
-        "Static typing: error kalau tipe salah",
-        "Kenapa ini berguna? Error lebih awal!",
+        "Single line: // (sama dengan JS)",
+        "Multi-line: /* ... */",
+        "Javadoc: /** ... */ untuk dokumentasi API",
+        "Javadoc bisa generate HTML documentation",
       ],
-      notes: "Live coding: buat variable dengan berbagai tipe",
+      notes: "Live coding: berbagai jenis komentar Java",
       showOnScreen: "code",
+    },
+    {
+      timestamp: "20:00",
+      title: "Best Practices Komentar",
+      talkingPoints: [
+        "Jelaskan 'kenapa' bukan 'apa'",
+        "BAD: // tambah 1 ke counter",
+        "GOOD: // increment untuk tracking loop iteration",
+        "Jangan over-comment obvious code",
+        "Update komentar saat code berubah",
+        "Self-documenting code > banyak komentar",
+      ],
+      showOnScreen: "slide",
+    },
+    {
+      timestamp: "23:00",
+      title: "Struktur Kode yang Rapi",
+      talkingPoints: [
+        "Indentation: spasi di awal baris",
+        "Python: WAJIB! Bagian dari syntax",
+        "JS/Java: convention, tapi sangat penting",
+        "Consistent: pilih 2 atau 4 spasi, stick with it",
+        "Naming: variabel dan function yang jelas",
+        "camelCase vs snake_case vs PascalCase",
+      ],
+      showOnScreen: "slide",
     },
     {
       timestamp: "26:00",
-      title: "Perbandingan & Naming",
+      title: "Naming Conventions",
       talkingPoints: [
-        "Python: paling fleksibel",
-        "JavaScript: let/const choice",
-        "Java: paling strict (harus tipe)",
-        "Naming conventions recap",
-        "Deskriptif: userAge bukan ua",
+        "Python: snake_case (nama_variabel)",
+        "JavaScript: camelCase (namaVariabel)",
+        "Java: camelCase untuk variabel, PascalCase untuk class",
+        "Deskriptif: userAge bukan x",
+        "Konsisten dalam satu project",
       ],
       showOnScreen: "slide",
     },
@@ -90,9 +109,8 @@ export const pf05: VideoOutline = {
       timestamp: "28:00",
       title: "Challenge & Git",
       talkingPoints: [
-        "Buat variables untuk profil kamu",
-        "nama, umur, kota, hobi",
-        "Di ketiga bahasa",
+        "Tambahkan komentar ke Hello World",
+        "Jelaskan apa yang dilakukan setiap baris",
         "git add, commit, push",
       ],
       showOnScreen: "demo",
@@ -101,9 +119,9 @@ export const pf05: VideoOutline = {
       timestamp: "29:00",
       title: "Outro",
       talkingPoints: [
-        "Recap: variable = tempat simpan data",
-        "Next episode: Data Types",
-        "Keep practicing!",
+        "Recap: komentar dan struktur",
+        "Next episode: Variables - menyimpan data",
+        "See you!",
       ],
       showOnScreen: "webcam",
     },
@@ -111,74 +129,54 @@ export const pf05: VideoOutline = {
 
   lowerThirds: [
     {
-      title: "Variables - Menyimpan Data",
+      title: "Komentar & Struktur Kode",
       subtitle: "Programming Fundamentals - Episode 5",
       showAtFrame: 90,
       hideAtFrame: 270,
-    },
-    {
-      title: "Dynamic vs Static Typing",
-      showAtFrame: 46800, // 26:00
-      hideAtFrame: 48600,
     },
   ],
 
   codeSnippets: [
     {
-      code: `# Variables di Python
-nama = "Budi"
-umur = 25
-tinggi = 175.5
-sudah_menikah = False
+      code: `# Ini komentar satu baris
 
-# Print semua
-print(f"Nama: {nama}")
-print(f"Umur: {umur} tahun")
-print(f"Tinggi: {tinggi} cm")
-print(f"Sudah menikah: {sudah_menikah}")`,
-      title: "variables.py",
-      highlightLines: [2, 3, 4, 5],
+"""
+Ini komentar
+multiple baris (docstring)
+"""
+
+def greet(name):
+    """
+    Function untuk menyapa user.
+    Parameter: name (string)
+    Return: greeting message
+    """
+    return f"Hello, {name}!"`,
+      title: "comments.py",
+      highlightLines: [1, 3, 4, 5, 6, 9, 10, 11, 12],
       showAtFrame: 9000,
-      hideAtFrame: 18000,
+      hideAtFrame: 14400,
     },
     {
-      code: `// Variables di JavaScript
-let nama = "Budi";        // bisa diubah
-const umur = 25;          // tidak bisa diubah
-let tinggi = 175.5;
-let sudahMenikah = false;
+      code: `// Ini komentar satu baris
 
-// const untuk nilai yang fixed
-const PI = 3.14159;
+/*
+ * Ini komentar
+ * multiple baris
+ */
 
-// let untuk nilai yang berubah
-let score = 0;
-score = score + 10;  // OK
-// umur = 26;        // ERROR! const
-
-console.log(\`Nama: \${nama}\`);`,
-      title: "variables.js",
-      highlightLines: [2, 3, 8, 11, 12],
-      showAtFrame: 21600,
-      hideAtFrame: 32400,
-    },
-    {
-      code: `// Variables di Java
-public class Variables {
-    public static void main(String[] args) {
-        String nama = "Budi";
-        int umur = 25;
-        double tinggi = 175.5;
-        boolean sudahMenikah = false;
-
-        System.out.println("Nama: " + nama);
-        System.out.println("Umur: " + umur);
-    }
+/**
+ * Function untuk menyapa user
+ * @param {string} name - Nama user
+ * @returns {string} Greeting message
+ */
+function greet(name) {
+    return \`Hello, \${name}!\`;
 }`,
-      title: "Variables.java",
-      highlightLines: [4, 5, 6, 7],
-      showAtFrame: 34200,
-      hideAtFrame: 46800,
+      title: "comments.js",
+      highlightLines: [1, 3, 4, 5, 6, 8, 9, 10, 11, 12],
+      showAtFrame: 18000,
+      hideAtFrame: 23400,
     },
   ],
 };

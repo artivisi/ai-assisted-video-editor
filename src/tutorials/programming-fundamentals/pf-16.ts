@@ -3,8 +3,8 @@ import { VideoOutline } from "../types";
 export const pf16: VideoOutline = {
   episodeId: "pf-16",
   seriesId: "programming-fundamentals",
-  title: "Functions - Kode yang Reusable",
-  description: "Mempelajari functions/methods untuk membuat kode yang reusable dan terorganisir.",
+  title: "Nested Loops & Common Patterns",
+  description: "Mempelajari nested loops dan pattern umum: accumulator, search, dan filter.",
   duration: 1800,
   fps: 30,
 
@@ -13,81 +13,87 @@ export const pf16: VideoOutline = {
       timestamp: "00:00",
       title: "Intro",
       talkingPoints: [
-        "Recap: loops dan patterns",
-        "Hari ini: functions!",
-        "Salah satu konsep terpenting",
+        "Recap: for dan while loop",
+        "Hari ini: loop di dalam loop",
+        "Pattern yang sering dipakai",
       ],
       showOnScreen: "webcam",
     },
     {
       timestamp: "02:00",
-      title: "Apa Itu Function?",
+      title: "Nested Loops",
       talkingPoints: [
-        "Blok kode yang bisa dipanggil berkali-kali",
-        "Analogi: mesin kopi",
-        "Input: kopi, air",
-        "Process: seduh",
-        "Output: secangkir kopi",
-        "Reusable tanpa copy-paste",
+        "Loop di dalam loop",
+        "Outer loop dan inner loop",
+        "Total iterasi: outer × inner",
+        "Contoh: matrix, multiplication table",
       ],
       showOnScreen: "slide",
     },
     {
       timestamp: "05:00",
-      title: "Function di Python",
+      title: "Multiplication Table",
       talkingPoints: [
-        "def nama_function(params):",
-        "return untuk mengembalikan nilai",
-        "Indentation untuk body",
-        "Call dengan nama(args)",
+        "Classic example nested loop",
+        "Outer: baris (1-10)",
+        "Inner: kolom (1-10)",
+        "Print: baris × kolom",
       ],
-      notes: "Live coding: function pertama Python",
+      notes: "Live coding: tabel perkalian",
       showOnScreen: "code",
     },
     {
-      timestamp: "12:00",
-      title: "Function di JavaScript",
+      timestamp: "11:00",
+      title: "Pattern Printing",
       talkingPoints: [
-        "function nama(params) { }",
-        "Arrow function: const nama = (params) => { }",
-        "return untuk mengembalikan nilai",
-        "Arrow function lebih modern",
+        "Print pattern dengan *",
+        "Segitiga, pyramid",
+        "Kontrol jumlah * per baris",
+        "Good exercise untuk nested loop",
       ],
-      notes: "Live coding: function JavaScript",
+      notes: "Live coding: star patterns",
       showOnScreen: "code",
     },
     {
-      timestamp: "19:00",
-      title: "Method di Java",
+      timestamp: "16:00",
+      title: "Accumulator Pattern",
       talkingPoints: [
-        "public static returnType nama(params) { }",
-        "Harus deklarasi return type",
-        "void jika tidak return apapun",
-        "Harus dalam class",
-        "Lebih verbose tapi explicit",
+        "Kumpulkan nilai dalam loop",
+        "Sum, count, average",
+        "Inisialisasi sebelum loop",
+        "Update dalam loop",
+        "Hasil setelah loop",
       ],
-      notes: "Live coding: method Java",
       showOnScreen: "code",
     },
     {
-      timestamp: "24:00",
-      title: "Function vs Method",
+      timestamp: "20:00",
+      title: "Search Pattern",
       talkingPoints: [
-        "Function: standalone (Python, JS)",
-        "Method: milik class/object (Java)",
-        "Secara konsep sama",
-        "Di Java semua adalah method",
+        "Cari item dalam collection",
+        "Return/break saat ketemu",
+        "Flag variable untuk track",
       ],
-      showOnScreen: "slide",
+      showOnScreen: "code",
+    },
+    {
+      timestamp: "23:00",
+      title: "Filter Pattern",
+      talkingPoints: [
+        "Kumpulkan item yang match kondisi",
+        "Start dengan empty list",
+        "Append jika match",
+      ],
+      showOnScreen: "code",
     },
     {
       timestamp: "26:00",
-      title: "Kenapa Function Penting?",
+      title: "Performance Note",
       talkingPoints: [
-        "Reusability: tulis sekali, pakai berkali-kali",
-        "Organization: kode lebih rapi",
-        "Testing: mudah dites per function",
-        "DRY: Don't Repeat Yourself",
+        "Nested loop = O(n²) complexity",
+        "10 × 10 = 100 iterasi",
+        "1000 × 1000 = 1 juta iterasi",
+        "Hindari nested loop jika bisa",
       ],
       showOnScreen: "slide",
     },
@@ -95,8 +101,8 @@ export const pf16: VideoOutline = {
       timestamp: "28:00",
       title: "Challenge & Git",
       talkingPoints: [
-        "Buat function hitung_luas_persegi(sisi)",
-        "Di ketiga bahasa",
+        "Print multiplication table 1-10",
+        "Atau: print star triangle",
         "git add, commit, push",
       ],
       showOnScreen: "demo",
@@ -105,9 +111,9 @@ export const pf16: VideoOutline = {
       timestamp: "29:00",
       title: "Outro",
       talkingPoints: [
-        "Recap: function untuk reusable code",
-        "Next episode: parameters & arguments",
-        "Functions are your friends!",
+        "Recap: nested loops dan patterns",
+        "Next episode: Functions!",
+        "Almost halfway there!",
       ],
       showOnScreen: "webcam",
     },
@@ -115,7 +121,7 @@ export const pf16: VideoOutline = {
 
   lowerThirds: [
     {
-      title: "Functions",
+      title: "Nested Loops & Patterns",
       subtitle: "Programming Fundamentals - Episode 16",
       showAtFrame: 90,
       hideAtFrame: 270,
@@ -124,74 +130,54 @@ export const pf16: VideoOutline = {
 
   codeSnippets: [
     {
-      code: `# Python Function
-def sapa(nama):
-    return f"Halo, {nama}!"
+      code: `# Multiplication Table
+for i in range(1, 11):
+    for j in range(1, 11):
+        print(f"{i} x {j} = {i*j:3}", end="  ")
+    print()  # new line setelah tiap baris
 
-# Panggil function
-pesan = sapa("Budi")
-print(pesan)  # "Halo, Budi!"
-
-# Function dengan multiple params
-def hitung_luas(panjang, lebar):
-    return panjang * lebar
-
-luas = hitung_luas(10, 5)
-print(f"Luas: {luas}")  # 50`,
-      title: "functions.py",
-      highlightLines: [2, 3, 6, 10, 11],
+# Star Triangle
+#     *
+#    * *
+#   * * *
+for i in range(1, 6):
+    spaces = " " * (5 - i)
+    stars = "* " * i
+    print(spaces + stars)`,
+      title: "nested_loops.py",
+      highlightLines: [2, 3, 11, 12, 13],
       showAtFrame: 9000,
-      hideAtFrame: 21600,
+      hideAtFrame: 28800,
     },
     {
-      code: `// JavaScript Functions
+      code: `# Common Loop Patterns
 
-// Regular function
-function sapa(nama) {
-    return \`Halo, \${nama}!\`;
-}
+# 1. Accumulator - sum all numbers
+numbers = [1, 2, 3, 4, 5]
+total = 0  # initialize
+for num in numbers:
+    total += num  # accumulate
+print(total)  # 15
 
-// Arrow function (modern)
-const sapa2 = (nama) => {
-    return \`Halo, \${nama}!\`;
-};
+# 2. Search - find item
+fruits = ["apel", "jeruk", "mangga"]
+found = False
+for fruit in fruits:
+    if fruit == "jeruk":
+        found = True
+        break
 
-// Arrow function shorthand
-const sapa3 = (nama) => \`Halo, \${nama}!\`;
-
-// Call function
-console.log(sapa("Budi"));
-console.log(sapa3("Ani"));`,
-      title: "functions.js",
-      highlightLines: [4, 9, 14],
-      showAtFrame: 21600,
-      hideAtFrame: 34200,
-    },
-    {
-      code: `// Java Method
-public class Functions {
-
-    // Method dengan return value
-    public static String sapa(String nama) {
-        return "Halo, " + nama + "!";
-    }
-
-    // Method tanpa return (void)
-    public static void cetakSapa(String nama) {
-        System.out.println("Halo, " + nama + "!");
-    }
-
-    public static void main(String[] args) {
-        String pesan = sapa("Budi");
-        System.out.println(pesan);
-
-        cetakSapa("Ani");
-    }
-}`,
-      title: "Functions.java",
-      highlightLines: [5, 10, 15, 18],
-      showAtFrame: 34200,
-      hideAtFrame: 43200,
+# 3. Filter - collect matching items
+numbers = [1, 2, 3, 4, 5, 6]
+evens = []  # empty list
+for num in numbers:
+    if num % 2 == 0:
+        evens.append(num)
+print(evens)  # [2, 4, 6]`,
+      title: "loop_patterns.py",
+      highlightLines: [5, 6, 7, 13, 14, 15, 20, 21, 22],
+      showAtFrame: 28800,
+      hideAtFrame: 46800,
     },
   ],
 };

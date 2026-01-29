@@ -3,8 +3,8 @@ import { VideoOutline } from "../types";
 export const pf18: VideoOutline = {
   episodeId: "pf-18",
   seriesId: "programming-fundamentals",
-  title: "Scope & Return Values",
-  description: "Mempelajari scope (visibility) variables dan cara return values dari functions.",
+  title: "Parameters & Arguments",
+  description: "Mempelajari cara passing data ke functions: parameters, arguments, default values, dan variadic functions.",
   duration: 1800,
   fps: 30,
 
@@ -13,86 +13,78 @@ export const pf18: VideoOutline = {
       timestamp: "00:00",
       title: "Intro",
       talkingPoints: [
-        "Recap: parameters dan arguments",
-        "Hari ini: scope dan return",
-        "Penting untuk avoid bugs",
+        "Recap: function basics",
+        "Hari ini: parameters lebih dalam",
+        "Cara passing data ke function",
       ],
       showOnScreen: "webcam",
     },
     {
       timestamp: "02:00",
-      title: "Apa Itu Scope?",
+      title: "Parameter vs Argument",
       talkingPoints: [
-        "Di mana variable bisa diakses",
-        "Analogi: ruangan dalam rumah",
-        "Variable di dapur tidak terlihat dari kamar",
-        "Scope = visibility boundary",
+        "Parameter: variable di definisi function",
+        "Argument: nilai yang dipass saat call",
+        "def sapa(nama): → nama adalah parameter",
+        "sapa('Budi') → 'Budi' adalah argument",
+        "Sering dipakai bergantian",
       ],
       showOnScreen: "slide",
     },
     {
       timestamp: "05:00",
-      title: "Local vs Global Scope",
+      title: "Multiple Parameters",
       talkingPoints: [
-        "Global: di luar function, bisa diakses semua",
-        "Local: di dalam function, hanya dalam function",
-        "Local variable 'shadow' global",
-        "Best practice: minimize global variables",
-      ],
-      showOnScreen: "slide",
-    },
-    {
-      timestamp: "08:00",
-      title: "Scope di Python",
-      talkingPoints: [
-        "LEGB rule: Local, Enclosing, Global, Built-in",
-        "global keyword untuk akses global",
-        "Tapi hindari pakai global",
-      ],
-      notes: "Live coding: scope Python",
-      showOnScreen: "code",
-    },
-    {
-      timestamp: "13:00",
-      title: "Scope di JavaScript",
-      talkingPoints: [
-        "var: function scope (hoisted)",
-        "let/const: block scope (curly braces)",
-        "SELALU pakai let/const, hindari var",
-        "Hoisting bisa bikin bug",
-      ],
-      notes: "Live coding: var vs let scope",
-      showOnScreen: "code",
-    },
-    {
-      timestamp: "18:00",
-      title: "Scope di Java",
-      talkingPoints: [
-        "Block scope dengan curly braces",
-        "Class-level (instance variables)",
-        "Method-level (local variables)",
-        "Paling predictable dari ketiga bahasa",
+        "Function bisa punya banyak parameter",
+        "Dipisah dengan koma",
+        "Urutan penting saat call",
+        "Terlalu banyak = code smell",
       ],
       showOnScreen: "code",
     },
     {
-      timestamp: "21:00",
-      title: "Return Values",
+      timestamp: "09:00",
+      title: "Default Parameters",
       talkingPoints: [
-        "Function bisa return nilai",
-        "Return menghentikan function",
-        "Bisa return early untuk guard clause",
-        "Void function tidak return (atau return None)",
+        "Nilai default jika tidak dipass",
+        "Python: def sapa(nama, greeting='Halo')",
+        "JavaScript: function sapa(nama, greeting = 'Halo')",
+        "Java: tidak punya, pakai method overloading",
+      ],
+      notes: "Live coding: default params",
+      showOnScreen: "code",
+    },
+    {
+      timestamp: "15:00",
+      title: "Java Method Overloading",
+      talkingPoints: [
+        "Java: multiple methods dengan nama sama",
+        "Berbeda di jumlah/tipe parameter",
+        "Cara Java handle 'default' params",
+      ],
+      notes: "Live coding: method overloading Java",
+      showOnScreen: "code",
+    },
+    {
+      timestamp: "19:00",
+      title: "Named Arguments",
+      talkingPoints: [
+        "Pass argument dengan nama",
+        "Urutan tidak penting",
+        "Python: sapa(greeting='Hi', nama='Budi')",
+        "JavaScript: pass object { nama: 'Budi' }",
+        "Java: tidak support langsung",
       ],
       showOnScreen: "code",
     },
     {
-      timestamp: "24:00",
-      title: "Return Multiple Values",
+      timestamp: "23:00",
+      title: "Variable Arguments",
       talkingPoints: [
-        "Python: return tuple, unpack saat assign",
-        "JavaScript: return object atau array",
-        "Java: return object atau buat class",
+        "Terima jumlah argument yang tidak pasti",
+        "Python: *args (tuple), **kwargs (dict)",
+        "JavaScript: ...args (rest parameter)",
+        "Java: Type... args (varargs)",
       ],
       showOnScreen: "code",
     },
@@ -100,7 +92,7 @@ export const pf18: VideoOutline = {
       timestamp: "27:00",
       title: "Challenge & Git",
       talkingPoints: [
-        "Function yang return min dan max dari list",
+        "Function dengan default greeting",
         "git add, commit, push",
       ],
       showOnScreen: "demo",
@@ -109,9 +101,9 @@ export const pf18: VideoOutline = {
       timestamp: "29:00",
       title: "Outro",
       talkingPoints: [
-        "Recap: scope dan return",
-        "Next episode: Arrays/Lists!",
-        "See you!",
+        "Recap: parameters dan arguments",
+        "Next episode: scope dan return values",
+        "Keep coding!",
       ],
       showOnScreen: "webcam",
     },
@@ -119,7 +111,7 @@ export const pf18: VideoOutline = {
 
   lowerThirds: [
     {
-      title: "Scope & Return",
+      title: "Parameters & Arguments",
       subtitle: "Programming Fundamentals - Episode 18",
       showAtFrame: 90,
       hideAtFrame: 270,
@@ -128,53 +120,51 @@ export const pf18: VideoOutline = {
 
   codeSnippets: [
     {
-      code: `# Python Scope
-total = 0  # Global variable
+      code: `# Python Default & Named Parameters
 
-def add_to_total(x):
-    result = x + 1  # Local variable
-    return result
+# Default parameter
+def sapa(nama, greeting="Halo"):
+    return f"{greeting}, {nama}!"
 
-# result tidak bisa diakses di sini
-# print(result)  # NameError!
+print(sapa("Budi"))           # "Halo, Budi!"
+print(sapa("Budi", "Hi"))     # "Hi, Budi!"
 
-# Return multiple values
-def min_max(numbers):
-    return min(numbers), max(numbers)
+# Named arguments (keyword arguments)
+print(sapa(greeting="Hey", nama="Ani"))  # "Hey, Ani!"
 
-minimum, maximum = min_max([3, 1, 4, 1, 5])
-print(f"Min: {minimum}, Max: {maximum}")`,
-      title: "scope.py",
-      highlightLines: [1, 5, 12, 15],
-      showAtFrame: 14400,
-      hideAtFrame: 32400,
+# Variable arguments
+def sum_all(*args):
+    return sum(args)
+
+print(sum_all(1, 2, 3, 4, 5))  # 15`,
+      title: "parameters.py",
+      highlightLines: [4, 8, 11, 14],
+      showAtFrame: 16200,
+      hideAtFrame: 34200,
     },
     {
-      code: `// JavaScript Scope
-let globalVar = "global";
+      code: `// Java Method Overloading
+public class Greeter {
 
-function example() {
-    let localVar = "local";
-
-    if (true) {
-        let blockVar = "block";  // only in this block
-        var funcVar = "function"; // available in whole function
+    // Method 1: hanya nama
+    public static String sapa(String nama) {
+        return sapa(nama, "Halo");  // call method 2
     }
 
-    console.log(funcVar);   // "function" - var is function-scoped
-    // console.log(blockVar); // Error! - let is block-scoped
-}
+    // Method 2: nama + greeting
+    public static String sapa(String nama, String greeting) {
+        return greeting + ", " + nama + "!";
+    }
 
-// var vs let
-for (var i = 0; i < 3; i++) {}
-console.log(i);  // 3 - var leaks out!
-
-for (let j = 0; j < 3; j++) {}
-// console.log(j);  // Error! - let stays in block`,
-      title: "scope.js",
-      highlightLines: [8, 9, 12, 17, 18],
-      showAtFrame: 23400,
-      hideAtFrame: 37800,
+    public static void main(String[] args) {
+        System.out.println(sapa("Budi"));         // "Halo, Budi!"
+        System.out.println(sapa("Budi", "Hi"));   // "Hi, Budi!"
+    }
+}`,
+      title: "Greeter.java",
+      highlightLines: [5, 6, 10, 11],
+      showAtFrame: 34200,
+      hideAtFrame: 41400,
     },
   ],
 };

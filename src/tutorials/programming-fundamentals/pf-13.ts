@@ -3,8 +3,8 @@ import { VideoOutline } from "../types";
 export const pf13: VideoOutline = {
   episodeId: "pf-13",
   seriesId: "programming-fundamentals",
-  title: "For Loop - Pengulangan Terukur",
-  description: "Mempelajari for loop untuk mengulang kode dengan jumlah iterasi yang diketahui. Iterasi array dan range.",
+  title: "Else-If & Nested Conditions",
+  description: "Mempelajari multiple conditions dengan else-if dan switch-case. Juga nested conditions untuk logika kompleks.",
   duration: 1800,
   fps: 30,
 
@@ -13,78 +13,86 @@ export const pf13: VideoOutline = {
       timestamp: "00:00",
       title: "Intro",
       talkingPoints: [
-        "Recap: conditionals untuk keputusan",
-        "Hari ini: loops untuk pengulangan",
-        "Fondasi penting dalam programming",
+        "Recap: if-else untuk 2 pilihan",
+        "Bagaimana kalau lebih dari 2?",
+        "Hari ini: else-if dan switch",
       ],
       showOnScreen: "webcam",
     },
     {
       timestamp: "02:00",
-      title: "Apa Itu Loop?",
+      title: "Multiple Conditions",
       talkingPoints: [
-        "Menjalankan kode berulang kali",
-        "Analogi: repetisi workout (10 push up)",
-        "Tanpa loop: copy-paste 10 kali",
-        "Dengan loop: tulis sekali, ulang 10 kali",
-        "Sangat penting untuk proses data",
+        "Contoh: grade A, B, C, D, E",
+        "Tidak cukup if-else saja",
+        "Perlu else-if chain",
+        "Dicek berurutan dari atas",
       ],
       showOnScreen: "slide",
     },
     {
       timestamp: "05:00",
-      title: "For Loop di Python",
+      title: "Else-If di Python",
       talkingPoints: [
-        "for item in collection:",
-        "range(5) = 0, 1, 2, 3, 4",
-        "range(1, 6) = 1, 2, 3, 4, 5",
-        "Langsung iterate tanpa index",
-        "Paling mudah dibaca",
+        "elif (bukan else if)",
+        "Bisa banyak elif",
+        "else di akhir untuk default",
+        "Urutan penting! Cek dari paling spesifik",
       ],
-      notes: "Live coding: berbagai for loop Python",
+      notes: "Live coding: grade converter Python",
       showOnScreen: "code",
     },
     {
-      timestamp: "12:00",
-      title: "For Loop di JavaScript",
+      timestamp: "11:00",
+      title: "Else-If di JavaScript & Java",
       talkingPoints: [
-        "Classic: for (let i = 0; i < 5; i++)",
-        "3 bagian: init, condition, increment",
-        "for...of untuk iterate array",
-        "for...in untuk iterate object keys",
-        "forEach() method juga ada",
+        "else if (dua kata)",
+        "Syntax sama untuk keduanya",
+        "Curly braces untuk tiap block",
       ],
-      notes: "Live coding: berbagai for loop JavaScript",
+      notes: "Live coding: grade converter JS",
       showOnScreen: "code",
     },
     {
-      timestamp: "19:00",
-      title: "For Loop di Java",
+      timestamp: "16:00",
+      title: "Switch-Case",
       talkingPoints: [
-        "Classic: for (int i = 0; i < 5; i++)",
-        "Sama dengan JavaScript",
-        "Enhanced for: for (String item : array)",
-        "Mirip Python for-in",
+        "Alternatif untuk banyak kondisi",
+        "Lebih cocok untuk exact match",
+        "JavaScript dan Java punya switch",
+        "Python 3.10+: match-case",
+        "break penting di JS/Java!",
       ],
-      notes: "Live coding: berbagai for loop Java",
+      notes: "Live coding: day of week dengan switch",
       showOnScreen: "code",
     },
     {
-      timestamp: "24:00",
-      title: "Iterating Arrays",
+      timestamp: "22:00",
+      title: "Nested Conditions",
       talkingPoints: [
-        "Proses setiap item dalam array",
-        "Sangat common dalam programming",
-        "Print, transform, filter, accumulate",
+        "If di dalam if",
+        "Untuk logika yang lebih kompleks",
+        "Hati-hati: jangan terlalu dalam",
+        "Max 2-3 level, lebih = refactor",
       ],
       showOnScreen: "code",
     },
     {
-      timestamp: "27:00",
+      timestamp: "26:00",
+      title: "Best Practices",
+      talkingPoints: [
+        "Early return untuk kurangi nesting",
+        "Guard clauses di awal",
+        "Readable > clever",
+      ],
+      showOnScreen: "slide",
+    },
+    {
+      timestamp: "28:00",
       title: "Challenge & Git",
       talkingPoints: [
-        "Print angka 1-10",
-        "Print setiap item dalam array",
+        "Konversi nilai ke grade (A/B/C/D/E)",
+        "Di ketiga bahasa",
         "git add, commit, push",
       ],
       showOnScreen: "demo",
@@ -93,9 +101,9 @@ export const pf13: VideoOutline = {
       timestamp: "29:00",
       title: "Outro",
       talkingPoints: [
-        "Recap: for loop untuk iterasi terukur",
-        "Next episode: while loop",
-        "Keep looping!",
+        "Recap: else-if dan switch",
+        "Next episode: Loops - pengulangan!",
+        "Keep coding!",
       ],
       showOnScreen: "webcam",
     },
@@ -103,7 +111,7 @@ export const pf13: VideoOutline = {
 
   lowerThirds: [
     {
-      title: "For Loop",
+      title: "Else-If & Switch",
       subtitle: "Programming Fundamentals - Episode 13",
       showAtFrame: 90,
       hideAtFrame: 270,
@@ -112,49 +120,51 @@ export const pf13: VideoOutline = {
 
   codeSnippets: [
     {
-      code: `# Python For Loop
-# Loop dengan range
-for i in range(5):
-    print(i)  # 0, 1, 2, 3, 4
+      code: `# Python Grade Converter
+nilai = 85
 
-# Loop dengan range custom
-for i in range(1, 6):
-    print(i)  # 1, 2, 3, 4, 5
+if nilai >= 90:
+    grade = "A"
+elif nilai >= 80:
+    grade = "B"
+elif nilai >= 70:
+    grade = "C"
+elif nilai >= 60:
+    grade = "D"
+else:
+    grade = "E"
 
-# Loop array
-fruits = ["apel", "jeruk", "mangga"]
-for fruit in fruits:
-    print(fruit)
-
-# Dengan index
-for i, fruit in enumerate(fruits):
-    print(f"{i}: {fruit}")`,
-      title: "for_loop.py",
-      highlightLines: [3, 7, 12, 16],
+print(f"Nilai {nilai} = Grade {grade}")`,
+      title: "grade.py",
+      highlightLines: [4, 6, 8, 10, 12],
       showAtFrame: 9000,
-      hideAtFrame: 21600,
+      hideAtFrame: 19800,
     },
     {
-      code: `// JavaScript For Loop
-// Classic for
-for (let i = 0; i < 5; i++) {
-    console.log(i);  // 0, 1, 2, 3, 4
+      code: `// JavaScript Switch-Case
+let day = 3;
+let dayName;
+
+switch (day) {
+    case 1:
+        dayName = "Senin";
+        break;
+    case 2:
+        dayName = "Selasa";
+        break;
+    case 3:
+        dayName = "Rabu";
+        break;
+    // ... dst
+    default:
+        dayName = "Invalid";
 }
 
-// For...of (array values)
-let fruits = ["apel", "jeruk", "mangga"];
-for (let fruit of fruits) {
-    console.log(fruit);
-}
-
-// forEach method
-fruits.forEach((fruit, index) => {
-    console.log(\`\${index}: \${fruit}\`);
-});`,
-      title: "for_loop.js",
-      highlightLines: [3, 9, 14],
-      showAtFrame: 21600,
-      hideAtFrame: 34200,
+console.log(dayName);  // "Rabu"`,
+      title: "switch.js",
+      highlightLines: [6, 7, 8, 16, 17],
+      showAtFrame: 28800,
+      hideAtFrame: 39600,
     },
   ],
 };
