@@ -35,12 +35,12 @@
 ### Module 1: Introduction & Setup (Episodes 1-2)
 
 #### Episode 1: Apa Itu Programming?
-**Duration:** 30 min
+**Duration:** 45 min
 
 **Outline:**
 - [00:00] Intro & perkenalan series
 - [02:00] Apa itu programming? (analogi: resep masak, instruksi ke asisten)
-- [07:00] Kenapa belajar programming di 2024?
+- [07:00] Kenapa belajar programming di 2026?
   - Otomasi pekerjaan repetitif
   - Karir di tech industry
   - Problem solving skill
@@ -48,18 +48,48 @@
 - [12:00] Apa itu programming language?
   - Analogi: bahasa manusia (Indonesia, English, Japanese)
   - Kenapa banyak bahasa? (sejarah singkat, use case berbeda)
-- [17:00] Kenapa kita belajar 3 bahasa sekaligus?
+- [17:00] Bahasa Populer di 2026
+  - Berdasarkan TIOBE Index, Stack Overflow Survey, GitHub Stats
+  - Top 10: Python, JavaScript, Java, C#, C++, TypeScript, Go, Rust, PHP, Swift
+  - Python #1: AI boom, data science, beginner-friendly
+  - JavaScript: masih dominan di web (frontend wajib)
+  - Java: enterprise, Android, banking systems
+  - Rising stars: Go (cloud/DevOps), Rust (system programming)
+- [21:00] Kenapa Pilih Python, Java, JavaScript?
+  - Ketiganya di Top 5 paling banyak dipakai
+  - Mewakili spektrum typing systems:
+    - Python: dynamic + strong typing
+    - JavaScript: dynamic + weak typing (banyak quirks)
+    - Java: static + strong typing (strict)
+  - Jika paham ketiganya, bahasa lain akan mudah dipelajari
+- [25:00] Kenapa Tidak PHP?
+  - PHP sangat populer di Indonesia (hosting murah, diajarkan di SMK)
+  - Powers WordPress & Laravel
+  - Tapi: hanya untuk web (kurang versatile)
+  - Tapi: inkonsistensi naming (strpos vs str_replace)
+  - Tapi: tidak mengajarkan typing concepts dengan jelas
+  - Jika sudah paham Python/Java/JS, PHP akan sangat mudah
+- [27:00] Bahasa Lain yang Perlu Diketahui
+  - C/C++: low-level, game engines, embedded systems
+  - C#: mirip Java, game (Unity), Windows apps
+  - Go: simple syntax, cloud-native, Kubernetes
+  - Rust: memory-safe C++, systems programming
+  - TypeScript: JavaScript + static typing
+  - Swift/Kotlin: iOS dan Android native
+- [30:00] Kenapa Belajar 3 Bahasa Sekaligus?
   - Konsep universal, syntax berbeda
   - Versatility: web, mobile, backend, data science
-- [22:00] Overview 3 bahasa
+- [33:00] Overview 3 bahasa kita
   - Python: simple, data science, AI, scripting
   - Java: enterprise, Android, strongly typed
   - JavaScript: web, frontend, backend (Node.js)
-- [27:00] Apa yang akan dipelajari di series ini
-- [29:00] Outro & next episode preview
+- [37:00] Apa yang akan dipelajari di series ini (31 episodes)
+- [40:00] Outro & next episode preview
 
 **Infographics:**
 - Diagram: "Code → Compiler/Interpreter → Machine"
+- Language popularity chart 2026 (TIOBE/GitHub data)
+- Typing systems matrix (static/dynamic × strong/weak)
 - Comparison table: Python vs Java vs JavaScript
 - Career paths diagram
 
