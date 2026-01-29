@@ -72,7 +72,7 @@ export type VideoOutline = {
   caseStudy?: CaseStudySection;
 
   // AI prompts for homework
-  aipiPrompts?: AIPrompt;
+  aiPrompts?: AIPrompt;
 };
 
 export type OutlineSection = {

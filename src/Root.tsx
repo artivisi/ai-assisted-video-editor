@@ -10,6 +10,7 @@ import { TypingSystemsDiagram, LanguageComparisonChart, AIDosDonts, HelloWorldCo
 export const RemotionRoot: React.FC = () => {
   return (
     <>
+      {/* Common */}
       <Composition
         id="VlogIntro"
         component={VlogIntro}
@@ -50,7 +51,7 @@ export const RemotionRoot: React.FC = () => {
         height={1080}
       />
 
-      {/* Programming Fundamentals Series */}
+      {/* Programming Fundamentals - Series */}
       <Composition
         id="PFIntro"
         component={PFIntro}
@@ -72,9 +73,9 @@ export const RemotionRoot: React.FC = () => {
         }}
       />
 
-      {/* Episode 1 Assets */}
+      {/* Episode 1: Apa Itu Programming */}
       <Composition
-        id="TypingSystemsDiagram"
+        id="EP01-TypingSystemsDiagram"
         component={TypingSystemsDiagram}
         durationInFrames={180}
         fps={30}
@@ -87,7 +88,7 @@ export const RemotionRoot: React.FC = () => {
       />
 
       <Composition
-        id="TypingSystemsDiagramAll"
+        id="EP01-TypingSystemsDiagramAll"
         component={TypingSystemsDiagram}
         durationInFrames={180}
         fps={30}
@@ -100,7 +101,7 @@ export const RemotionRoot: React.FC = () => {
       />
 
       <Composition
-        id="LanguageComparisonChart"
+        id="EP01-LanguageComparisonChart"
         component={LanguageComparisonChart}
         durationInFrames={180}
         fps={30}
@@ -113,9 +114,9 @@ export const RemotionRoot: React.FC = () => {
         }}
       />
 
-      {/* Episode 3 Assets */}
+      {/* Episode 3: AI untuk Belajar */}
       <Composition
-        id="AIDosDonts"
+        id="EP03-AIDosDonts"
         component={AIDosDonts}
         durationInFrames={180}
         fps={30}
@@ -127,9 +128,9 @@ export const RemotionRoot: React.FC = () => {
         }}
       />
 
-      {/* Episode 4 Assets */}
+      {/* Episode 4: Hello World */}
       <Composition
-        id="HelloWorldComparison"
+        id="EP04-HelloWorldComparison"
         component={HelloWorldComparison}
         durationInFrames={180}
         fps={30}
