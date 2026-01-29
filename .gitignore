@@ -5,3 +5,16 @@ dist
 
 # Ignore the output video from Git but not videos you import into src/.
 out
+
+# Footage files (large video recordings)
+footage/
+*.mp4
+*.mov
+*.mkv
+*.avi
+*.webm
+
+# But allow footage in src for small clips
+!src/**/*.mp4
+!src/**/*.mov
+!src/**/*.webm
