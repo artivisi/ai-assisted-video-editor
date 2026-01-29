@@ -1,7 +1,15 @@
 node_modules
 dist
+build
 .DS_Store
 .env
+
+# AI tool configurations
+.agent/
+.claude/
+.codex/
+.gemini/
+.opencode/
 
 # Ignore the output video from Git but not videos you import into src/.
 out
