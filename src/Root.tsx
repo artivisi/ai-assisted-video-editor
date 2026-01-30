@@ -5,7 +5,16 @@ import { LowerThird } from "./animations/lower-third/LowerThird";
 import { Transition } from "./animations/transition/Transition";
 import { Outro } from "./animations/outro/Outro";
 import { PFIntro, PFOutro } from "./animations/programming-fundamentals";
-import { TypingSystemsDiagram, LanguageComparisonChart, AIDosDonts, HelloWorldComparison } from "./tutorials/programming-fundamentals/components";
+import {
+  TypingSystemsDiagram,
+  LanguageComparisonChart,
+  AIDosDonts,
+  HelloWorldComparison,
+  CommentSyntaxComparison,
+  VariableDeclarationComparison,
+  NumberSystemsChart,
+  OperatorPrecedenceChart,
+} from "./tutorials/programming-fundamentals/components";
 
 export const RemotionRoot: React.FC = () => {
   return (
@@ -137,6 +146,72 @@ export const RemotionRoot: React.FC = () => {
         width={1920}
         height={1080}
         defaultProps={{}}
+      />
+
+      {/* Episode 5: Komentar & Struktur Kode */}
+      <Composition
+        id="EP05-CommentSyntaxComparison"
+        component={CommentSyntaxComparison}
+        durationInFrames={180}
+        fps={30}
+        width={1920}
+        height={1080}
+      />
+
+      {/* Episode 6: Variables */}
+      <Composition
+        id="EP06-VariableDeclarationComparison"
+        component={VariableDeclarationComparison}
+        durationInFrames={180}
+        fps={30}
+        width={1920}
+        height={1080}
+      />
+
+      {/* Episode 7: Data Types - uses EP01-TypingSystemsDiagram */}
+
+      {/* Episode 8: Number Systems */}
+      <Composition
+        id="EP08-NumberSystemsChart"
+        component={NumberSystemsChart}
+        durationInFrames={180}
+        fps={30}
+        width={1920}
+        height={1080}
+        defaultProps={{ showColors: false }}
+      />
+
+      <Composition
+        id="EP08-HexColors"
+        component={NumberSystemsChart}
+        durationInFrames={180}
+        fps={30}
+        width={1920}
+        height={1080}
+        defaultProps={{ showColors: true }}
+      />
+
+      {/* Episode 9: Type Conversion - primarily code snippets */}
+
+      {/* Episode 10: Arithmetic & Assignment Operators */}
+      <Composition
+        id="EP10-OperatorPrecedenceChart"
+        component={OperatorPrecedenceChart}
+        durationInFrames={180}
+        fps={30}
+        width={1920}
+        height={1080}
+        defaultProps={{ showExamples: false }}
+      />
+
+      <Composition
+        id="EP10-OperatorExamples"
+        component={OperatorPrecedenceChart}
+        durationInFrames={180}
+        fps={30}
+        width={1920}
+        height={1080}
+        defaultProps={{ showExamples: true }}
       />
     </>
   );
