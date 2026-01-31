@@ -17,3 +17,8 @@ export { ProgrammingApplications } from './ProgrammingApplications';
 export { HumanVsComputer } from './HumanVsComputer';
 export { ProgrammingLanguageLogos } from './ProgrammingLanguageLogos';
 export { LearningCurve } from './LearningCurve';
+export { CompilationProcess } from './CompilationProcess';
+export { WhyThreeLanguages } from './WhyThreeLanguages';
+export { PHPPopularity } from './PHPPopularity';
+export { OtherLanguages } from './OtherLanguages';
+export { SeriesPreview } from './SeriesPreview';

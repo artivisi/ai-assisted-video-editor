@@ -11,6 +11,11 @@ import {
   HumanVsComputer,
   ProgrammingLanguageLogos,
   LearningCurve,
+  CompilationProcess,
+  WhyThreeLanguages,
+  PHPPopularity,
+  OtherLanguages,
+  SeriesPreview,
 } from "../components";
 import { getVideoPath } from "../video-paths";
 
@@ -26,8 +31,14 @@ import { getVideoPath } from "../video-paths";
  *   - 2:48 (15s): HumanVsComputer - "komputer tidak bosan, konsisten"
  *   - 6:31 (30s): LearningCurve - "naik sepeda/motor" analogy
  *   - 8:41 (20s): ProgrammingLanguageLogos - "Golang, PHP, Python..."
+ *   - 12:00 (25s): CompilationProcess - "high-level ke binary"
  *   - 15:43 (6s): LanguageComparisonChart - Stack Overflow survey
- *   - 23:55 (6s): TypingSystemsDiagram - typing systems
+ *   - 18:30 (25s): WhyThreeLanguages - "kenapa belajar 3 bahasa"
+ *   - 22:10 (25s): PHPPopularity - "PHP di Indonesia"
+ *   - 23:55 (6s): TypingSystemsDiagram - typing systems (3 languages)
+ *   - 24:30 (20s): TypingSystemsDiagramAll - typing systems (8 languages)
+ *   - 26:00 (25s): OtherLanguages - "Go, Rust, TypeScript..."
+ *   - 27:30 (25s): SeriesPreview - "31 episode, final projects"
  */
 
 const FPS = 30;
@@ -67,6 +78,32 @@ const LANGUAGE_CHART_DURATION = 180;
 // TypingSystemsDiagram: 23:55 - "strong typing, dynamic typing"
 const TYPING_DIAGRAM_START = Math.round(1435 * FPS);
 const TYPING_DIAGRAM_DURATION = 180;
+
+// TypingSystemsDiagramAll: 24:30 - expanded view with more languages
+const TYPING_DIAGRAM_ALL_START = Math.round(1470 * FPS);
+const TYPING_DIAGRAM_ALL_DURATION = Math.round(20 * FPS);
+
+// NEW B-ROLL for latter half gaps:
+
+// CompilationProcess: ~12:00 - "bahasa high-level, diterjemahkan ke binary"
+const COMPILATION_START = Math.round(720 * FPS);
+const COMPILATION_DURATION = Math.round(25 * FPS);
+
+// WhyThreeLanguages: ~18:30 - "kenapa pilih 3 bahasa"
+const WHY_THREE_START = Math.round(1110 * FPS);
+const WHY_THREE_DURATION = Math.round(25 * FPS);
+
+// PHPPopularity: ~22:10 - "PHP sangat populer di Indonesia"
+const PHP_START = Math.round(1330 * FPS);
+const PHP_DURATION = Math.round(25 * FPS);
+
+// OtherLanguages: ~26:00 - "bahasa lain yang perlu diketahui"
+const OTHER_LANGS_START = Math.round(1560 * FPS);
+const OTHER_LANGS_DURATION = Math.round(25 * FPS);
+
+// SeriesPreview: ~27:30 - "31 episode, final projects"
+const SERIES_PREVIEW_START = Math.round(1650 * FPS);
+const SERIES_PREVIEW_DURATION = Math.round(25 * FPS);
 
 export const PF01Composition: React.FC = () => {
   return (
@@ -136,6 +173,39 @@ export const PF01Composition: React.FC = () => {
               showLanguages={["Python", "JavaScript", "Java"]}
               animateIn={true}
             />
+          </Sequence>
+
+          {/* Typing Systems Diagram All - 24:30 (expanded with more languages) */}
+          <Sequence from={TYPING_DIAGRAM_ALL_START} durationInFrames={TYPING_DIAGRAM_ALL_DURATION}>
+            <TypingSystemsDiagram
+              showLanguages={["Python", "JavaScript", "Java", "TypeScript", "PHP", "Go", "Rust", "C"]}
+              animateIn={true}
+            />
+          </Sequence>
+
+          {/* NEW B-ROLL: Compilation Process - 12:00 */}
+          <Sequence from={COMPILATION_START} durationInFrames={COMPILATION_DURATION}>
+            <CompilationProcess />
+          </Sequence>
+
+          {/* NEW B-ROLL: Why Three Languages - 18:30 */}
+          <Sequence from={WHY_THREE_START} durationInFrames={WHY_THREE_DURATION}>
+            <WhyThreeLanguages />
+          </Sequence>
+
+          {/* NEW B-ROLL: PHP Popularity - 22:10 */}
+          <Sequence from={PHP_START} durationInFrames={PHP_DURATION}>
+            <PHPPopularity />
+          </Sequence>
+
+          {/* NEW B-ROLL: Other Languages - 26:00 */}
+          <Sequence from={OTHER_LANGS_START} durationInFrames={OTHER_LANGS_DURATION}>
+            <OtherLanguages />
+          </Sequence>
+
+          {/* NEW B-ROLL: Series Preview - 27:30 */}
+          <Sequence from={SERIES_PREVIEW_START} durationInFrames={SERIES_PREVIEW_DURATION}>
+            <SeriesPreview />
           </Sequence>
         </AbsoluteFill>
       </Sequence>
