@@ -12,8 +12,8 @@ flowchart TD
     end
 
     subgraph REC["2. Recording"]
-        B1[Record Screen - OBS] --> B3[Dump to External Drive]
-        B2[Record Webcam - OBS] --> B3
+        B1[Record Screen - QuickTime] --> B3[Dump to External Drive]
+        B2[Record Camera - Nikon ZFC] --> B3
     end
 
     subgraph POST["3. Post-Production with AI Assistant"]
@@ -45,8 +45,9 @@ flowchart TD
     end
 
     subgraph PUBLISH["6. Render & Publish"]
-        F1[Render Final Video] --> F2[Generate Thumbnail]
-        F2 --> F3[Write Description + Tags]
+        F1[Render Final Video] --> F2[AI Generate Thumbnail]
+        F2 --> F2b[Resize to 1280x720]
+        F2b --> F3[Generate Metadata]
         F3 --> F4[Upload to YouTube]
     end
 
@@ -70,7 +71,8 @@ flowchart TD
 | Camera Switching | Define preferences | Generate switch points based on content type |
 | Subtitles | Review output | Generate from transcript |
 | Render | Run command | - |
-| Upload | Provide credentials | Generate title, description, tags from transcript |
+| Thumbnail | Provide prompt | Generate image, resize to 1280x720 |
+| Upload | Provide credentials | Generate title, description, tags from outline |
 
 ---
 
@@ -202,8 +204,12 @@ node scripts/generate-outline.mjs src/tutorials/programming-fundamentals/pf-01.t
 
 ### 3. Recording
 
-Record with OBS (or similar):
-- **Webcam recording**: `footage/programming-fundamentals/pf-01-camera.mov`
+Recording setup:
+- **Camera**: Nikon ZFC → records to SD card as `.MOV`
+- **Screen**: QuickTime Player → Screen Recording → saves as `.mov`
+
+Output files:
+- **Camera recording**: `footage/programming-fundamentals/pf-01-camera.mov`
 - **Screen recording**: `footage/programming-fundamentals/pf-01-screen.mov`
 
 For episodes with multiple recordings:
@@ -657,17 +663,28 @@ Metadata includes:
 - Thumbnail path
 - Scheduled publish time
 
-**Prepare thumbnails:**
+**Generate thumbnails:**
 
-Place thumbnails in `thumbnails/` folder:
-- `thumbnails/ep01.png`, `ep02.png`, etc.
-- Recommended size: 1280x720 (16:9)
-
-To resize square images to YouTube thumbnail format:
-```bash
-# Using ffmpeg (pads with dark background)
-ffmpeg -i input.png -vf "scale=720:720,pad=1280:720:(ow-iw)/2:0:color=#0d1117" thumbnails/ep01.png
+Use AI image generation (Gemini, DALL-E, Midjourney, etc.) to create thumbnails:
 ```
+Prompt example:
+"Minimalist illustration of three interlocking gears with Python snake,
+Java coffee cup, and JavaScript logo, dark gradient background with
+subtle binary code, bold text 'PROGRAMMING?' in neon blue, tech aesthetic,
+YouTube thumbnail"
+```
+
+AI tools often generate square images. Resize to YouTube's 16:9 format:
+```bash
+# Resize and pad with dark background (1024x1024 → 1280x720)
+ffmpeg -i ~/Downloads/ep01-thumbnail.png \
+  -vf "scale=720:720,pad=1280:720:(ow-iw)/2:0:color=#0d1117" \
+  thumbnails/ep01.png
+```
+
+Place final thumbnails in `thumbnails/` folder:
+- `thumbnails/ep01.png`, `ep02.png`, etc.
+- Final size: 1280x720 (16:9)
 
 **Upload videos:**
 
