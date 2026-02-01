@@ -63,11 +63,11 @@ flowchart TD
 | Step | What You Do | What AI Does |
 |------|-------------|--------------|
 | Outline | Provide topic & key points | Generate structured outline with timestamps |
-| Recording | Record screen + webcam | - |
+| Recording | Record camera + screen | - |
 | Silence Removal | Run script | Detect & remove silent sections |
 | Transcription | Run Whisper | Generate timestamped transcript |
 | Zoom/Pan | Run cursor extraction | Auto-generate zoom keyframes from cursor movement |
-| Infographics | Review suggestions | Suggest slides/callouts based on transcript keywords |
+| B-Roll Assets | Review & approve | Create infographics, animations, diagrams, screenshots from transcript; insert at appropriate timestamps |
 | Camera Switching | Define preferences | Generate switch points based on content type |
 | Subtitles | Review output | Generate from transcript |
 | Render | Run command | - |
