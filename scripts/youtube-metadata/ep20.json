@@ -1,0 +1,26 @@
+{
+  "episodeId": "ep20",
+  "title": "Arrays/Lists - Kumpulan Data | Programming Fundamentals #20",
+  "description": "Mempelajari arrays dan lists untuk menyimpan kumpulan data. Indexing, creating, dan basic operations.\n\nProgramming Fundamentals Episode 20: Arrays/Lists - Kumpulan Data\n\nDi episode ini kita belajar tentang arrays/lists - kumpulan data.\n\n⏱️ Timeline:\n00:00 Intro\n02:00 Apa Itu Array/List?\n05:00 List di Python\n12:00 Array di JavaScript\n18:00 Array di Java\n23:00 Indexing (Zero-Based)\n25:00 Negative Indexing (Python)\n27:00 Challenge & Git\n29:00 Outro\n\n📚 Series: Programming Fundamentals - Belajar Python, Java, JavaScript\nEpisode ini adalah bagian dari seri Programming Fundamentals yang mengajarkan Python, Java, dan JavaScript secara bersamaan.\n\n🔗 Links:\n- GitHub: https://github.com/artivisi\n- Website: https://artivisi.com\n\n#programming #python #javascript #java #tutorial #pemula",
+  "tags": [
+    "programming",
+    "coding",
+    "tutorial",
+    "pemula",
+    "belajar programming",
+    "python",
+    "javascript",
+    "java",
+    "programming fundamentals",
+    "artivisi",
+    "arrays",
+    "lists",
+    "collections",
+    "arrays/lists - kumpulan data"
+  ],
+  "categoryId": "27",
+  "language": "id",
+  "playlist": "Programming Fundamentals - Belajar Python, Java, JavaScript",
+  "thumbnail": "thumbnails/ep20.png",
+  "scheduledPublishAt": "2026-03-11T14:00:00+07:00"
+}

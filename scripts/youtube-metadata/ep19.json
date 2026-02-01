@@ -1,0 +1,26 @@
+{
+  "episodeId": "ep19",
+  "title": "Scope & Return Values | Programming Fundamentals #19",
+  "description": "Mempelajari scope (visibility) variables dan cara return values dari functions.\n\nProgramming Fundamentals Episode 19: Scope & Return Values\n\nDi episode ini kita belajar tentang scope & return values.\n\n⏱️ Timeline:\n00:00 Intro\n02:00 Apa Itu Scope?\n05:00 Local vs Global Scope\n08:00 Scope di Python\n13:00 Scope di JavaScript\n18:00 Scope di Java\n21:00 Return Values\n24:00 Return Multiple Values\n27:00 Challenge & Git\n29:00 Outro\n\n📚 Series: Programming Fundamentals - Belajar Python, Java, JavaScript\nEpisode ini adalah bagian dari seri Programming Fundamentals yang mengajarkan Python, Java, dan JavaScript secara bersamaan.\n\n🔗 Links:\n- GitHub: https://github.com/artivisi\n- Website: https://artivisi.com\n\n#programming #python #javascript #java #tutorial #pemula",
+  "tags": [
+    "programming",
+    "coding",
+    "tutorial",
+    "pemula",
+    "belajar programming",
+    "python",
+    "javascript",
+    "java",
+    "programming fundamentals",
+    "artivisi",
+    "scope",
+    "return values",
+    "local global",
+    "scope & return values"
+  ],
+  "categoryId": "27",
+  "language": "id",
+  "playlist": "Programming Fundamentals - Belajar Python, Java, JavaScript",
+  "thumbnail": "thumbnails/ep19.png",
+  "scheduledPublishAt": "2026-03-09T14:00:00+07:00"
+}

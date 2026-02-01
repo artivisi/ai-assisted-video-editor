@@ -1,0 +1,25 @@
+{
+  "episodeId": "ep16",
+  "title": "Nested Loops & Common Patterns | Programming Fundamentals #16",
+  "description": "Mempelajari nested loops dan pattern umum: accumulator, search, dan filter.\n\nProgramming Fundamentals Episode 16: Nested Loops & Common Patterns\n\nDi episode ini kita belajar tentang nested loops & common patterns.\n\n⏱️ Timeline:\n00:00 Intro\n02:00 Nested Loops\n05:00 Multiplication Table\n11:00 Pattern Printing\n16:00 Accumulator Pattern\n20:00 Search Pattern\n23:00 Filter Pattern\n26:00 Performance Note\n28:00 Challenge & Git\n29:00 Outro\n\n📚 Series: Programming Fundamentals - Belajar Python, Java, JavaScript\nEpisode ini adalah bagian dari seri Programming Fundamentals yang mengajarkan Python, Java, dan JavaScript secara bersamaan.\n\n🔗 Links:\n- GitHub: https://github.com/artivisi\n- Website: https://artivisi.com\n\n#programming #python #javascript #java #tutorial #pemula",
+  "tags": [
+    "programming",
+    "coding",
+    "tutorial",
+    "pemula",
+    "belajar programming",
+    "python",
+    "javascript",
+    "java",
+    "programming fundamentals",
+    "artivisi",
+    "nested loops",
+    "loop patterns",
+    "nested loops & common patterns"
+  ],
+  "categoryId": "27",
+  "language": "id",
+  "playlist": "Programming Fundamentals - Belajar Python, Java, JavaScript",
+  "thumbnail": "thumbnails/ep16.png",
+  "scheduledPublishAt": "2026-03-03T14:00:00+07:00"
+}

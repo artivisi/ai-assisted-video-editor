@@ -153,11 +153,11 @@ Keep project on laptop, store large video files on external drive:
 
 ```bash
 # Create folders on external drive
-mkdir -p "/Volumes/ENDY1TB/Video Production/seri-programming-fundamental/rendered"
+mkdir -p "/path/to/external/drive/seri-programming-fundamental/rendered"
 
 # Create symlinks in footage/ folder (for transcript processing scripts)
 mkdir -p footage/programming-fundamentals
-ln -s "/Volumes/ENDY1TB/Video Production/seri-programming-fundamental/ep-01/camera/DSC_8013.MOV" \
+ln -s "/path/to/external/drive/seri-programming-fundamental/ep-01/camera/DSC_8013.MOV" \
   footage/programming-fundamentals/pf-01-camera.mov
 ```
 
@@ -167,7 +167,7 @@ The project uses `Config.setPublicDir()` in `remotion.config.ts` to point direct
 
 ```ts
 // remotion.config.ts
-Config.setPublicDir("/Volumes/ENDY1TB/Video Production/seri-programming-fundamental");
+Config.setPublicDir("/path/to/external/drive/seri-programming-fundamental");
 ```
 
 This allows compositions to use `staticFile()` with relative paths:
@@ -232,8 +232,8 @@ Let's process and create the video."
 
 ```bash
 # List all footage files
-ls -la /Volumes/ENDY1TB/Video\ Production/seri-programming-fundamental/ep-XX/camera/
-ls -la /Volumes/ENDY1TB/Video\ Production/seri-programming-fundamental/ep-XX/screen/
+ls -la /path/to/external/drive/seri-programming-fundamental/ep-XX/camera/
+ls -la /path/to/external/drive/seri-programming-fundamental/ep-XX/screen/
 
 # Example structure:
 # ep-02/
@@ -561,7 +561,7 @@ Use the config-based FFmpeg render pipeline for full episodes:
 ./scripts/render-from-config.sh ep02   # Handles screen+PIP automatically
 ./scripts/render-from-config.sh ep03
 
-# Output: /Volumes/ENDY1TB/.../rendered/pf-ep01-apa-itu-programming.mp4
+# Output: rendered/pf-ep01-apa-itu-programming.mp4
 ```
 
 **How it works:**
@@ -627,16 +627,65 @@ npx remotion render src/index.ts PF01-Full out/pf-01-final.mp4 --concurrency=1
 
 ### 8. Upload to YouTube
 
-Ask the AI assistant:
-```
-"Generate YouTube metadata (title, description, tags) based on the episode outline and transcript."
+**One-time setup:**
+
+1. Create Google Cloud project at https://console.cloud.google.com/
+2. Enable YouTube Data API v3
+3. Create OAuth 2.0 credentials (Desktop app type)
+4. Download JSON and save as `client_secret.json` in project root
+5. Add yourself as test user in OAuth consent screen
+6. Authenticate:
+   ```bash
+   node scripts/youtube-auth.mjs
+   ```
+
+**Generate metadata for all episodes:**
+
+```bash
+# Generate with scheduling (start date + interval in days)
+node scripts/generate-youtube-metadata.mjs all --start-date 2026-02-01 --interval 2
+
+# Single episode
+node scripts/generate-youtube-metadata.mjs ep01
 ```
 
-Then upload via YouTube Studio or CLI:
+Metadata includes:
+- Title from episode outline
+- Description with timeline markers (from outline timestamps)
+- Tags (common series tags + episode-specific)
+- Playlist name
+- Thumbnail path
+- Scheduled publish time
+
+**Prepare thumbnails:**
+
+Place thumbnails in `thumbnails/` folder:
+- `thumbnails/ep01.png`, `ep02.png`, etc.
+- Recommended size: 1280x720 (16:9)
+
+To resize square images to YouTube thumbnail format:
 ```bash
-# Using youtube-upload (pip install youtube-upload)
-youtube-upload --title="..." --description="..." out/pf-01-final.mp4
+# Using ffmpeg (pads with dark background)
+ffmpeg -i input.png -vf "scale=720:720,pad=1280:720:(ow-iw)/2:0:color=#0d1117" thumbnails/ep01.png
 ```
+
+**Upload videos:**
+
+```bash
+# Single episode
+node scripts/youtube-upload.mjs scripts/youtube-metadata/ep01.json path/to/rendered/pf-ep01.mp4
+
+# Batch upload (ep01 through ep03)
+# Videos are auto-detected from RENDERED_DIR in the script
+node scripts/youtube-batch-upload.mjs ep01 ep03
+```
+
+Upload features:
+- Sets title, description, tags from metadata JSON
+- Sets custom thumbnail
+- Creates playlist if not exists, adds video to playlist
+- Scheduled publishing (uploads as private with publishAt time)
+- 5-second delay between batch uploads to avoid rate limiting
 
 ---
 
@@ -753,6 +802,10 @@ Display slides, bullet lists, callouts, or images.
 | `extract-cursor.py` | Extract cursor positions from video |
 | `generate-zoom-keyframes.mjs` | Generate zoom keyframes from cursor data |
 | `sync-transcripts.mjs` | Sync camera and screen recordings by matching transcript phrases |
+| `youtube-auth.mjs` | YouTube OAuth authentication setup |
+| `youtube-upload.mjs` | Upload single video with metadata, thumbnail, playlist |
+| `youtube-batch-upload.mjs` | Batch upload multiple episodes sequentially |
+| `generate-youtube-metadata.mjs` | Generate YouTube metadata from episode outlines |
 
 ---
 

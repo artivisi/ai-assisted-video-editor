@@ -1,0 +1,26 @@
+{
+  "episodeId": "ep07",
+  "title": "Data Types & Typing Systems | Programming Fundamentals #7",
+  "description": "Memahami perbedaan static vs dynamic typing dan strong vs weak typing. Mempelajari tipe data dasar dan masalah floating point precision.\n\nProgramming Fundamentals Episode 7: Data Types & Typing Systems\n\nDi episode ini kita belajar tentang data types & typing systems.\n\n⏱️ Timeline:\n00:00 Intro\n02:00 Kenapa Perlu Tipe Data?\n04:00 Static vs Dynamic Typing\n07:00 Dynamic Typing Demo\n10:00 Static Typing Demo\n13:00 Strong vs Weak Typing\n16:00 JavaScript Type Coercion (Weak Typing)\n19:00 Python Strong Typing Demo\n22:00 Typing Matrix Summary\n25:00 Tipe Data Primitif\n28:00 Data Types di Python\n31:00 Data Types di JavaScript\n35:00 Data Types di Java\n38:00 Floating Point Problem\n41:00 Solusi: BigDecimal (Java)\n43:00 Challenge: Type Coercion Quiz\n44:00 Outro\n\n📚 Series: Programming Fundamentals - Belajar Python, Java, JavaScript\nEpisode ini adalah bagian dari seri Programming Fundamentals yang mengajarkan Python, Java, dan JavaScript secara bersamaan.\n\n🔗 Links:\n- GitHub: https://github.com/artivisi\n- Website: https://artivisi.com\n\n#programming #python #javascript #java #tutorial #pemula",
+  "tags": [
+    "programming",
+    "coding",
+    "tutorial",
+    "pemula",
+    "belajar programming",
+    "python",
+    "javascript",
+    "java",
+    "programming fundamentals",
+    "artivisi",
+    "data types",
+    "typing systems",
+    "static dynamic",
+    "data types & typing systems"
+  ],
+  "categoryId": "27",
+  "language": "id",
+  "playlist": "Programming Fundamentals - Belajar Python, Java, JavaScript",
+  "thumbnail": "thumbnails/ep07.png",
+  "scheduledPublishAt": "2026-02-13T14:00:00+07:00"
+}

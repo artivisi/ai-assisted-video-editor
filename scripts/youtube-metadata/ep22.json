@@ -1,0 +1,26 @@
+{
+  "episodeId": "ep22",
+  "title": "Dictionaries/Objects - Key-Value Pairs | Programming Fundamentals #22",
+  "description": "Mempelajari dictionary (Python), object (JavaScript), dan HashMap (Java) untuk menyimpan data key-value.\n\nProgramming Fundamentals Episode 22: Dictionaries/Objects - Key-Value Pairs\n\nDi episode ini kita belajar tentang dictionaries/objects - key-value pairs.\n\n⏱️ Timeline:\n00:00 Intro\n02:00 Apa Itu Dictionary/Object?\n05:00 Dictionary di Python\n12:00 Object di JavaScript\n18:00 HashMap di Java\n23:00 Iterating Over Keys/Values\n27:00 Challenge & Git\n29:00 Outro\n\n📚 Series: Programming Fundamentals - Belajar Python, Java, JavaScript\nEpisode ini adalah bagian dari seri Programming Fundamentals yang mengajarkan Python, Java, dan JavaScript secara bersamaan.\n\n🔗 Links:\n- GitHub: https://github.com/artivisi\n- Website: https://artivisi.com\n\n#programming #python #javascript #java #tutorial #pemula",
+  "tags": [
+    "programming",
+    "coding",
+    "tutorial",
+    "pemula",
+    "belajar programming",
+    "python",
+    "javascript",
+    "java",
+    "programming fundamentals",
+    "artivisi",
+    "dictionaries",
+    "objects",
+    "key value",
+    "dictionaries/objects - key-value pairs"
+  ],
+  "categoryId": "27",
+  "language": "id",
+  "playlist": "Programming Fundamentals - Belajar Python, Java, JavaScript",
+  "thumbnail": "thumbnails/ep22.png",
+  "scheduledPublishAt": "2026-03-15T14:00:00+07:00"
+}

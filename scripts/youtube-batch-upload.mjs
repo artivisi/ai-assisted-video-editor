@@ -53,9 +53,9 @@ function findVideoFile(episode) {
   const files = fs.readdirSync(RENDERED_DIR);
   const epNum = episode.replace("ep", "");
 
-  // Match patterns like pf-ep01-*.mp4
-  const pattern = new RegExp(`pf-ep${epNum}.*\\.mp4$`, "i");
-  const match = files.find((f) => pattern.test(f));
+  // Match patterns like pf-ep01-*.mp4, exclude macOS resource forks (._*)
+  const pattern = new RegExp(`^pf-ep${epNum}.*\\.mp4$`, "i");
+  const match = files.find((f) => pattern.test(f) && !f.startsWith("._"));
 
   if (match) {
     return path.join(RENDERED_DIR, match);

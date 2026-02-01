@@ -1,0 +1,25 @@
+{
+  "episodeId": "ep29",
+  "title": "Project: Calculator App | Programming Fundamentals #29",
+  "description": "Final project pertama: membuat calculator app dengan operasi dasar. Implementasi di ketiga bahasa.\n\nProgramming Fundamentals Episode 29: Project: Calculator App\n\nDi episode ini kita belajar tentang project: calculator app.\n\n⏱️ Timeline:\n00:00 Intro\n02:00 Project Overview\n04:00 Buat Repository Baru\n07:00 Planning\n09:00 Python Implementation\n16:00 JavaScript Implementation\n22:00 Java Implementation\n27:00 Commit & Review\n29:00 Outro\n\n📚 Series: Programming Fundamentals - Belajar Python, Java, JavaScript\nEpisode ini adalah bagian dari seri Programming Fundamentals yang mengajarkan Python, Java, dan JavaScript secara bersamaan.\n\n🔗 Links:\n- GitHub: https://github.com/artivisi\n- Website: https://artivisi.com\n\n#programming #python #javascript #java #tutorial #pemula",
+  "tags": [
+    "programming",
+    "coding",
+    "tutorial",
+    "pemula",
+    "belajar programming",
+    "python",
+    "javascript",
+    "java",
+    "programming fundamentals",
+    "artivisi",
+    "calculator project",
+    "final project",
+    "project: calculator app"
+  ],
+  "categoryId": "27",
+  "language": "id",
+  "playlist": "Programming Fundamentals - Belajar Python, Java, JavaScript",
+  "thumbnail": "thumbnails/ep29.png",
+  "scheduledPublishAt": "2026-03-29T14:00:00+07:00"
+}

@@ -1,0 +1,26 @@
+{
+  "episodeId": "ep04",
+  "title": "Hello World - Program Pertamamu | Programming Fundamentals #4",
+  "description": "Menulis program pertama \n\nProgramming Fundamentals Episode 4: Hello World - Program Pertamamu\n\nDi episode ini kita belajar tentang hello world - program pertamamu.\n\n⏱️ Timeline:\n00:00 Intro\n02:00 Tradisi Hello World\n04:00 Hello World in Python\n10:00 Hello World in JavaScript\n16:00 Hello World in Java\n22:00 Perbandingan 3 Bahasa\n24:00 Challenge\n26:00 Save ke GitHub\n29:00 Outro\n\n📚 Series: Programming Fundamentals - Belajar Python, Java, JavaScript\nEpisode ini adalah bagian dari seri Programming Fundamentals yang mengajarkan Python, Java, dan JavaScript secara bersamaan.\n\n🔗 Links:\n- GitHub: https://github.com/artivisi\n- Website: https://artivisi.com\n\n#programming #python #javascript #java #tutorial #pemula",
+  "tags": [
+    "programming",
+    "coding",
+    "tutorial",
+    "pemula",
+    "belajar programming",
+    "python",
+    "javascript",
+    "java",
+    "programming fundamentals",
+    "artivisi",
+    "hello world",
+    "program pertama",
+    "print",
+    "hello world - program pertamamu"
+  ],
+  "categoryId": "27",
+  "language": "id",
+  "playlist": "Programming Fundamentals - Belajar Python, Java, JavaScript",
+  "thumbnail": "thumbnails/ep04.png",
+  "scheduledPublishAt": "2026-02-07T14:00:00+07:00"
+}
