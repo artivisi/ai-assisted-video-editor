@@ -12,6 +12,10 @@ temp/
 .gemini/
 .opencode/
 
+# YouTube API credentials (SENSITIVE)
+client_secret.json
+.youtube-credentials.json
+
 # Ignore the output video from Git but not videos you import into src/.
 out
 
