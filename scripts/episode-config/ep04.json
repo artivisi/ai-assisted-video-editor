@@ -19,14 +19,14 @@
     },
     {
       "id": "intro",
-      "comment": "0:13.5-0:18.5 - Series intro bumper",
+      "comment": "Series intro bumper (5s)",
       "type": "composition",
       "composition": "PFIntro",
       "duration": 150
     },
     {
       "id": "main-camera-only",
-      "comment": "0:18.5-0:27 - Camera only (before screen starts)",
+      "comment": "Camera only before screen starts (13.5s-22s)",
       "type": "camera",
       "source": "camera",
       "startTime": 13.5,
@@ -42,7 +42,7 @@
     },
     {
       "id": "main-screen-pip",
-      "comment": "0:27 onwards - Screen with camera PIP (coding demo)",
+      "comment": "Screen with camera PIP - coding demo (22s onwards)",
       "type": "screen-with-pip",
       "screen": "screen",
       "camera": "camera",
@@ -51,16 +51,16 @@
       "overlays": [
         {
           "composition": "EP04-HelloWorldComparison",
-          "startFrame": 33645,
+          "startFrame": 34005,
           "duration": 1350,
           "type": "solid",
-          "comment": "18:55 - Hello World comparison summary"
+          "comment": "18:55 - Hello World comparison (1135s * 30fps = 34050, adjusted for segment start)"
         }
       ]
     },
     {
       "id": "outro",
-      "comment": "End - Series outro",
+      "comment": "Series outro (6s)",
       "type": "composition",
       "composition": "EP04-Outro",
       "duration": 180
