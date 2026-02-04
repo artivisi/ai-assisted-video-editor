@@ -343,11 +343,40 @@ node scripts/detect-silence.mjs footage/programming-fundamentals/pf-01-screen-si
 
 #### 4.2 Generate Transcript
 
+**Apple Silicon (M1/M2/M3) - Recommended:**
+
+Use `mlx-whisper` for GPU-accelerated transcription (~5x faster than CPU):
+
 ```bash
-# Activate Python venv
 source .venv/bin/activate
 
-# Transcribe with Whisper (Indonesian)
+# Transcribe with mlx-whisper (Indonesian)
+mlx_whisper footage/programming-fundamentals/pf-01-camera.mov \
+  --output-dir footage/programming-fundamentals \
+  --output-format json \
+  --word-timestamps True \
+  --model mlx-community/whisper-medium \
+  --language id
+
+# Convert to Remotion format
+node scripts/process-transcript.mjs \
+  footage/programming-fundamentals/pf-01-camera.json \
+  src/tutorials/programming-fundamentals/pf-01-transcript.ts
+```
+
+**Available mlx-whisper models:**
+- `mlx-community/whisper-tiny` - Fastest, lower accuracy
+- `mlx-community/whisper-base` - Fast, decent accuracy
+- `mlx-community/whisper-small` - Balanced
+- `mlx-community/whisper-medium` - Recommended for Indonesian
+- `mlx-community/whisper-large-v3` - Best accuracy, slower
+
+**Intel/CPU fallback:**
+
+```bash
+source .venv/bin/activate
+
+# Transcribe with OpenAI Whisper (slower, CPU only)
 ./scripts/transcribe-with-whisper.sh footage/programming-fundamentals/pf-01-camera.mov \
   --model medium --language id
 
@@ -362,9 +391,14 @@ node scripts/process-transcript.mjs \
 When you have separate camera and screen recordings, sync them using transcript matching:
 
 ```bash
-# First transcribe both recordings
-./scripts/transcribe-with-whisper.sh footage/programming-fundamentals/pf-02-camera-1.mov
-./scripts/transcribe-with-whisper.sh footage/programming-fundamentals/pf-02-screen-1.mov
+# First transcribe both recordings (use mlx_whisper on Apple Silicon)
+mlx_whisper footage/programming-fundamentals/pf-02-camera-1.mov \
+  --output-dir footage/programming-fundamentals --output-format json \
+  --word-timestamps True --model mlx-community/whisper-medium --language id
+
+mlx_whisper footage/programming-fundamentals/pf-02-screen-1.mov \
+  --output-dir footage/programming-fundamentals --output-format json \
+  --word-timestamps True --model mlx-community/whisper-medium --language id
 
 # Sync by matching spoken phrases between recordings
 node scripts/sync-transcripts.mjs \
@@ -865,7 +899,8 @@ Display slides, bullet lists, callouts, or images.
 | `remove-silence.sh` | One-step silence removal |
 | `detect-silence.sh` | Detect silence regions |
 | `detect-silence.mjs` | Convert silence data to EDL |
-| `transcribe-with-whisper.sh` | Run Whisper transcription |
+| `mlx_whisper` | **Recommended** - GPU transcription for Apple Silicon (pip install) |
+| `transcribe-with-whisper.sh` | CPU transcription fallback (Intel/Linux) |
 | `process-transcript.mjs` | Convert transcript to Remotion format |
 | `extract-cursor.py` | Extract cursor positions from video |
 | `generate-zoom-keyframes.mjs` | Generate zoom keyframes from cursor data |
@@ -886,6 +921,11 @@ npm install
 # Python dependencies (use venv)
 python3 -m venv .venv
 source .venv/bin/activate
+
+# Apple Silicon (M1/M2/M3) - GPU accelerated transcription
+pip install mlx-whisper opencv-python numpy
+
+# Intel Mac / Linux - CPU transcription (slower)
 pip install openai-whisper opencv-python numpy
 
 # FFmpeg (for silence detection)

@@ -57,6 +57,8 @@ import {
   PF02_DURATION,
   PF03Composition,
   PF03_DURATION,
+  PF04Composition,
+  PF04_DURATION,
 } from "./tutorials/programming-fundamentals/compositions";
 
 export const RemotionRoot: React.FC = () => {
@@ -148,6 +150,15 @@ export const RemotionRoot: React.FC = () => {
         id="PF03-Full"
         component={PF03Composition}
         durationInFrames={PF03_DURATION}
+        fps={30}
+        width={1920}
+        height={1080}
+      />
+
+      <Composition
+        id="PF04-Full"
+        component={PF04Composition}
+        durationInFrames={PF04_DURATION}
         fps={30}
         width={1920}
         height={1080}
@@ -430,13 +441,38 @@ export const RemotionRoot: React.FC = () => {
 
       {/* Episode 4: Hello World */}
       <Composition
-        id="EP04-HelloWorldComparison"
-        component={HelloWorldComparison}
+        id="EP04-LowerThird"
+        component={VideoLowerThird}
         durationInFrames={180}
         fps={30}
         width={1920}
         height={1080}
+        defaultProps={{
+          title: "Hello World",
+          subtitle: "Programming Fundamentals - Episode 4",
+        }}
+      />
+
+      <Composition
+        id="EP04-HelloWorldComparison"
+        component={HelloWorldComparison}
+        durationInFrames={1350}
+        fps={30}
+        width={1920}
+        height={1080}
         defaultProps={{}}
+      />
+
+      <Composition
+        id="EP04-Outro"
+        component={PFOutro}
+        durationInFrames={180}
+        fps={30}
+        width={1920}
+        height={1080}
+        defaultProps={{
+          nextEpisodeTitle: "Komentar & Struktur Kode",
+        }}
       />
 
       {/* Episode 5: Komentar & Struktur Kode */}
