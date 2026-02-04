@@ -378,7 +378,7 @@ render_segments() {
                         -c:v $ENCODER $ENCODER_OPTS -c:a aac -b:a 192k -r $fps \
                         "$TEMP_DIR/$output_file" 2>&1 | grep -E "^frame=" | tail -1 || true
                 fi
-                segment_files="$segment_files$output_file\n"
+                segment_files="$segment_files $output_file"
                 step=$((step + 1))
                 ;;
 
@@ -393,7 +393,7 @@ render_segments() {
                     -c:v $ENCODER $ENCODER_OPTS -pix_fmt yuv420p -r $fps \
                     "$TEMP_DIR/$output_file" 2>/dev/null
 
-                segment_files="$segment_files$output_file\n"
+                segment_files="$segment_files $output_file"
                 step=$((step + 1))
                 ;;
 
@@ -470,7 +470,7 @@ render_segments() {
                     -c:v $ENCODER $ENCODER_OPTS -c:a aac -b:a 192k -r $fps \
                     "\"$TEMP_DIR/$output_file\"" 2>&1 | grep -E "^frame=" | tail -1 || true
 
-                segment_files="$segment_files$output_file\n"
+                segment_files="$segment_files $output_file"
                 step=$((step + 1))
                 ;;
 
@@ -491,19 +491,31 @@ render_segments() {
     echo ""
     echo "Final: Concatenating all segments..."
 
-    # Build concat file
-    echo -e "$segment_files" | while read f; do
-        [ -n "$f" ] && echo "file '$f'"
-    done > "$TEMP_DIR/concat.txt"
+    # Build concat file from segment_files variable
+    # Use printf to avoid subshell issues with while/pipe
+    > "$TEMP_DIR/concat.txt"
+    printf '%s\n' $segment_files | while read -r f; do
+        [ -n "$f" ] && echo "file '$f'" >> "$TEMP_DIR/concat.txt"
+    done
 
-    ffmpeg -y -f concat -safe 0 -i "$TEMP_DIR/concat.txt" -c copy "$OUTPUT" 2>/dev/null
+    echo "    Segments to concat:"
+    cat "$TEMP_DIR/concat.txt" | sed 's/^/      /'
 
-    # Cleanup
-    rm -rf "$TEMP_DIR"
+    ffmpeg -y -f concat -safe 0 -i "$TEMP_DIR/concat.txt" -c copy "$OUTPUT" 2>&1 | grep -E "^frame=|error" | tail -3 || true
 
-    echo ""
-    echo "Done: $OUTPUT"
-    ls -lh "$OUTPUT"
+    # Verify output exists
+    if [ -f "$OUTPUT" ]; then
+        # Cleanup temp files on success
+        rm -rf "$TEMP_DIR"
+        echo ""
+        echo "Done: $OUTPUT"
+        ls -lh "$OUTPUT"
+    else
+        echo ""
+        echo "ERROR: Output file not created. Keeping temp files for inspection:"
+        echo "  $TEMP_DIR"
+        exit 1
+    fi
 }
 
 #-------------------------------------------------------------------------------
