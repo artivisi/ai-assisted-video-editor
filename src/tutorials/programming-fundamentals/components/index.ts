@@ -1,24 +1,8 @@
-export { TypingSystemsDiagram } from './TypingSystemsDiagram';
-export { LanguageComparisonChart } from './LanguageComparisonChart';
-export { AIDosDonts } from './AIDosDonts';
 export { HelloWorldComparison } from './HelloWorldComparison';
 export { CommentSyntaxComparison } from './CommentSyntaxComparison';
 export { VariableDeclarationComparison } from './VariableDeclarationComparison';
+export { InputProcessOutput } from './InputProcessOutput';
+export { InputTypesOverview } from './InputTypesOverview';
+export { VariableStorageModel } from './VariableStorageModel';
 export { NumberSystemsChart } from './NumberSystemsChart';
 export { OperatorPrecedenceChart } from './OperatorPrecedenceChart';
-export { AIToolsShowcase } from './AIToolsShowcase';
-export { AILearningCycle } from './AILearningCycle';
-export { PromptExampleCard } from './PromptExampleCard';
-export { UseEnglishTip } from './UseEnglishTip';
-
-// EP01 specific components
-export { ProgrammingDefinition } from './ProgrammingDefinition';
-export { ProgrammingApplications } from './ProgrammingApplications';
-export { HumanVsComputer } from './HumanVsComputer';
-export { ProgrammingLanguageLogos } from './ProgrammingLanguageLogos';
-export { LearningCurve } from './LearningCurve';
-export { CompilationProcess } from './CompilationProcess';
-export { WhyThreeLanguages } from './WhyThreeLanguages';
-export { PHPPopularity } from './PHPPopularity';
-export { OtherLanguages } from './OtherLanguages';
-export { SeriesPreview } from './SeriesPreview';

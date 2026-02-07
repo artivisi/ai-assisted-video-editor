@@ -20,3 +20,6 @@ export { CameraSwitcher } from "./CameraSwitcher";
 export type { CameraSwitcherProps } from "./CameraSwitcher";
 
 export { PipFrame } from "./PipFrame";
+
+export { FadeTransition } from "./FadeTransition";
+export type { FadeTransitionProps } from "./FadeTransition";

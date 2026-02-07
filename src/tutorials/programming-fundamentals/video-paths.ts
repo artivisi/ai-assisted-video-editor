@@ -19,18 +19,6 @@ const FOOTAGE_BASE_URL = typeof process !== 'undefined'
 
 // Relative paths within footage folder
 const FOOTAGE_PATHS = {
-  // Episode 1
-  "pf-01-camera": "ep-01/camera/DSC_8013.MOV",
-
-  // Episode 2
-  "pf-02-camera-1": "ep-02/camera/DSC_8014.MOV",
-  "pf-02-camera-2": "ep-02/camera/DSC_8015.MOV",
-  "pf-02-screen-1": "ep-02/screen/Screen Recording 2026-01-30 at 10.35.40.mov",
-  "pf-02-screen-2": "ep-02/screen/Screen Recording 2026-01-30 at 11.02.07.mov",
-
-  // Episode 3
-  "pf-03-camera": "ep-03/camera/DSC_8016.MOV",
-
   // Episode 4
   "pf-04-camera": "ep-04/camera/DSC_8017.MOV",
   "pf-04-screen": "ep-04/screen/Screen Recording 2026-02-04 at 08.52.25.mov",
@@ -39,6 +27,13 @@ const FOOTAGE_PATHS = {
   "pf-05-camera-1": "ep-05/camera/DSC_8022.MOV",
   "pf-05-camera-2": "ep-05/camera/camera-2-fixed.mp4",
   "pf-05-screen": "ep-05/screen/screen-fixed.mp4",
+
+  // Episode 6
+  "pf-06-camera-1": "ep-06/camera/camera-1-fixed.mp4",
+  "pf-06-camera-2": "ep-06/camera/camera-2-fixed.mp4",
+  "pf-06-camera-3": "ep-06/camera/camera-3-fixed.mp4",
+  "pf-06-screen-1": "ep-06/screen/screen-1-fixed.mp4",
+  "pf-06-screen-2": "ep-06/screen/screen-2-fixed.mp4",
 } as const;
 
 export type VideoKey = keyof typeof FOOTAGE_PATHS;

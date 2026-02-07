@@ -8,16 +8,15 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 1. **Move files** from SD card/screencast folder to `public/footage/ep-XX/`
 2. **Create symlinks** in `footage/programming-fundamentals/`
-3. **Transcribe** with mlx-whisper (venv required)
-4. **Sync** camera and screen recordings
-5. **Extract cursor** for zoom keyframes (optional, ~1.4x realtime)
-6. **Create episode config** in `scripts/episode-config/epXX.json`
+3. **Re-encode footage** with VideoToolbox (`h264_videotoolbox -b:v 12M`)
+4. **Transcribe** with mlx-whisper (venv required)
+5. **Sync** camera and screen recordings
+6. **Create composition** in `src/tutorials/programming-fundamentals/compositions/`
 7. **Register compositions** in `src/Root.tsx`
-8. **Render** with `./scripts/render-from-config.sh epXX`
+8. **Render** with `./scripts/render-segments.sh PF0X-Full rendered/output.mp4`
 
 **Full workflow documentation:** `docs/PRODUCTION-WORKFLOW.md`
 **Components reference:** `docs/COMPONENTS.md`
-**Scripts reference:** `docs/SCRIPTS.md`
 
 ## Commands
 
@@ -25,8 +24,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 - `npm run build` - Bundle the project
 - `npm run lint` - Run ESLint and TypeScript checks
 - `npx remotion render <CompositionId>` - Render specific composition
-- `npx remotion render <CompositionId> out/filename.mp4` - Render to file
-- `./scripts/render-from-config.sh ep01` - **Recommended** FFmpeg render pipeline (5-6x faster)
+- `./scripts/render-segments.sh PF06-Full rendered/ep06.mp4 5000` - Segmented render for long videos
 
 ## Architecture
 
@@ -38,7 +36,7 @@ This is a Remotion project for creating programmatic videos using React.
 - `src/Root.tsx` - Defines all Composition components (video configurations)
 - `src/animations/` - Bumper animations (intro, outro, transitions)
 - `src/components/` - Reusable video components (lower thirds, webcam overlay, etc.)
-- `src/tutorials/` - Tutorial series content and outlines
+- `src/tutorials/` - Tutorial series content
 - `src/assets/` - Audio, logos, and other static assets
 
 ### Key Concepts
@@ -68,34 +66,21 @@ This is a Remotion project for creating programmatic videos using React.
 
 A 31-episode tutorial series teaching Python, Java, and JavaScript together.
 
-### Episode Outlines
+### Curriculum
 
-Located in `src/tutorials/programming-fundamentals/`:
-- `SERIES_PLAN.md` - Full curriculum overview
-- `pf-01.ts` through `pf-31.ts` - Individual episode outlines
-- Each episode uses the `VideoOutline` type from `types.ts`
-
-### Episode Outline Structure
-
-```typescript
-type VideoOutline = {
-  episodeId: string;
-  seriesId: string;
-  title: string;
-  description: string;
-  duration: number;      // in seconds
-  fps: number;
-  outline: OutlineSection[];
-  lowerThirds?: LowerThirdCue[];
-  codeSnippets?: CodeSnippetCue[];
-  references?: Reference[];
-};
-```
+Located in `src/tutorials/programming-fundamentals/SERIES_PLAN.md` - full curriculum overview.
 
 ### Series-Specific Bumpers
 
 - `PFIntro` - Dark theme, typing animation, language icons (Py/Jv/JS)
 - `PFOutro` - Props: `nextEpisodeTitle?: string` (optional, hides section if not provided)
+
+### Transitions (`@remotion/transitions`)
+
+Episode compositions use `TransitionSeries` with varied visual transitions:
+- `fade()`, `slide()`, `wipe()`, `flip()`, `clockWipe()`, `iris()`
+- Audio SFX added via `addSound()` wrapper pattern
+- SFX variants in `src/assets/audio/`: transition-sfx.wav, -low.wav, -reverse.wav, -high.wav
 
 ## Animation Patterns
 
@@ -129,68 +114,62 @@ const charsToShow = Math.floor(
 Located in `src/assets/audio/`:
 - `keyboard-typing.wav` - Typing sound effect
 - `transition-sfx.wav` - Swoosh/whoosh sound
+- `transition-sfx-low.wav` - Low-pitch whoosh (for wipe transitions)
+- `transition-sfx-reverse.wav` - Reverse whoosh (for slide transitions)
+- `transition-sfx-high.wav` - High-pitch whoosh (spare)
 - `outro-sfx.wav` - Outro background sound
 - `outro-static.wav` - Static noise for glitch moments
 - `white-noise.wav` - Ambient background noise
 - `dialup-modem.wav` - Retro modem sound (used in VlogIntro)
-
-## FFmpeg Render Pipeline
-
-Full episodes use a hybrid Remotion + FFmpeg pipeline for faster rendering:
-
-1. **Episode configs** in `scripts/episode-config/epXX.json` define:
-   - Intro/outro compositions
-   - Camera footage path
-   - B-roll overlays with timestamps and types
-
-2. **Render script** `./scripts/render-from-config.sh`:
-   - Renders Remotion overlays as ProRes with alpha
-   - Composites onto camera footage with FFmpeg (GPU accelerated)
-   - Concatenates intro + main + outro
-
-3. **Overlay types**:
-   - `solid`: Full-screen replacement (diagrams, charts)
-   - `transparent`: Overlay on camera (lower thirds)
-
-4. **Adding new B-roll**:
-   - Create component in `src/tutorials/programming-fundamentals/components/`
-   - Export from `components/index.ts`
-   - Register `<Composition>` in `src/Root.tsx`
-   - Add to episode config JSON with startFrame and duration
 
 ## Video Component
 
 Use `Video` from `@remotion/media` (not `OffthreadVideo` from remotion):
 ```tsx
 import { Video } from "@remotion/media";
-<Video src={getVideoPath("pf-01-camera")} trimBefore={startFrame} />
+<Video src={getVideoPath("pf-06-camera-1")} trimBefore={startFrame} />
 ```
 
-## Rendering Long Videos (30+ minutes)
+## Re-encoding Source Footage (MANDATORY)
 
-For long videos, standard Remotion render copies the entire public folder, exhausting memory. Use the HTTP server approach instead:
-
-### HTTP Server Render (Recommended)
+Nikon ZFC `.MOV` and QuickTime `.mov` files cause Remotion/Chrome decoding errors. **Always re-encode before rendering:**
 
 ```bash
-./scripts/render-with-http-server.sh PF05-Full rendered/output.mp4
+ffmpeg -i original.MOV -c:v h264_videotoolbox -b:v 12M -c:a aac -b:a 192k fixed.mp4
 ```
 
-**How it works:**
-1. Starts HTTP server serving `public/footage/` on port 3333
-2. Creates empty public folder for bundling (no large files copied)
-3. Video paths resolve to `http://localhost:3333/...` URLs
-4. Renders with memory-optimized settings
+Then update `video-paths.ts` to point to the `-fixed.mp4` files.
 
-**Environment variables:**
-- `CONCURRENCY` - Parallel renders (default: 50%, use 2 for low memory)
-- `CACHE_SIZE_GB` - Video cache size (default: 4GB)
-- `FOOTAGE_PORT` - HTTP server port (default: 3333)
+**Bitrate recommendations for 1080p:**
+- 12M: Source quality (re-encoding for Remotion)
+- 8-10M: Final output (YouTube upload)
 
-**Example with custom settings:**
+## Rendering Long Videos
+
+For videos longer than 10 minutes, use segmented rendering to avoid Chrome crashes:
+
 ```bash
-CACHE_SIZE_GB=6 CONCURRENCY=2 ./scripts/render-with-http-server.sh PF05-Full rendered/ep05.mp4
+./scripts/render-segments.sh PF06-Full rendered/output.mp4 5000
 ```
+
+This renders in 5000-frame segments (~2.7 min each), then concatenates with FFmpeg.
+
+**Working render configuration:**
+
+| Parameter | Value | Notes |
+|-----------|-------|-------|
+| Segment size | 5000 frames | Prevents Chrome memory crashes |
+| Concurrency | 1 | `--concurrency=1`, single renderer |
+| Video cache | 4GB | `--offthread-video-cache-size-in-bytes=4294967296` |
+| Footage server | `localhost:3333` | HTTP server for video files |
+| Public dir | Empty `/tmp` dir | Avoids bundling large footage |
+
+**Prerequisites:**
+- Re-encoded footage (raw MOV files crash Chrome)
+- Known frame count in `render-segments.sh` case statement
+- External drive mounted
+
+**Timing:** ~10-15 min per segment, ~8 min bundling overhead for first segment.
 
 ### Video Path Configuration
 
@@ -198,14 +177,14 @@ CACHE_SIZE_GB=6 CONCURRENCY=2 ./scripts/render-with-http-server.sh PF05-Full ren
 - **Preview mode**: `staticFile()` for Remotion Studio
 - **Render mode**: HTTP URLs when `REMOTION_FOOTAGE_URL` is set
 
-### Monitoring Progress
+### Adding Known Frame Counts
 
+For faster startup, add frame counts to `scripts/render-segments.sh`:
 ```bash
-# Watch render progress
-tail -f rendered/render-log.txt | grep "Rendered"
-
-# Check if still running
-ps aux | grep remotion
+case "$COMPOSITION_ID" in
+    "PF06-Full") TOTAL_FRAMES=45737 ;;
+    ...
+esac
 ```
 
 ## YouTube Upload Pipeline
@@ -227,18 +206,12 @@ node scripts/generate-youtube-metadata.mjs all --start-date 2026-02-01 --interva
 
 # 2. Generate thumbnails with AI (Gemini, DALL-E, etc.)
 #    Then resize to 1280x720:
-ffmpeg -i input.png -vf "scale=720:720,pad=1280:720:(ow-iw)/2:0:color=#0d1117" thumbnails/ep01.png
+ffmpeg -i input.png -vf "scale=1280:720:force_original_aspect_ratio=decrease,pad=1280:720:(ow-iw)/2:(oh-ih)/2:color=#0d1117" thumbnails/ep06.png
 
 # 3. Upload (batch or single)
-node scripts/youtube-batch-upload.mjs ep01 ep03
-node scripts/youtube-upload.mjs scripts/youtube-metadata/ep01.json path/to/video.mp4
+node scripts/youtube-batch-upload.mjs ep04 ep06
+node scripts/youtube-upload.mjs scripts/youtube-metadata/ep06.json rendered/pf-ep06-variables.mp4
 ```
-
-### Metadata Generation
-- Reads episode outlines from `src/tutorials/programming-fundamentals/pf-XX.ts`
-- Extracts title, description, timeline markers from outline timestamps
-- Adds common + episode-specific tags
-- Outputs to `scripts/youtube-metadata/epXX.json`
 
 ### Upload Features
 - Title, description, tags from metadata JSON
@@ -250,55 +223,7 @@ node scripts/youtube-upload.mjs scripts/youtube-metadata/ep01.json path/to/video
 
 - **Camera**: Nikon ZFC (records to SD card as `.MOV`)
 - **Screen**: QuickTime Player Screen Recording (`.mov`)
-- **Storage**: External drive, symlinked to `footage/` folder
-
-## Hardware Acceleration (Apple Silicon)
-
-Always use hardware acceleration for video encoding/decoding on M1/M2 Macs.
-
-### FFmpeg with VideoToolbox
-
-```bash
-# Encode with hardware acceleration (8x faster than software)
-# Use explicit bitrate (-b:v) not quality (-q:v) for predictable results
-ffmpeg -i input.mov -c:v h264_videotoolbox -b:v 12M -c:a aac -b:a 192k output.mp4
-
-# HEVC encoding (better compression)
-ffmpeg -i input.mov -c:v hevc_videotoolbox -b:v 8M -c:a aac -b:a 192k output.mp4
-```
-
-**Bitrate recommendations for 1080p:**
-- 12-15M: High quality (source footage, editing)
-- 8-10M: Good quality (final output, YouTube)
-- 4-6M: Acceptable quality (smaller files)
-
-Note: VideoToolbox `-q:v` scale is unreliable. Always use explicit bitrate `-b:v`.
-
-### When to Re-encode Source Files
-
-Re-encode camera/screen recordings if Remotion shows decoding errors:
-```
-Error decoding ... EncodingError: Decoding error
-Cannot decode ... falling back to <OffthreadVideo>
-Page crashed!
-```
-
-Fix by re-encoding with VideoToolbox before rendering:
-```bash
-ffmpeg -i original.MOV -c:v h264_videotoolbox -b:v 12M -c:a aac -b:a 192k fixed.mp4
-```
-
-Then update `video-paths.ts` to use the fixed file.
-
-### Segmented Rendering for Long Videos
-
-For videos longer than 10 minutes, use segmented rendering to avoid Chrome crashes:
-
-```bash
-./scripts/render-segments.sh PF05-Full rendered/output.mp4 5000
-```
-
-This renders in 5000-frame segments (~2.7 min each), then concatenates with FFmpeg.
+- **Storage**: External drive at `public/footage/`
 
 ## Zoom/Pan Workflow
 
@@ -330,44 +255,16 @@ const actions: Array<{
 | Terminal | 0.5 | 0.65 | 1.7-1.8 |
 
 **Time Conversion:**
-- Screen time = Camera time - syncOffset (e.g., 4.282s for ep05)
+- Screen time = Camera time - syncOffset
 - Frame = Screen time × 30
 
-### Automated Detection (Alternative)
-
-| Aspect | Cursor Detection | Transcript Hints |
-|--------|------------------|------------------|
-| Time | 37 min (automated) | ~5 min (manual) |
-| Output | 67 keyframes (many) | 6-10 keyframes (focused) |
-| Catches | Editor pauses, menu clicks | Verbal teaching cues |
-| Misses | Fast typing, cursor moving | Requires manual review |
-
-### DaVinci Resolve Export
-
-Generate timeline files for DaVinci Resolve:
-```bash
-node scripts/generate-davinci-timeline.mjs ep05
-```
-
-Outputs:
-- `rendered/ep05-zoom-keyframes.txt` - Keyframe data with DaVinci position values
-- `rendered/ep05-timeline-info.txt` - Timeline structure guide
-- `rendered/ep05-timeline.edl` - EDL for basic timeline import
-
-## Processing Time Reference (26-min video)
+## Processing Time Reference (25-min video, Apple Silicon M1)
 
 | Step | Time |
 |------|------|
 | Copy files | ~2 min |
+| Re-encode footage (VideoToolbox) | ~5 min |
 | Transcription (mlx-whisper) | ~20 min |
-| Manual zoom keyframe definition | ~10 min |
-| Re-encode source files (if needed) | ~5 min |
-| Render (segmented, 10 segments) | ~2.5 hours |
-| **Total** | **~3 hours** |
-
-**Render approaches:**
-| Render Method | Time | Notes |
-|---------------|------|-------|
-| Segmented render (5000 frames/segment) | ~2.5 hours | Full zoom/pan, avoids crashes |
-| FFmpeg pipeline | ~5 min | No zoom/pan, simple overlay only |
-| DaVinci Resolve | ~15 min | Manual keyframe entry required |
+| Create composition + preview | ~45 min |
+| Render (segmented, 10 segments) | ~3.5 hours |
+| **Total** | **~4.5 hours** |

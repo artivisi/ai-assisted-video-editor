@@ -118,14 +118,8 @@ export const VIDEO_PATHS = {
 
 ## Step 2: Pre-Production
 
-```bash
-# Copy template
-cp src/tutorials/programming-fundamentals/_template.ts \
-   src/tutorials/programming-fundamentals/pf-01.ts
-
-# Generate printable outline for recording
-node scripts/generate-outline.mjs src/tutorials/programming-fundamentals/pf-01.ts
-```
+Refer to `src/tutorials/programming-fundamentals/SERIES_PLAN.md` for the full curriculum.
+Prepare code samples and talking points for the episode topic.
 
 ---
 
@@ -351,6 +345,42 @@ For talking-head episodes, add visual variety:
 
 ---
 
+### 4.8 Re-encode Source Footage
+
+**MANDATORY before rendering.** Nikon ZFC `.MOV` and QuickTime `.mov` files use codecs that cause Remotion/Chrome decoding errors (`Page crashed!`, `EncodingError`). Always re-encode to H.264 before rendering.
+
+```bash
+# Re-encode all footage with hardware acceleration (VideoToolbox)
+# Use 12Mbps for source-quality preservation
+cd public/footage/ep-XX
+
+# Camera files
+ffmpeg -i camera/DSC_XXXX.MOV -c:v h264_videotoolbox -b:v 12M -c:a aac -b:a 192k camera/camera-1-fixed.mp4
+
+# Screen recordings
+ffmpeg -i "screen/Screen Recording YYYY-MM-DD at HH.MM.SS.mov" -c:v h264_videotoolbox -b:v 12M -c:a aac -b:a 192k screen/screen-1-fixed.mp4
+```
+
+Then update `video-paths.ts` to point to the `-fixed.mp4` files.
+
+**Bitrate guidelines:**
+- 12M: Source quality (camera/screen footage for editing)
+- 8-10M: Final output (YouTube upload)
+
+**Time estimates (Apple Silicon M1, VideoToolbox):**
+
+| File | Size | Duration | Re-encode Time |
+|------|------|----------|----------------|
+| Camera short clip (26s) | 81MB | 0:26 | ~5 seconds |
+| Camera segment (5 min) | 973MB | 5:00 | ~30 seconds |
+| Screen recording (10 min) | 1.3GB | 10:00 | ~1 minute |
+| Camera full (20 min) | 3.6GB | 20:00 | ~2 minutes |
+| Screen full (20 min) | 2.3GB | 20:00 | ~1.5 minutes |
+
+All files for a 25-min episode (~5 files): **~5 minutes total** (can run in parallel)
+
+---
+
 ## Step 5: Create Composition
 
 Compositions are organized in `src/tutorials/programming-fundamentals/compositions/`.
@@ -382,52 +412,61 @@ Work with AI to adjust:
 
 ## Step 7: Render
 
-**Recommended: FFmpeg Pipeline (5-6x faster)**
+**Segmented Remotion Render (for long videos):**
 
 ```bash
-# Render full episodes
-./scripts/render-from-config.sh ep01   # ~5 min for 30-min episode
-./scripts/render-from-config.sh ep02
-./scripts/render-from-config.sh ep05
-
-# Output: rendered/pf-ep01-apa-itu-programming.mp4
+# Render in 5000-frame segments (~2.7 min each), then concatenate
+./scripts/render-segments.sh PF06-Full rendered/pf-ep06-variables.mp4 5000
 ```
 
 **How it works:**
-1. Reads timeline from `scripts/episode-config/epXX.json`
-2. Renders Remotion overlays (intro, outro, b-roll) as ProRes with alpha
-3. Composites onto camera footage using FFmpeg with GPU acceleration
-4. Concatenates intro + main + outro
+1. Starts HTTP server serving `public/footage/` on port 3333
+2. Creates empty public folder for bundling (avoids copying large files)
+3. Renders each segment with `--concurrency=1` to limit memory
+4. Concatenates segments with FFmpeg
 
-**Episode Config Format** (`scripts/episode-config/ep01.json`):
-```json
-{
-  "id": "ep01",
-  "title": "Apa Itu Programming?",
-  "fps": 30,
-  "intro": { "composition": "PFIntro", "duration": 150 },
-  "outro": { "composition": "PFOutro", "duration": 180 },
-  "mainContent": {
-    "camera": "ep-01/camera/DSC_8013.MOV",
-    "overlays": [
-      {
-        "composition": "EP01-LowerThird",
-        "startFrame": 60,
-        "duration": 180,
-        "type": "transparent"
-      }
-    ]
-  }
-}
+**Working render configuration:**
+
+| Parameter | Value | Notes |
+|-----------|-------|-------|
+| Segment size | 5000 frames (~2.7 min) | Prevents Chrome memory crashes |
+| Concurrency | 1 | Single renderer, avoids memory exhaustion |
+| Video cache | 4GB (`4294967296` bytes) | `--offthread-video-cache-size-in-bytes` |
+| Footage server port | 3333 | HTTP server for video files |
+| Bundling public dir | Empty `/tmp` dir | Prevents copying large footage into bundle |
+
+**Prerequisites before render:**
+- Re-encoded footage (Step 4.8) — raw MOV files crash Chrome
+- Known frame count in `render-segments.sh` case statement (skips bundling for duration)
+- External drive mounted with footage accessible
+
+**Adding frame counts** (for faster startup, avoids bundling to get duration):
+```bash
+# In scripts/render-segments.sh, add to the case statement:
+case "$COMPOSITION_ID" in
+    "PF06-Full") TOTAL_FRAMES=45737 ;;
+    ...
+esac
 ```
 
-**Overlay types:**
-- `transparent`: Overlay on top of camera (lower thirds, charts)
-- `solid`: Replace camera entirely (full-screen diagrams)
+**Render time estimates (Apple Silicon M1, 16GB RAM):**
 
-**Render time estimates:**
-- 30-minute episode: ~5-6 minutes (5-6x realtime)
-- 12-minute episode: ~2-3 minutes
+| Episode Length | Frames | Segments | Bundling | Per Segment | Total |
+|----------------|--------|----------|----------|-------------|-------|
+| ~20 min | ~34k | 7 | ~8 min | ~15-20 min | ~2-2.5 hours |
+| ~25 min | ~45k | 10 | ~8 min | ~15-20 min | ~3-3.5 hours |
+| ~26 min | ~47k | 10 | ~8 min | ~15-20 min | ~3-3.5 hours |
+
+**Resume interrupted render:**
+```bash
+RESUME_DIR=rendered/segments-XXXXX ./scripts/render-segments.sh PF06-Full rendered/ep06.mp4 5000
+```
+Existing segment files are automatically skipped.
+
+**Troubleshooting:**
+- `Page crashed!` → Source footage not re-encoded. Run Step 4.8 first.
+- Render hangs after "Rendering segment X" → Bundling in progress (~8 min first time). Check with `ps aux | grep remotion`.
+- Out of memory → Reduce segment size (try 3000) or ensure `--concurrency=1`.
 
 ---
 
@@ -473,14 +512,15 @@ node scripts/youtube-batch-upload.mjs ep01 ep03
 
 ---
 
-## Processing Time Reference (26-min video)
+## Processing Time Reference (EP06, 25-min video, Apple Silicon M1)
 
-| Step | Time |
-|------|------|
-| Copy files from SD card | ~2 min |
-| Transcription (3 files, mlx-whisper) | ~20 min |
-| Sync transcripts | <1 sec |
-| Cursor extraction | ~37 min |
-| Zoom keyframe generation | <1 sec |
-| Render (FFmpeg pipeline) | ~5 min |
-| **Total** | **~65 min** |
+| Step | Time | Notes |
+|------|------|-------|
+| Copy files from SD card | ~2 min | ~5GB total |
+| Re-encode footage (VideoToolbox) | ~5 min | 5 files in parallel, h264_videotoolbox 12Mbps |
+| Transcription (mlx-whisper) | ~20 min | 3 camera files, turbo-v3 model |
+| Sync transcripts | <1 sec | Automated timestamp matching |
+| Create composition | ~30 min | Manual with AI assistance |
+| Preview & iterate | ~15 min | Remotion Studio |
+| Render (segmented, 10 segments) | ~3.5 hours | ~8 min bundling + ~15 min/segment, concurrency=1 |
+| **Total** | **~4.5 hours** |

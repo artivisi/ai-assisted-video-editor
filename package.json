@@ -9,6 +9,7 @@
     "@remotion/cli": "4.0.414",
     "@remotion/media": "4.0.414",
     "@remotion/tailwind-v4": "4.0.414",
+    "@remotion/transitions": "^4.0.414",
     "googleapis": "^171.0.0",
     "open": "^11.0.0",
     "react": "19.2.3",

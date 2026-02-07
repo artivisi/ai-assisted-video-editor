@@ -9,6 +9,9 @@
 #   ./scripts/render-segments.sh <composition-id> [output-file] [segment-size]
 #   ./scripts/render-segments.sh PF05-Full rendered/ep05.mp4 5000
 #
+# Resume interrupted render:
+#   RESUME_DIR=rendered/segments-XXXXX ./scripts/render-segments.sh PF06-Full rendered/ep06.mp4 5000
+#
 # Default segment size: 5000 frames (~2.7 minutes at 30fps)
 #===============================================================================
 
@@ -26,7 +29,13 @@ SEGMENT_SIZE="${3:-5000}"
 FOOTAGE_PORT="${FOOTAGE_PORT:-3333}"
 FOOTAGE_DIR="$PROJECT_DIR/public/footage"
 FOOTAGE_URL="http://localhost:$FOOTAGE_PORT"
-SEGMENTS_DIR="$PROJECT_DIR/rendered/segments-$$"
+# Support resuming from an existing segments directory
+if [ -n "$RESUME_DIR" ]; then
+    SEGMENTS_DIR="$PROJECT_DIR/$RESUME_DIR"
+    log "Resuming from existing segments dir: $SEGMENTS_DIR"
+else
+    SEGMENTS_DIR="$PROJECT_DIR/rendered/segments-$$"
+fi
 EMPTY_PUBLIC_DIR="/tmp/remotion-empty-public-$$"
 
 # Colors
@@ -73,11 +82,9 @@ mkdir -p "$EMPTY_PUBLIC_DIR" "$SEGMENTS_DIR"
 # Frame counts for known compositions (avoid bundling just to get frame count)
 # Using case statement for POSIX compatibility (zsh doesn't support declare -A)
 case "$COMPOSITION_ID" in
+    "PF06-Full") TOTAL_FRAMES=45737 ;;
     "PF05-Full") TOTAL_FRAMES=47220 ;;
     "PF04-Full") TOTAL_FRAMES=34000 ;;
-    "PF03-Full") TOTAL_FRAMES=25000 ;;
-    "PF02-Full") TOTAL_FRAMES=30000 ;;
-    "PF01-Full") TOTAL_FRAMES=20000 ;;
     *) TOTAL_FRAMES="" ;;
 esac
 
@@ -108,6 +115,13 @@ while [ $START_FRAME -lt $TOTAL_FRAMES ]; do
 
     SEGMENT_FILE="$SEGMENTS_DIR/segment-$(printf '%03d' $SEGMENT_NUM).mp4"
     SEGMENT_NUM=$((SEGMENT_NUM + 1))
+
+    # Skip already-rendered segments (for resume support)
+    if [ -f "$SEGMENT_FILE" ]; then
+        log "Segment $SEGMENT_NUM already exists ($(ls -lh "$SEGMENT_FILE" | awk '{print $5}')), skipping"
+        START_FRAME=$((END_FRAME + 1))
+        continue
+    fi
 
     log "Rendering segment $SEGMENT_NUM: frames $START_FRAME-$END_FRAME"
 

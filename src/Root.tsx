@@ -26,28 +26,14 @@ import {
   PostInstallChecklist,
 } from "./tutorials/cloud-linux-network/components";
 import {
-  TypingSystemsDiagram,
-  LanguageComparisonChart,
-  AIDosDonts,
   HelloWorldComparison,
   CommentSyntaxComparison,
   VariableDeclarationComparison,
+  InputProcessOutput,
+  InputTypesOverview,
+  VariableStorageModel,
   NumberSystemsChart,
   OperatorPrecedenceChart,
-  AIToolsShowcase,
-  AILearningCycle,
-  PromptExampleCard,
-  UseEnglishTip,
-  ProgrammingDefinition,
-  ProgrammingApplications,
-  HumanVsComputer,
-  ProgrammingLanguageLogos,
-  LearningCurve,
-  CompilationProcess,
-  WhyThreeLanguages,
-  PHPPopularity,
-  OtherLanguages,
-  SeriesPreview,
 } from "./tutorials/programming-fundamentals/components";
 import { VideoLowerThird, PipFrame } from "./components";
 import {
@@ -57,16 +43,12 @@ import {
   ArchitectureDiagram,
 } from "./tutorials/vlog/components";
 import {
-  PF01Composition,
-  PF01_DURATION,
-  PF02Composition,
-  PF02_DURATION,
-  PF03Composition,
-  PF03_DURATION,
   PF04Composition,
   PF04_DURATION,
   PF05Composition,
   PF05_DURATION,
+  PF06Composition,
+  PF06_DURATION,
 } from "./tutorials/programming-fundamentals/compositions";
 
 export const RemotionRoot: React.FC = () => {
@@ -174,33 +156,6 @@ export const RemotionRoot: React.FC = () => {
 
       {/* Full Episode Compositions */}
       <Composition
-        id="PF01-Full"
-        component={PF01Composition}
-        durationInFrames={PF01_DURATION}
-        fps={30}
-        width={1920}
-        height={1080}
-      />
-
-      <Composition
-        id="PF02-Full"
-        component={PF02Composition}
-        durationInFrames={PF02_DURATION}
-        fps={30}
-        width={1920}
-        height={1080}
-      />
-
-      <Composition
-        id="PF03-Full"
-        component={PF03Composition}
-        durationInFrames={PF03_DURATION}
-        fps={30}
-        width={1920}
-        height={1080}
-      />
-
-      <Composition
         id="PF04-Full"
         component={PF04Composition}
         durationInFrames={PF04_DURATION}
@@ -218,279 +173,13 @@ export const RemotionRoot: React.FC = () => {
         height={1080}
       />
 
-      {/* Episode 1: Apa Itu Programming */}
       <Composition
-        id="EP01-TypingSystemsDiagram"
-        component={TypingSystemsDiagram}
-        durationInFrames={180}
+        id="PF06-Full"
+        component={PF06Composition}
+        durationInFrames={PF06_DURATION}
         fps={30}
         width={1920}
         height={1080}
-        defaultProps={{
-          showLanguages: ['Python', 'JavaScript', 'Java'],
-          animateIn: true,
-        }}
-      />
-
-      <Composition
-        id="EP01-TypingSystemsDiagramAll"
-        component={TypingSystemsDiagram}
-        durationInFrames={180}
-        fps={30}
-        width={1920}
-        height={1080}
-        defaultProps={{
-          showLanguages: ['Python', 'JavaScript', 'Java', 'TypeScript', 'PHP', 'Go', 'Rust', 'C'],
-          animateIn: true,
-        }}
-      />
-
-      <Composition
-        id="EP01-LowerThird"
-        component={VideoLowerThird}
-        durationInFrames={180}
-        fps={30}
-        width={1920}
-        height={1080}
-        defaultProps={{
-          title: "Apa Itu Programming?",
-          subtitle: "Programming Fundamentals - Episode 1",
-        }}
-      />
-
-      <Composition
-        id="EP01-ProgrammingDefinition"
-        component={ProgrammingDefinition}
-        durationInFrames={1800}
-        fps={30}
-        width={1920}
-        height={1080}
-      />
-
-      <Composition
-        id="EP01-ProgrammingApplications"
-        component={ProgrammingApplications}
-        durationInFrames={2100}
-        fps={30}
-        width={1920}
-        height={1080}
-      />
-
-      <Composition
-        id="EP01-HumanVsComputer"
-        component={HumanVsComputer}
-        durationInFrames={1950}
-        fps={30}
-        width={1920}
-        height={1080}
-      />
-
-      <Composition
-        id="EP01-ProgrammingLanguageLogos"
-        component={ProgrammingLanguageLogos}
-        durationInFrames={2250}
-        fps={30}
-        width={1920}
-        height={1080}
-      />
-
-      <Composition
-        id="EP01-LearningCurve"
-        component={LearningCurve}
-        durationInFrames={2700}
-        fps={30}
-        width={1920}
-        height={1080}
-      />
-
-      <Composition
-        id="EP01-CompilationProcess"
-        component={CompilationProcess}
-        durationInFrames={750}
-        fps={30}
-        width={1920}
-        height={1080}
-      />
-
-      <Composition
-        id="EP01-WhyThreeLanguages"
-        component={WhyThreeLanguages}
-        durationInFrames={750}
-        fps={30}
-        width={1920}
-        height={1080}
-      />
-
-      <Composition
-        id="EP01-PHPPopularity"
-        component={PHPPopularity}
-        durationInFrames={750}
-        fps={30}
-        width={1920}
-        height={1080}
-      />
-
-      <Composition
-        id="EP01-OtherLanguages"
-        component={OtherLanguages}
-        durationInFrames={750}
-        fps={30}
-        width={1920}
-        height={1080}
-      />
-
-      <Composition
-        id="EP01-SeriesPreview"
-        component={SeriesPreview}
-        durationInFrames={750}
-        fps={30}
-        width={1920}
-        height={1080}
-      />
-
-      <Composition
-        id="EP02-LowerThird"
-        component={VideoLowerThird}
-        durationInFrames={180}
-        fps={30}
-        width={1920}
-        height={1080}
-        defaultProps={{
-          title: "GitHub & Codespaces",
-          subtitle: "Programming Fundamentals - Episode 2",
-        }}
-      />
-
-      <Composition
-        id="EP02-Outro"
-        component={PFOutro}
-        durationInFrames={180}
-        fps={30}
-        width={1920}
-        height={1080}
-        defaultProps={{
-          nextEpisodeTitle: "Belajar Coding dengan AI",
-        }}
-      />
-
-      <Composition
-        id="EP01-LanguageComparisonChart"
-        component={LanguageComparisonChart}
-        durationInFrames={180}
-        fps={30}
-        width={1920}
-        height={1080}
-        defaultProps={{
-          title: "Most Popular Programming Languages 2024",
-          showTop: 10,
-          highlightLanguages: ['Python', 'JavaScript', 'Java'],
-        }}
-      />
-
-      {/* Episode 3: AI untuk Belajar - Overlay Compositions */}
-      <Composition
-        id="EP03-LowerThird"
-        component={VideoLowerThird}
-        durationInFrames={180}
-        fps={30}
-        width={1920}
-        height={1080}
-        defaultProps={{
-          title: "AI untuk Belajar Programming",
-          subtitle: "Programming Fundamentals - Episode 3",
-        }}
-      />
-
-      <Composition
-        id="EP03-AIToolsShowcase"
-        component={AIToolsShowcase}
-        durationInFrames={1530}
-        fps={30}
-        width={1920}
-        height={1080}
-      />
-
-      <Composition
-        id="EP03-PromptExplain"
-        component={PromptExampleCard}
-        durationInFrames={1170}
-        fps={30}
-        width={1920}
-        height={1080}
-        defaultProps={{ type: "explain" }}
-      />
-
-      <Composition
-        id="EP03-PromptExercise"
-        component={PromptExampleCard}
-        durationInFrames={1470}
-        fps={30}
-        width={1920}
-        height={1080}
-        defaultProps={{ type: "exercise" }}
-      />
-
-      <Composition
-        id="EP03-PromptHint"
-        component={PromptExampleCard}
-        durationInFrames={1020}
-        fps={30}
-        width={1920}
-        height={1080}
-        defaultProps={{ type: "hint" }}
-      />
-
-      <Composition
-        id="EP03-PromptError"
-        component={PromptExampleCard}
-        durationInFrames={2130}
-        fps={30}
-        width={1920}
-        height={1080}
-        defaultProps={{ type: "error" }}
-      />
-
-      <Composition
-        id="EP03-UseEnglishTip"
-        component={UseEnglishTip}
-        durationInFrames={3150}
-        fps={30}
-        width={1920}
-        height={1080}
-      />
-
-      <Composition
-        id="EP03-AIDosDonts"
-        component={AIDosDonts}
-        durationInFrames={1410}
-        fps={30}
-        width={1920}
-        height={1080}
-        defaultProps={{
-          showDos: false,
-          showDonts: true,
-        }}
-      />
-
-      <Composition
-        id="EP03-AILearningCycle"
-        component={AILearningCycle}
-        durationInFrames={1200}
-        fps={30}
-        width={1920}
-        height={1080}
-      />
-
-      <Composition
-        id="EP03-Outro"
-        component={PFOutro}
-        durationInFrames={180}
-        fps={30}
-        width={1920}
-        height={1080}
-        defaultProps={{
-          nextEpisodeTitle: "Hello World",
-        }}
       />
 
       {/* Episode 4: Hello World */}
@@ -566,6 +255,46 @@ export const RemotionRoot: React.FC = () => {
 
       {/* Episode 6: Variables */}
       <Composition
+        id="EP06-InputProcessOutput"
+        component={InputProcessOutput}
+        durationInFrames={1650}
+        fps={30}
+        width={1920}
+        height={1080}
+      />
+
+      <Composition
+        id="EP06-InputTypesOverview"
+        component={InputTypesOverview}
+        durationInFrames={2550}
+        fps={30}
+        width={1920}
+        height={1080}
+      />
+
+      <Composition
+        id="EP06-VariableStorageModel"
+        component={VariableStorageModel}
+        durationInFrames={1080}
+        fps={30}
+        width={1920}
+        height={1080}
+      />
+
+      <Composition
+        id="EP06-LowerThird"
+        component={VideoLowerThird}
+        durationInFrames={180}
+        fps={30}
+        width={1920}
+        height={1080}
+        defaultProps={{
+          title: "Variables - Menyimpan Data",
+          subtitle: "Programming Fundamentals - Episode 6",
+        }}
+      />
+
+      <Composition
         id="EP06-VariableDeclarationComparison"
         component={VariableDeclarationComparison}
         durationInFrames={180}
@@ -574,7 +303,17 @@ export const RemotionRoot: React.FC = () => {
         height={1080}
       />
 
-      {/* Episode 7: Data Types - uses EP01-TypingSystemsDiagram */}
+      <Composition
+        id="EP06-Outro"
+        component={PFOutro}
+        durationInFrames={180}
+        fps={30}
+        width={1920}
+        height={1080}
+        defaultProps={{
+          nextEpisodeTitle: "Tipe Data",
+        }}
+      />
 
       {/* Episode 8: Number Systems */}
       <Composition
@@ -596,8 +335,6 @@ export const RemotionRoot: React.FC = () => {
         height={1080}
         defaultProps={{ showColors: true }}
       />
-
-      {/* Episode 9: Type Conversion - primarily code snippets */}
 
       {/* Episode 10: Arithmetic & Assignment Operators */}
       <Composition

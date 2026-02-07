@@ -1,0 +1,217 @@
+{
+  "episodeId": "pf-06",
+  "episodeTitle": "Variables - Menyimpan Data",
+  "description": "Episode 6 mengajarkan konsep variable (penyimpanan data) dengan demonstrasi coding di Java, JavaScript, dan Python",
+  
+  "chapters": [
+    {
+      "startTime": 4,
+      "title": "Pengantar: Input/Output/Processing Model",
+      "description": "Intro konsep membuat aplikasi dan kode program"
+    },
+    {
+      "startTime": 26,
+      "title": "Input - Menerima Data",
+      "description": "Aplikasi selalu mendapatkan input dari berbagai sumber"
+    },
+    {
+      "startTime": 34,
+      "title": "Jenis-jenis Input",
+      "description": "Berbagai jenis input: user, sensor, file"
+    },
+    {
+      "startTime": 44,
+      "title": "Processing - Pemrosesan Data",
+      "description": "Aplikasi melakukan pemrosesan input"
+    },
+    {
+      "startTime": 48,
+      "title": "Output - Menghasilkan Data",
+      "description": "Hasil pemrosesan menjadi output"
+    },
+    {
+      "startTime": 255,
+      "title": "Variable: Penyimpanan Data",
+      "description": "Intro variable sebagai penyimpan data dalam aplikasi"
+    },
+    {
+      "startTime": 270,
+      "title": "Definisi Variable",
+      "description": "Variable = tempat untuk menyimpan data"
+    },
+    {
+      "startTime": 298,
+      "title": "Variable: Langkah Pertama Programming",
+      "description": "Variable adalah fondasi belajar programming"
+    },
+    {
+      "startTime": 315,
+      "title": "Deklarasi Variable",
+      "description": "Cara membuat/mendeklarasikan variable"
+    },
+    {
+      "startTime": 420,
+      "title": "Demo: Java Programming",
+      "description": "Mulai practical coding dengan Java variable"
+    },
+    {
+      "startTime": 435,
+      "title": "Java: hello.java",
+      "description": "Membuat file hello.java pertama"
+    },
+    {
+      "startTime": 488,
+      "title": "Java: User Input",
+      "description": "Cara mengambil input dari user di Java"
+    },
+    {
+      "startTime": 501,
+      "title": "Java: Input Prompt & Variable",
+      "description": "Menampilkan prompt dan menyimpan input ke variable"
+    },
+    {
+      "startTime": 511,
+      "title": "Java: Deklarasi & Inisialisasi",
+      "description": "Deklarasi variable dan mengisi nilainya"
+    },
+    {
+      "startTime": 737,
+      "title": "Penjelasan: Kenapa Variable?",
+      "description": "Penjelasan mengapa disebut variable dan cara kerjanya"
+    },
+    {
+      "startTime": 815,
+      "title": "Demo: JavaScript Programming",
+      "description": "Beralih ke JavaScript untuk deklarasi variable"
+    },
+    {
+      "startTime": 945,
+      "title": "JavaScript: Variable Declaration",
+      "description": "Deklarasi variable di JavaScript"
+    },
+    {
+      "startTime": 949,
+      "title": "JavaScript: var vs Java Deklarasi",
+      "description": "Perbedaan syntax var (JS) vs tipe data (Java)"
+    },
+    {
+      "startTime": 1048,
+      "title": "Demo: Python Programming",
+      "description": "Beralih ke Python untuk variable"
+    },
+    {
+      "startTime": 1084,
+      "title": "Python: User Input & Variable",
+      "description": "Contoh input dan variable di Python"
+    },
+    {
+      "startTime": 1118,
+      "title": "Python: Variable (No Type Needed)",
+      "description": "Variable di Python tanpa pendeklarasian tipe"
+    },
+    {
+      "startTime": 110,
+      "title": "Penamaan Variable: Naming Conventions",
+      "camera": 3,
+      "description": "Fokus pada penamaan variable di 3 bahasa"
+    },
+    {
+      "startTime": 117,
+      "title": "Java: camelCase Naming",
+      "camera": 3,
+      "description": "Konvensi camelCase untuk Java variable"
+    },
+    {
+      "startTime": 142,
+      "title": "Python: snake_case Naming",
+      "camera": 3,
+      "description": "Konvensi snake_case untuk Python variable"
+    },
+    {
+      "startTime": 206,
+      "title": "JavaScript: camelCase Naming",
+      "camera": 3,
+      "description": "JavaScript juga pakai camelCase"
+    },
+    {
+      "startTime": 254,
+      "title": "Ringkasan: Apa Yang Sudah Dipelajari",
+      "camera": 3,
+      "description": "Summary dari materi variable"
+    },
+    {
+      "startTime": 264,
+      "title": "Review: Deklarasi & Inisialisasi",
+      "camera": 3,
+      "description": "Review deklarasi dan inisialisasi variable"
+    },
+    {
+      "startTime": 271,
+      "title": "Review: Penamaan Variable",
+      "camera": 3,
+      "description": "Review naming conventions"
+    },
+    {
+      "startTime": 280,
+      "title": "Preview: Tipe Data",
+      "camera": 3,
+      "description": "Pengenalan tipe-tipe data untuk episode berikutnya"
+    }
+  ],
+
+  "cameraBreakdown": {
+    "camera2": {
+      "duration": "~19 menit",
+      "content": "Konsep input/output, intro variable, dan demo coding (Java, JS, Python)",
+      "keySegments": [
+        "Pengantar (0-5s)",
+        "Input/Output/Processing (26-48s)",
+        "Variable Introduction (255-370s)",
+        "Java Coding Demo (420-790s)",
+        "JavaScript Demo (815-1040s)",
+        "Python Demo (1048-1130s)"
+      ]
+    },
+    "camera3": {
+      "duration": "~5 menit",
+      "content": "Naming conventions, summary, dan preview tipe data",
+      "keySegments": [
+        "Naming Conventions (110-206s)",
+        "Summary & Review (254-280s)"
+      ]
+    }
+  },
+
+  "timelineMarkers": {
+    "concept_explanation": {
+      "start": 4,
+      "end": 255,
+      "description": "Explain input/output/processing dan intro variable"
+    },
+    "java_demo": {
+      "start": 420,
+      "end": 790,
+      "description": "First coding language: Java variable declaration & input"
+    },
+    "javascript_demo": {
+      "start": 815,
+      "end": 1040,
+      "description": "Second coding language: JavaScript variable"
+    },
+    "python_demo": {
+      "start": 1048,
+      "end": 1130,
+      "description": "Third coding language: Python variable"
+    },
+    "naming_conventions": {
+      "start": 110,
+      "camera": 3,
+      "description": "camelCase vs snake_case naming rules"
+    },
+    "summary": {
+      "start": 254,
+      "camera": 3,
+      "description": "What we learned + next steps"
+    }
+  }
+}
