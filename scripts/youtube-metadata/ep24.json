@@ -1,7 +1,7 @@
 {
   "episodeId": "ep24",
   "title": "String Methods | Programming Fundamentals #24",
-  "description": "Mempelajari methods untuk manipulasi string: case conversion, split, join, strip, dan find.\n\nProgramming Fundamentals Episode 24: String Methods\n\nDi episode ini kita belajar tentang string methods.\n\n⏱️ Timeline:\n00:00 Intro\n02:00 String = Array of Characters\n05:00 Case Conversion\n09:00 Split & Join\n15:00 Strip/Trim\n19:00 Find & Replace\n24:00 String Formatting Recap\n27:00 Challenge & Git\n29:00 Outro\n\n📚 Series: Programming Fundamentals - Belajar Python, Java, JavaScript\nEpisode ini adalah bagian dari seri Programming Fundamentals yang mengajarkan Python, Java, dan JavaScript secara bersamaan.\n\n🔗 Links:\n- GitHub: https://github.com/artivisi\n- Website: https://artivisi.com\n\n#programming #python #javascript #java #tutorial #pemula",
+  "description": "Mempelajari methods untuk manipulasi string: case conversion, split, join, strip, dan find.\n\nProgramming Fundamentals Episode 24: String Methods\n\nDi episode ini kita belajar tentang string methods.\n\n📚 Series: Programming Fundamentals - Belajar Python, Java, JavaScript\nEpisode ini adalah bagian dari seri Programming Fundamentals yang mengajarkan Python, Java, dan JavaScript secara bersamaan.\n\n🔗 Links:\n- GitHub: https://github.com/artivisi\n- Website: https://artivisi.com\n\n#programming #python #javascript #java #tutorial #pemula",
   "tags": [
     "programming",
     "coding",

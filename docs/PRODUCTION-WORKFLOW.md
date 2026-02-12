@@ -48,7 +48,8 @@ flowchart TD
         F1[Render Final Video] --> F2[AI Generate Thumbnail]
         F2 --> F2b[Resize to 1280x720]
         F2b --> F3[Generate Metadata]
-        F3 --> F4[Upload to YouTube]
+        F3 --> F3b[Verify Timeline vs Transcript]
+        F3b --> F4[Upload to YouTube]
     end
 
     PRE --> REC
@@ -72,6 +73,7 @@ flowchart TD
 | Subtitles | Review output | Generate from transcript |
 | Render | Run command | - |
 | Thumbnail | Provide prompt | Generate image, resize to 1280x720 |
+| Timeline verification | Review corrections | Cross-reference transcript timestamps with composition offsets |
 | Upload | Provide credentials | Generate title, description, tags from outline |
 
 ---
@@ -491,6 +493,51 @@ node scripts/generate-youtube-metadata.mjs all --start-date 2026-02-01 --interva
 node scripts/generate-youtube-metadata.mjs ep01
 ```
 
+**Verify timeline markers against transcript (MANDATORY):**
+
+The metadata generator produces placeholder timestamps from pre-production outlines.
+These are almost always wrong — they don't account for actual recording flow, topic order
+changes, tangents, or the intro/outro bumper offsets in the final video.
+
+After rendering, verify every `⏱️ Timeline:` entry in the metadata JSON against the actual
+transcript. Ask Claude:
+
+```
+"Verify the timeline markers in scripts/youtube-metadata/epXX.json against the
+transcript. Read the transcript files and the composition to map camera timestamps
+to final video timestamps. Report mismatches and suggest corrections."
+```
+
+**How final video time maps to camera time:**
+
+The rendered video has sections that shift the timeline relative to raw camera timestamps:
+
+```
+Final video time 0s          → Welcome (camera-1 start)
+  + WELCOME_DURATION         → PFIntro bumper (no camera, ~5s)
+  + INTRO_DURATION           → Camera-only section
+  + CAMERA_ONLY_DURATION     → Main content (screen+PIP)
+  - transition overlaps      → Transitions eat ~0.67s each
+```
+
+General formula for a timestamp in the main content:
+
+```
+videoTime = WELCOME_DURATION + INTRO_DURATION + CAMERA_ONLY_DURATION
+          + (cameraTime - MAIN_CONTENT_START_CAMERA_TIME)
+          - accumulated_transition_overlaps
+```
+
+These values differ per episode — always read the composition file (`PFxxComposition.tsx`)
+for the exact constants.
+
+**Common mistakes in timeline markers:**
+- Round-number timestamps (02:00, 05:00, 10:00) — sign of placeholders, never real
+- Wrong topic order (outline may say Python→JS→Java, actual recording may be Java→JS→Python)
+- Missing bumper offset (forgetting the ~5s PFIntro bumper shifts everything)
+- Multi-file boundary errors (camera FAT32 splits cause time resets; camera-3 time 0s ≠ continuation of camera-2)
+- Topics interleaved in recording but listed as separate blocks in outline
+
 **Generate thumbnails:**
 
 ```bash
@@ -523,4 +570,5 @@ node scripts/youtube-batch-upload.mjs ep01 ep03
 | Create composition | ~30 min | Manual with AI assistance |
 | Preview & iterate | ~15 min | Remotion Studio |
 | Render (segmented, 10 segments) | ~3.5 hours | ~8 min bundling + ~15 min/segment, concurrency=1 |
+| Verify timeline markers | ~10 min | AI cross-references transcript vs composition offsets |
 | **Total** | **~4.5 hours** |
