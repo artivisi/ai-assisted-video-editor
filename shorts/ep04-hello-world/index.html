@@ -1,0 +1,233 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1080, height=1920" />
+    <link rel="icon" href="data:," />
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+    <style>
+      :root {
+        --bg: #0d1117;
+        --panel: #161b22;
+        --text: #ffffff;
+        --text-soft: #abb2bf;
+        --accent: #f7df1e;
+      }
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      html,
+      body {
+        width: 1080px;
+        height: 1920px;
+        overflow: hidden;
+        background: var(--bg);
+        font-family: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+        color: var(--text);
+      }
+
+      /* Video frame — top 1080×1080 */
+      .video-wrap {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 1080px;
+        height: 1080px;
+        overflow: hidden;
+      }
+      .video-wrap video {
+        width: 1080px;
+        height: 1080px;
+        object-fit: cover;
+      }
+
+      /* Title bar overlay on video */
+      .title-bar {
+        position: absolute;
+        top: 40px;
+        left: 40px;
+        right: 40px;
+        padding: 16px 28px;
+        background: rgba(13, 17, 23, 0.75);
+        backdrop-filter: blur(8px);
+        border-radius: 14px;
+        font-size: 30px;
+        font-weight: 600;
+        letter-spacing: 0.06em;
+        color: var(--accent);
+        display: flex;
+        align-items: center;
+        gap: 14px;
+      }
+      .title-bar .ep {
+        background: var(--accent);
+        color: var(--bg);
+        padding: 4px 12px;
+        border-radius: 8px;
+        font-size: 24px;
+        font-weight: 800;
+      }
+
+      /* Caption panel — bottom 840px */
+      .caption-panel {
+        position: absolute;
+        top: 1080px;
+        left: 0;
+        width: 1080px;
+        height: 840px;
+        background: linear-gradient(180deg, #0d1117 0%, #0a0c10 100%);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0 80px;
+      }
+
+      .caption {
+        position: absolute;
+        max-width: 920px;
+        text-align: center;
+        font-size: 78px;
+        font-weight: 800;
+        letter-spacing: -0.02em;
+        line-height: 1.15;
+        color: var(--text);
+      }
+      .caption .word {
+        display: inline-block;
+        margin: 0 6px;
+      }
+
+      /* CTA footer */
+      .footer {
+        position: absolute;
+        bottom: 60px;
+        left: 0;
+        width: 1080px;
+        text-align: center;
+        font-size: 32px;
+        font-weight: 600;
+        color: var(--text-soft);
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+      .footer .hl {
+        color: var(--accent);
+      }
+    </style>
+  </head>
+  <body>
+    <div
+      id="root"
+      data-composition-id="main"
+      data-start="0"
+      data-duration="34.5"
+      data-width="1080"
+      data-height="1920"
+    >
+      <!-- Video frame + title -->
+      <div class="video-wrap">
+        <video
+          id="vid"
+          data-start="0"
+          data-duration="34.5"
+          data-track-index="0"
+          src="assets/clips/shorts-clips/ep04-hello-world-intro.mp4"
+          muted
+          playsinline
+        ></video>
+      </div>
+      <div class="title-bar" id="title-bar">
+        <span class="ep">EP04</span>
+        <span>HELLO WORLD</span>
+      </div>
+
+      <!-- Caption panel -->
+      <div class="caption-panel" id="caption-panel"></div>
+
+      <!-- Audio (narration from the same source clip) -->
+      <audio
+        id="narration"
+        data-start="0"
+        data-duration="34.5"
+        data-track-index="1"
+        data-volume="1"
+        src="assets/clips/shorts-clips/ep04-hello-world-intro.mp4"
+      ></audio>
+
+      <!-- CTA -->
+      <div class="footer" id="footer">
+        Full video &rarr; <span class="hl">EP04</span>
+      </div>
+    </div>
+
+    <script id="caption-data" type="application/json">
+      {"totalDuration":34.5,"groups":[
+        {"start":0.0,"end":2.8,"text":"Jadi Hello World adalah"},
+        {"start":2.8,"end":5.18,"text":"langkah pertama dalam kita"},
+        {"start":5.18,"end":7.48,"text":"membuat belajar programming"},
+        {"start":7.84,"end":10.6,"text":"Jadi tujuannya sebetulnya adalah"},
+        {"start":10.6,"end":13.06,"text":"untuk menampilkan tulisan Hello"},
+        {"start":13.06,"end":14.88,"text":"World ke layar"},
+        {"start":14.88,"end":16.9,"text":"Nah, ini merupakan tradisi"},
+        {"start":16.9,"end":20.22,"text":"yang sudah berjalan sejak"},
+        {"start":20.22,"end":23.4,"text":"buku programming yang fenomenal"},
+        {"start":23.4,"end":26.24,"text":"di tahun 70an, 80an"},
+        {"start":26.88,"end":29.0,"text":"Jadulnya Introduction to C"},
+        {"start":29.0,"end":30.06,"text":"Programming,"},
+        {"start":30.56,"end":33.38,"text":"yang mengarang Kernighan dan"},
+        {"start":33.38,"end":34.5,"text":"Ritchie"}
+      ]}
+    </script>
+
+    <script>
+      window.__timelines = window.__timelines || {};
+
+      // Build caption divs from JSON
+      const data = JSON.parse(document.getElementById("caption-data").textContent);
+      const panel = document.getElementById("caption-panel");
+
+      data.groups.forEach((g, i) => {
+        const el = document.createElement("div");
+        el.className = "caption";
+        el.id = "cap-" + i;
+        el.textContent = g.text;
+        // Each caption is a timed clip: framework handles visibility gating
+        el.classList.add("clip");
+        el.setAttribute("data-start", String(g.start));
+        el.setAttribute("data-duration", String(Math.max(0.3, g.end - g.start + 0.15)));
+        el.setAttribute("data-track-index", "2");
+        panel.appendChild(el);
+      });
+
+      // GSAP timeline: scale-pop entrance + quick exit per group
+      const tl = gsap.timeline({ paused: true });
+
+      // Title bar + footer entrance/exit
+      tl.from("#title-bar", { y: -60, opacity: 0, duration: 0.6, ease: "power3.out" }, 0.2);
+      tl.from("#footer", { y: 40, opacity: 0, duration: 0.5, ease: "power2.out" }, 0.4);
+
+      data.groups.forEach((g, i) => {
+        const sel = "#cap-" + i;
+        // Entrance: from-below + scale pop
+        tl.fromTo(
+          sel,
+          { y: 40, scale: 0.9, opacity: 0 },
+          { y: 0, scale: 1, opacity: 1, duration: 0.28, ease: "back.out(1.6)" },
+          g.start
+        );
+        // Exit fade right before the next group starts
+        const exitAt = g.end - 0.12;
+        tl.to(sel, { opacity: 0, scale: 0.96, duration: 0.12, ease: "power2.in" }, exitAt);
+        // Deterministic hide after exit
+        tl.set(sel, { opacity: 0, visibility: "hidden" }, g.end);
+      });
+
+      // Footer exit at end (final scene fade-out allowed)
+      tl.to("#footer", { opacity: 0, duration: 0.3, ease: "power2.in" }, 34.2);
+
+      window.__timelines["main"] = tl;
+    </script>
+  </body>
+</html>

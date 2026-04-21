@@ -18,9 +18,9 @@ npm run build    # Bundle for rendering
 **HyperFrames (shorts / bumpers):**
 
 ```bash
-cd shorts && npx hyperframes preview          # vertical Short preview
-cd shorts && npx hyperframes render           # render to MP4
-cd bumpers-lab && npx hyperframes preview     # bumper sandbox
+cd shorts/ep04-hello-world && npx hyperframes preview   # caption-synced Short (EP04)
+cd shorts/ep07-floating-point && npx hyperframes render # infographic Short (EP07)
+cd bumpers-lab && npx hyperframes preview               # bumper sandbox
 ```
 
 Node.js 22+ and FFmpeg required for HyperFrames.
@@ -54,11 +54,19 @@ src/                               # Remotion (long-form) — React
 └── assets/                        # Audio, icons, logos
 
 shorts/                            # HyperFrames — vertical 1080×1920 Shorts
-├── index.html                     # Main composition
-├── compositions/                  # Sub-compositions (data-composition-src)
-├── assets/clips        → ../public/footage     (symlink)
-├── assets/transcripts  → ../shared/transcripts (symlink)
-└── assets/audio        → ../src/assets/audio   (symlink)
+├── assets/                        # Shared symlinks (clips/transcripts/audio)
+│   ├── clips        → ../public/footage
+│   ├── transcripts  → ../shared/transcripts
+│   └── audio        → ../src/assets/audio
+├── ep04-hello-world/              # One project per Short
+│   ├── index.html                 # Composition (video + captions from transcript)
+│   ├── captions.json              # Sliced transcript groups
+│   ├── hyperframes.json           # HyperFrames project config
+│   ├── meta.json
+│   └── assets → ../assets         # symlink to shared
+└── ep07-floating-point/
+    ├── index.html                 # Pure-CSS infographic composition
+    └── ...
 
 bumpers-lab/                       # HyperFrames — 1920×1080 bumper experiments
 └── (scaffolded as needed; winners graduate to src/animations/)
@@ -78,6 +86,7 @@ scripts/
 ├── render-from-config.sh          # Main long-form render script
 ├── render-segments.sh             # Segmented render for long videos
 ├── extract-transcripts.mjs        # TS transcripts → shared/transcripts/*.json
+├── slice-transcript.mjs           # Slice transcript JSON to Short clip range + word grouping
 ├── process-transcript.mjs         # Whisper JSON → Remotion format
 ├── sync-transcripts.mjs           # Sync camera/screen recordings
 ├── extract-cursor.py              # Cursor tracking for zoom/pan

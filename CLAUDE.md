@@ -29,9 +29,10 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 - `node scripts/extract-transcripts.mjs` - Regenerate `shared/transcripts/*.json` from TS sources
 
 **HyperFrames (shorts + bumpers):**
-- `cd shorts && npx hyperframes preview` - Studio preview for vertical Shorts
-- `cd shorts && npx hyperframes render -o renders/out.mp4` - Render current composition
-- `cd shorts && npx hyperframes lint` - Validate compositions (run after every edit)
+- `cd shorts/<short-name> && npx hyperframes preview` - Studio preview (e.g. `shorts/ep04-hello-world`)
+- `cd shorts/<short-name> && npx hyperframes render -o renders/out.mp4` - Render that Short
+- `cd shorts/<short-name> && npx hyperframes lint` - Validate (run after every edit)
+- `node scripts/slice-transcript.mjs <input.json> <start-sec> <end-sec> <out.json>` - Slice Whisper transcript for caption-synced Shorts
 - `cd bumpers-lab && npx hyperframes preview` - Bumper sandbox
 
 ## Architecture
@@ -55,7 +56,9 @@ Two video pipelines live side-by-side:
 - `thumbnails/shorts/` - 1080×1920 thumbnails for Shorts
 - `shared/transcripts/` - Whisper JSON transcripts (extracted from `src/tutorials/programming-fundamentals/pf-*-transcript.ts` by `scripts/extract-transcripts.mjs`) — consumed by both pipelines
 - `shared/assets/` - Symlink to `src/assets/` so HyperFrames can reuse Remotion assets
-- `shorts/` - HyperFrames project for vertical Shorts (1080×1920)
+- `shorts/<short-name>/` - one HyperFrames project per Short (1080×1920); each has its own `index.html`, `hyperframes.json`, `meta.json`, and `assets` symlink → `../assets`
+- `shorts/assets/` - shared clips/transcripts/audio symlinks; individual shorts reach these via their own `assets` symlink
+- `public/footage/shorts-clips/` - trimmed/cropped video clips derived from full episodes (gitignored, regenerated with `ffmpeg` from raw MOV)
 - `bumpers-lab/` - HyperFrames sandbox for bumper experiments; graduate winners to `src/animations/`
 
 ### Key Concepts
