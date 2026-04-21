@@ -59,7 +59,7 @@ Two video pipelines live side-by-side:
 - `shorts/<short-name>/` - one HyperFrames project per Short (1080×1920); each has its own `index.html`, `hyperframes.json`, `meta.json`, and `assets` symlink → `../assets`
 - `shorts/assets/` - shared clips/transcripts/audio symlinks; individual shorts reach these via their own `assets` symlink
 - `public/footage/shorts-clips/` - trimmed/cropped video clips derived from full episodes (gitignored, regenerated with `ffmpeg` from raw MOV)
-- `bumpers-lab/` - HyperFrames sandbox for bumper experiments; graduate winners to `src/animations/`
+- `bumpers-lab/` - HyperFrames sandbox for **static** bumpers (no runtime props). Dynamic bumpers that take props (e.g. `PFOutro` with `nextEpisodeTitle`) are authored directly as Remotion React components in `src/animations/`.
 
 ### Key Concepts
 

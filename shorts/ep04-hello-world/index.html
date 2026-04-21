@@ -126,13 +126,15 @@
       data-width="1080"
       data-height="1920"
     >
-      <!-- Video frame + title -->
+      <!-- Video frame + title. Audio travels with the video (original MP4 has embedded audio). -->
       <div class="video-wrap">
         <video
           id="vid"
           data-start="0"
           data-duration="34.5"
           data-track-index="0"
+          data-has-audio="true"
+          data-volume="0.75"
           src="assets/clips/shorts-clips/ep04-hello-world-intro.mp4"
           muted
           playsinline
@@ -145,16 +147,6 @@
 
       <!-- Caption panel -->
       <div class="caption-panel" id="caption-panel"></div>
-
-      <!-- Audio (narration from the same source clip) -->
-      <audio
-        id="narration"
-        data-start="0"
-        data-duration="34.5"
-        data-track-index="1"
-        data-volume="1"
-        src="assets/clips/shorts-clips/ep04-hello-world-intro.mp4"
-      ></audio>
 
       <!-- CTA -->
       <div class="footer" id="footer">
