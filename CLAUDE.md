@@ -20,24 +20,43 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Commands
 
+**Remotion (long-form):**
 - `npm start` - Start Remotion Studio for preview
 - `npm run build` - Bundle the project
 - `npm run lint` - Run ESLint and TypeScript checks
 - `npx remotion render <CompositionId>` - Render specific composition
 - `./scripts/render-segments.sh PF06-Full rendered/ep06.mp4 5000` - Segmented render for long videos
+- `node scripts/extract-transcripts.mjs` - Regenerate `shared/transcripts/*.json` from TS sources
+
+**HyperFrames (shorts + bumpers):**
+- `cd shorts && npx hyperframes preview` - Studio preview for vertical Shorts
+- `cd shorts && npx hyperframes render -o renders/out.mp4` - Render current composition
+- `cd shorts && npx hyperframes lint` - Validate compositions (run after every edit)
+- `cd bumpers-lab && npx hyperframes preview` - Bumper sandbox
 
 ## Architecture
 
-This is a Remotion project for creating programmatic videos using React.
+Two video pipelines live side-by-side:
+
+- **Remotion (root)** — long-form tutorial episodes (16:9, 30 min+), authored in React
+- **HyperFrames (`shorts/`, `bumpers-lab/`)** — HTML/CSS/JS compositions for vertical YouTube Shorts and bumper experiments; see each directory's local `CLAUDE.md`
 
 ### Project Structure
 
-- `src/index.ts` - Entry point, registers RemotionRoot
-- `src/Root.tsx` - Defines all Composition components (video configurations)
-- `src/animations/` - Bumper animations (intro, outro, transitions)
+- `src/index.ts` - Remotion entry point, registers RemotionRoot
+- `src/Root.tsx` - Defines all Composition components
+- `src/animations/` - Bumper animations (intro, outro, transitions) — production
 - `src/components/` - Reusable video components (lower thirds, webcam overlay, etc.)
 - `src/tutorials/` - Tutorial series content
-- `src/assets/` - Audio, logos, and other static assets
+- `src/assets/` - Audio, logos, and other static assets (Remotion-side source of truth)
+- `public/footage/ep-XX/` - Raw camera + screen recordings, re-encoded `-fixed.mp4`
+- `rendered/` - Final long-form MP4 outputs
+- `thumbnails/long-form/` - 1280×720 YouTube thumbnails for episodes
+- `thumbnails/shorts/` - 1080×1920 thumbnails for Shorts
+- `shared/transcripts/` - Whisper JSON transcripts (extracted from `src/tutorials/programming-fundamentals/pf-*-transcript.ts` by `scripts/extract-transcripts.mjs`) — consumed by both pipelines
+- `shared/assets/` - Symlink to `src/assets/` so HyperFrames can reuse Remotion assets
+- `shorts/` - HyperFrames project for vertical Shorts (1080×1920)
+- `bumpers-lab/` - HyperFrames sandbox for bumper experiments; graduate winners to `src/animations/`
 
 ### Key Concepts
 
@@ -206,7 +225,7 @@ node scripts/generate-youtube-metadata.mjs all --start-date 2026-02-01 --interva
 
 # 2. Generate thumbnails with AI (Gemini, DALL-E, etc.)
 #    Then resize to 1280x720:
-ffmpeg -i input.png -vf "scale=1280:720:force_original_aspect_ratio=decrease,pad=1280:720:(ow-iw)/2:(oh-ih)/2:color=#0d1117" thumbnails/ep06.png
+ffmpeg -i input.png -vf "scale=1280:720:force_original_aspect_ratio=decrease,pad=1280:720:(ow-iw)/2:(oh-ih)/2:color=#0d1117" thumbnails/long-form/ep06.png
 
 # 3. Upload (batch or single)
 node scripts/youtube-batch-upload.mjs ep04 ep06
@@ -215,7 +234,7 @@ node scripts/youtube-upload.mjs scripts/youtube-metadata/ep06.json rendered/pf-e
 
 ### Upload Features
 - Title, description, tags from metadata JSON
-- Custom thumbnail from `thumbnails/epXX.png`
+- Custom thumbnail from `thumbnails/long-form/epXX.png` (shorts use `thumbnails/shorts/`)
 - Auto-creates playlist, adds video
 - Scheduled publishing (private with publishAt)
 

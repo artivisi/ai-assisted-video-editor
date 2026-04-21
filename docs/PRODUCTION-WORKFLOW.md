@@ -544,7 +544,7 @@ for the exact constants.
 # Resize AI-generated image to YouTube format
 ffmpeg -i ~/Downloads/ep01-thumbnail.png \
   -vf "scale=720:720,pad=1280:720:(ow-iw)/2:0:color=#0d1117" \
-  thumbnails/ep01.png
+  thumbnails/long-form/ep01.png
 ```
 
 **Upload videos:**

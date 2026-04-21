@@ -1,0 +1,451 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1080, height=1920" />
+    <link rel="icon" href="data:," />
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+    <style>
+      :root {
+        --bg: #0d1117;
+        --panel: #1a1a2e;
+        --code-bg: #282c34;
+        --text: #ffffff;
+        --text-soft: #abb2bf;
+        --accent-py: #3776ab;
+        --accent-js: #f7df1e;
+        --accent-java: #ed8b00;
+        --code-string: #98c379;
+        --code-number: #e5c07b;
+        --code-keyword: #c678dd;
+        --code-comment: #5c6370;
+        --error: #ef4444;
+      }
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      html,
+      body {
+        width: 1080px;
+        height: 1920px;
+        overflow: hidden;
+        background: var(--bg);
+        font-family: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+        color: var(--text);
+      }
+      .mono {
+        font-family: "JetBrains Mono", monospace;
+      }
+
+      .scene {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 1080px;
+        height: 1920px;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 120px 80px;
+      }
+      #scene1 {
+        z-index: 1;
+      }
+      #scene2,
+      #scene3,
+      #scene4 {
+        z-index: 1;
+        opacity: 0;
+      }
+
+      /* Scene 1: Hook */
+      .hook-prompt {
+        font-size: 64px;
+        font-weight: 500;
+        color: var(--text-soft);
+        margin-bottom: 60px;
+        letter-spacing: 0.04em;
+      }
+      .hook-eq {
+        font-size: 220px;
+        font-weight: 800;
+        line-height: 1;
+        letter-spacing: -0.04em;
+      }
+      .hook-eq .op {
+        color: var(--accent-js);
+      }
+      .hook-q {
+        color: var(--accent-js);
+      }
+      .hook-answer {
+        margin-top: 80px;
+        font-size: 72px;
+        font-weight: 700;
+        color: var(--code-string);
+        display: inline-flex;
+        align-items: center;
+        gap: 24px;
+      }
+      .hook-answer .q {
+        color: var(--text-soft);
+        font-weight: 500;
+      }
+
+      /* Scene 2: REPL reveal */
+      .repl {
+        width: 920px;
+        background: var(--code-bg);
+        border: 1px solid #3a3f4b;
+        border-radius: 24px;
+        padding: 48px 56px;
+        font-size: 64px;
+        line-height: 1.4;
+        box-shadow: 0 40px 80px rgba(0, 0, 0, 0.5);
+      }
+      .repl-title {
+        font-size: 44px;
+        font-weight: 600;
+        color: var(--accent-py);
+        text-align: center;
+        margin-bottom: 48px;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+      .repl-line {
+        white-space: nowrap;
+      }
+      .prompt {
+        color: var(--code-keyword);
+      }
+      .num {
+        color: var(--code-number);
+      }
+      .op {
+        color: var(--text-soft);
+      }
+      .output {
+        color: #ffffff;
+        font-weight: 500;
+      }
+      .output .tail {
+        color: var(--error);
+      }
+      .repl-caption {
+        margin-top: 64px;
+        font-size: 56px;
+        font-weight: 700;
+        letter-spacing: -0.01em;
+        text-align: center;
+      }
+      .repl-caption .wtf {
+        color: var(--error);
+      }
+
+      /* Scene 3: Why */
+      .why-head {
+        font-size: 96px;
+        font-weight: 800;
+        letter-spacing: -0.03em;
+        margin-bottom: 48px;
+        text-align: center;
+      }
+      .why-head .accent {
+        color: var(--code-number);
+      }
+      .why-body {
+        font-size: 42px;
+        color: var(--text-soft);
+        text-align: center;
+        line-height: 1.4;
+        max-width: 900px;
+        margin-bottom: 64px;
+      }
+      .binary-row {
+        width: 920px;
+        background: var(--panel);
+        border-radius: 20px;
+        padding: 40px 48px;
+        margin-bottom: 24px;
+      }
+      .binary-row .label {
+        font-size: 36px;
+        color: var(--text-soft);
+        margin-bottom: 16px;
+      }
+      .binary-row .value {
+        font-size: 50px;
+        font-weight: 500;
+      }
+      .binary-row .value .infinite {
+        color: var(--error);
+      }
+
+      /* Scene 4: Solution + CTA */
+      .sol-head {
+        font-size: 88px;
+        font-weight: 800;
+        letter-spacing: -0.03em;
+        margin-bottom: 16px;
+        color: var(--code-string);
+      }
+      .sol-sub {
+        font-size: 40px;
+        color: var(--text-soft);
+        margin-bottom: 64px;
+      }
+      .langs {
+        display: flex;
+        flex-direction: column;
+        gap: 24px;
+        width: 100%;
+        max-width: 920px;
+      }
+      .lang {
+        background: var(--code-bg);
+        border-radius: 20px;
+        padding: 28px 36px;
+      }
+      .lang .lang-name {
+        font-size: 32px;
+        font-weight: 700;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        margin-bottom: 12px;
+      }
+      .lang.py .lang-name {
+        color: var(--accent-py);
+      }
+      .lang.js .lang-name {
+        color: var(--accent-js);
+      }
+      .lang.java .lang-name {
+        color: var(--accent-java);
+      }
+      .lang .code {
+        font-size: 38px;
+        line-height: 1.35;
+        color: var(--text);
+      }
+      .lang .code .kw {
+        color: var(--code-keyword);
+      }
+      .lang .code .str {
+        color: var(--code-string);
+      }
+      .lang .code .cm {
+        color: var(--code-comment);
+      }
+      .cta {
+        margin-top: 72px;
+        font-size: 56px;
+        font-weight: 700;
+        color: var(--text);
+      }
+      .cta .ep {
+        color: var(--accent-js);
+      }
+    </style>
+  </head>
+  <body>
+    <div
+      id="root"
+      data-composition-id="main"
+      data-start="0"
+      data-duration="30"
+      data-width="1080"
+      data-height="1920"
+    >
+      <!-- Scene 1: Hook (0 → 5s) -->
+      <div id="scene1" class="scene">
+        <div class="hook-prompt mono">>>> python</div>
+        <div class="hook-eq mono">
+          <span class="num">0.1</span>
+          <span class="op">+</span>
+          <span class="num">0.2</span>
+          <span class="op"> = </span>
+          <span class="hook-q">?</span>
+        </div>
+        <div class="hook-answer mono">
+          <span class="q">jawab:</span>
+          <span>0.3</span>
+        </div>
+      </div>
+
+      <!-- Scene 2: REPL reveal (5 → 12s) -->
+      <div id="scene2" class="scene">
+        <div class="repl-title mono">Python REPL</div>
+        <div class="repl mono">
+          <div class="repl-line" id="s2-line1">
+            <span class="prompt">>>></span> <span class="num">0.1</span>
+            <span class="op">+</span> <span class="num">0.2</span>
+          </div>
+          <div class="repl-line output" id="s2-line2">
+            <span class="num">0.3</span><span class="tail">0000000000000004</span>
+          </div>
+        </div>
+        <div class="repl-caption" id="s2-caption">
+          Bukan <span class="mono num">0.3</span>?
+          <span class="wtf">WTF</span>
+        </div>
+      </div>
+
+      <!-- Scene 3: Why (12 → 22s) -->
+      <div id="scene3" class="scene">
+        <div class="why-head">
+          Kenapa? <span class="accent">Binary.</span>
+        </div>
+        <div class="why-body">
+          Komputer menyimpan desimal dalam biner. Beberapa angka yang "sederhana" di desimal menjadi pecahan tak terhingga di biner.
+        </div>
+        <div class="binary-row" id="s3-row1">
+          <div class="label">1 ÷ 3 (desimal)</div>
+          <div class="value mono">
+            <span class="num">0.333</span><span class="infinite">333…</span>
+          </div>
+        </div>
+        <div class="binary-row" id="s3-row2">
+          <div class="label">0.1 (biner)</div>
+          <div class="value mono">
+            <span class="num">0.00011</span><span class="infinite">0011…</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Scene 4: Solution + CTA (22 → 30s) -->
+      <div id="scene4" class="scene">
+        <div class="sol-head">Pakai Decimal.</div>
+        <div class="sol-sub">Untuk aplikasi finansial &mdash; presisi wajib.</div>
+        <div class="langs">
+          <div class="lang py" id="s4-py">
+            <div class="lang-name">Python</div>
+            <div class="code mono">
+              <span class="kw">from</span> decimal <span class="kw">import</span> Decimal<br />
+              Decimal(<span class="str">"0.1"</span>) + Decimal(<span class="str">"0.2"</span>)
+            </div>
+          </div>
+          <div class="lang java" id="s4-java">
+            <div class="lang-name">Java</div>
+            <div class="code mono">
+              <span class="kw">new</span> BigDecimal(<span class="str">"0.1"</span>)<br />
+              &nbsp;&nbsp;.add(<span class="kw">new</span> BigDecimal(<span class="str">"0.2"</span>))
+            </div>
+          </div>
+          <div class="lang js" id="s4-js">
+            <div class="lang-name">JavaScript</div>
+            <div class="code mono">
+              <span class="kw">import</span> Decimal <span class="kw">from</span> <span class="str">"decimal.js"</span><br />
+              <span class="kw">new</span> Decimal(<span class="str">"0.1"</span>).plus(<span class="str">"0.2"</span>)
+            </div>
+          </div>
+        </div>
+        <div class="cta" id="s4-cta">Full video &rarr; <span class="ep">EP07</span></div>
+      </div>
+
+      <!-- Transition SFX (shared assets reused from Remotion pipeline) -->
+      <audio
+        id="sfx-t1"
+        data-start="4.75"
+        data-duration="1"
+        data-track-index="5"
+        data-volume="0.6"
+        src="assets/audio/transition-sfx-high.wav"
+      ></audio>
+      <audio
+        id="sfx-t2"
+        data-start="11.75"
+        data-duration="1"
+        data-track-index="5"
+        data-volume="0.55"
+        src="assets/audio/transition-sfx.wav"
+      ></audio>
+      <audio
+        id="sfx-t3"
+        data-start="21.75"
+        data-duration="1"
+        data-track-index="5"
+        data-volume="0.5"
+        src="assets/audio/transition-sfx-low.wav"
+      ></audio>
+    </div>
+
+    <script>
+      window.__timelines = window.__timelines || {};
+      const tl = gsap.timeline({ paused: true });
+
+      // ——————————————————————————————————————————————————————
+      // Scene 1 — Hook (0 → 5s)
+      // ——————————————————————————————————————————————————————
+      tl.from("#scene1 .hook-prompt", { y: 30, opacity: 0, duration: 0.5, ease: "power2.out" }, 0.2);
+      tl.from("#scene1 .hook-eq", { y: 80, opacity: 0, duration: 0.7, ease: "power3.out" }, 0.5);
+      tl.from("#scene1 .hook-answer", { scale: 0.8, opacity: 0, duration: 0.5, ease: "back.out(1.6)" }, 1.8);
+
+      // Transition 1: Blur crossfade (4.75 → 5.25)
+      tl.to("#scene1", { filter: "blur(10px)", scale: 1.03, opacity: 0, duration: 0.5, ease: "power2.inOut" }, 4.75);
+      tl.fromTo(
+        "#scene2",
+        { filter: "blur(10px)", scale: 0.97, opacity: 0 },
+        { filter: "blur(0px)", scale: 1, opacity: 1, duration: 0.5, ease: "power2.inOut" },
+        4.85
+      );
+
+      // ——————————————————————————————————————————————————————
+      // Scene 2 — REPL (5 → 12s)
+      // ——————————————————————————————————————————————————————
+      tl.from("#scene2 .repl-title", { y: -30, opacity: 0, duration: 0.5, ease: "power2.out" }, 5.3);
+      tl.from("#scene2 .repl", { y: 60, opacity: 0, duration: 0.6, ease: "power3.out" }, 5.5);
+      tl.from("#s2-line2", { opacity: 0, y: 40, duration: 0.5, ease: "power2.out" }, 7.5);
+      tl.fromTo(
+        "#scene2 .output .tail",
+        { scale: 1 },
+        { scale: 1.2, duration: 0.25, ease: "back.out(2)", yoyo: true, repeat: 1 },
+        8.3
+      );
+      tl.from("#s2-caption", { y: 40, opacity: 0, duration: 0.5, ease: "expo.out" }, 9.5);
+
+      // Transition 2: Blur crossfade (11.75 → 12.25)
+      tl.to("#scene2", { filter: "blur(10px)", scale: 1.03, opacity: 0, duration: 0.5, ease: "power2.inOut" }, 11.75);
+      tl.fromTo(
+        "#scene3",
+        { filter: "blur(10px)", scale: 0.97, opacity: 0 },
+        { filter: "blur(0px)", scale: 1, opacity: 1, duration: 0.5, ease: "power2.inOut" },
+        11.85
+      );
+
+      // ——————————————————————————————————————————————————————
+      // Scene 3 — Why (12 → 22s)
+      // ——————————————————————————————————————————————————————
+      tl.from("#scene3 .why-head", { y: 60, opacity: 0, duration: 0.6, ease: "power3.out" }, 12.3);
+      tl.from("#scene3 .why-body", { y: 30, opacity: 0, duration: 0.5, ease: "power2.out" }, 12.9);
+      tl.from("#s3-row1", { x: -60, opacity: 0, duration: 0.6, ease: "expo.out" }, 14.0);
+      tl.from("#s3-row1 .infinite", { opacity: 0, duration: 0.4, ease: "power2.out" }, 15.2);
+      tl.from("#s3-row2", { x: 60, opacity: 0, duration: 0.6, ease: "expo.out" }, 16.0);
+      tl.from("#s3-row2 .infinite", { opacity: 0, duration: 0.4, ease: "power2.out" }, 17.2);
+
+      // Transition 3: Blur crossfade (21.75 → 22.25)
+      tl.to("#scene3", { filter: "blur(10px)", scale: 1.03, opacity: 0, duration: 0.5, ease: "power2.inOut" }, 21.75);
+      tl.fromTo(
+        "#scene4",
+        { filter: "blur(10px)", scale: 0.97, opacity: 0 },
+        { filter: "blur(0px)", scale: 1, opacity: 1, duration: 0.5, ease: "power2.inOut" },
+        21.85
+      );
+
+      // ——————————————————————————————————————————————————————
+      // Scene 4 — Solution + CTA (22 → 30s)
+      // ——————————————————————————————————————————————————————
+      tl.from("#scene4 .sol-head", { y: 50, opacity: 0, duration: 0.6, ease: "power3.out" }, 22.3);
+      tl.from("#scene4 .sol-sub", { y: 30, opacity: 0, duration: 0.5, ease: "power2.out" }, 22.7);
+      tl.from("#s4-py", { x: -40, opacity: 0, duration: 0.5, ease: "expo.out" }, 23.4);
+      tl.from("#s4-java", { x: -40, opacity: 0, duration: 0.5, ease: "expo.out" }, 23.8);
+      tl.from("#s4-js", { x: -40, opacity: 0, duration: 0.5, ease: "expo.out" }, 24.2);
+      tl.from("#s4-cta", { scale: 0.85, opacity: 0, duration: 0.6, ease: "back.out(1.6)" }, 25.6);
+
+      window.__timelines["main"] = tl;
+    </script>
+  </body>
+</html>

@@ -24,7 +24,7 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const PROJECT_ROOT = path.join(__dirname, "..");
 const OUTLINES_DIR = path.join(PROJECT_ROOT, "src/tutorials/programming-fundamentals");
 const OUTPUT_DIR = path.join(PROJECT_ROOT, "scripts/youtube-metadata");
-const THUMBNAILS_DIR = path.join(PROJECT_ROOT, "thumbnails");
+const THUMBNAILS_DIR = path.join(PROJECT_ROOT, "thumbnails/long-form");
 
 // Series constants
 const SERIES_NAME = "Programming Fundamentals";
@@ -183,7 +183,7 @@ function generateMetadata(episode, outline, options = {}) {
     categoryId: "27", // Education
     language: "id",
     playlist: PLAYLIST_NAME,
-    thumbnail: `thumbnails/ep${epNumPadded}.png`,
+    thumbnail: `thumbnails/long-form/ep${epNumPadded}.png`,
   };
 
   if (options.schedule) {

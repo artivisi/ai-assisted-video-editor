@@ -1,0 +1,176 @@
+{
+  "segments": [
+    {
+      "id": "seg-0",
+      "start": 1.2400000000000002,
+      "end": 3.18,
+      "text": "Bismillahirrahmanirrahim, Assalamu'alaikum.",
+      "words": [
+        {
+          "word": " Bismillahirrahmanirrahim,",
+          "start": 1.2400000000000002,
+          "end": 2.2,
+          "confidence": 0.9521484375
+        },
+        {
+          "word": " Assalamu",
+          "start": 2.34,
+          "end": 2.64,
+          "confidence": 0.7236328125
+        },
+        {
+          "word": "'alaikum.",
+          "start": 2.64,
+          "end": 3.18,
+          "confidence": 0.97314453125
+        }
+      ]
+    },
+    {
+      "id": "seg-1",
+      "start": 3.64,
+      "end": 7.68,
+      "text": "Hari ini kita akan melanjutkan seri video programming fundamental.",
+      "words": [
+        {
+          "word": " Hari",
+          "start": 3.64,
+          "end": 3.68,
+          "confidence": 0.81103515625
+        },
+        {
+          "word": " ini",
+          "start": 3.68,
+          "end": 3.8,
+          "confidence": 0.99609375
+        },
+        {
+          "word": " kita",
+          "start": 3.8,
+          "end": 4.02,
+          "confidence": 0.9833984375
+        },
+        {
+          "word": " akan",
+          "start": 4.02,
+          "end": 4.28,
+          "confidence": 0.99365234375
+        },
+        {
+          "word": " melanjutkan",
+          "start": 4.28,
+          "end": 5.02,
+          "confidence": 0.9404296875
+        },
+        {
+          "word": " seri",
+          "start": 5.02,
+          "end": 6.12,
+          "confidence": 0.60693359375
+        },
+        {
+          "word": " video",
+          "start": 6.12,
+          "end": 6.66,
+          "confidence": 0.6533203125
+        },
+        {
+          "word": " programming",
+          "start": 6.66,
+          "end": 7.02,
+          "confidence": 0.406005859375
+        },
+        {
+          "word": " fundamental.",
+          "start": 7.02,
+          "end": 7.68,
+          "confidence": 0.94970703125
+        }
+      ]
+    },
+    {
+      "id": "seg-2",
+      "start": 8.94,
+      "end": 13.34,
+      "text": "Kita akan masuk ke materi statement dan komen.",
+      "words": [
+        {
+          "word": " Kita",
+          "start": 8.94,
+          "end": 9.1,
+          "confidence": 0.9580078125
+        },
+        {
+          "word": " akan",
+          "start": 9.1,
+          "end": 9.3,
+          "confidence": 0.99755859375
+        },
+        {
+          "word": " masuk",
+          "start": 9.3,
+          "end": 9.7,
+          "confidence": 0.99560546875
+        },
+        {
+          "word": " ke",
+          "start": 9.7,
+          "end": 10.44,
+          "confidence": 0.98583984375
+        },
+        {
+          "word": " materi",
+          "start": 10.44,
+          "end": 11.18,
+          "confidence": 0.8359375
+        },
+        {
+          "word": " statement",
+          "start": 11.18,
+          "end": 11.76,
+          "confidence": 0.89013671875
+        },
+        {
+          "word": " dan",
+          "start": 11.76,
+          "end": 12.92,
+          "confidence": 0.98486328125
+        },
+        {
+          "word": " komen.",
+          "start": 12.92,
+          "end": 13.34,
+          "confidence": 0.64453125
+        }
+      ]
+    },
+    {
+      "id": "seg-3",
+      "start": 13.84,
+      "end": 15.06,
+      "text": "Kita ikuti videonya.",
+      "words": [
+        {
+          "word": " Kita",
+          "start": 13.84,
+          "end": 14.08,
+          "confidence": 0.943359375
+        },
+        {
+          "word": " ikuti",
+          "start": 14.08,
+          "end": 14.62,
+          "confidence": 0.96484375
+        },
+        {
+          "word": " videonya.",
+          "start": 14.62,
+          "end": 15.06,
+          "confidence": 0.9853515625
+        }
+      ]
+    }
+  ],
+  "language": "id",
+  "duration": 15.06
+}

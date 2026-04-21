@@ -1,14 +1,29 @@
-# Remotion Video Projects
+# Remotion + HyperFrames Video Projects
 
-Video animations and tutorial compositions for ArtiVisi YouTube channel.
+Video animations, tutorial episodes, and YouTube Shorts for the ArtiVisi channel. Two pipelines live in this repo:
+
+- **Remotion** (root) — long-form 16:9 tutorial episodes authored in React
+- **HyperFrames** (`shorts/`, `bumpers-lab/`) — vertical 9:16 YouTube Shorts and bumper experiments authored in HTML + CSS + GSAP
 
 ## Quick Start
 
+**Remotion (long-form):**
+
 ```bash
 npm install
-npm start        # Preview in browser
+npm start        # Remotion Studio preview
 npm run build    # Bundle for rendering
 ```
+
+**HyperFrames (shorts / bumpers):**
+
+```bash
+cd shorts && npx hyperframes preview          # vertical Short preview
+cd shorts && npx hyperframes render           # render to MP4
+cd bumpers-lab && npx hyperframes preview     # bumper sandbox
+```
+
+Node.js 22+ and FFmpeg required for HyperFrames.
 
 ## Render Episodes
 
@@ -19,33 +34,58 @@ npm run build    # Bundle for rendering
 # Render individual compositions
 npx remotion render PFIntro out/pf-intro.mp4
 npx remotion render PFOutro out/pf-outro.mp4
+
+# Long videos — segmented rendering to avoid Chrome crashes
+./scripts/render-segments.sh PF06-Full rendered/ep06.mp4 5000
 ```
 
 ## Project Structure
 
 ```
-src/
+src/                               # Remotion (long-form) — React
 ├── animations/                    # Bumper animations (intro, outro, transitions)
 ├── components/                    # Reusable video components
 ├── tutorials/                     # Tutorial series content
 │   └── programming-fundamentals/  # 31-episode series
 │       ├── compositions/          # Full episode compositions
 │       ├── components/            # Animated diagrams
-│       ├── pf-01.ts ... pf-31.ts  # Episode outlines
+│       ├── pf-*-transcript.ts     # Whisper transcripts (TS)
 │       └── video-paths.ts         # Video file mappings
 └── assets/                        # Audio, icons, logos
 
+shorts/                            # HyperFrames — vertical 1080×1920 Shorts
+├── index.html                     # Main composition
+├── compositions/                  # Sub-compositions (data-composition-src)
+├── assets/clips        → ../public/footage     (symlink)
+├── assets/transcripts  → ../shared/transcripts (symlink)
+└── assets/audio        → ../src/assets/audio   (symlink)
+
+bumpers-lab/                       # HyperFrames — 1920×1080 bumper experiments
+└── (scaffolded as needed; winners graduate to src/animations/)
+
+shared/
+├── transcripts/                   # Whisper JSON (readable by both pipelines)
+└── assets/             → ../src/assets (symlink)
+
+public/footage/ep-XX/              # Raw camera + screen recordings
+rendered/                          # Long-form MP4 outputs
+thumbnails/
+├── long-form/                     # 1280×720 episode thumbnails
+└── shorts/                        # 1080×1920 Short thumbnails
+
 scripts/
 ├── episode-config/                # Episode render configurations
-├── render-from-config.sh          # Main render script
+├── render-from-config.sh          # Main long-form render script
+├── render-segments.sh             # Segmented render for long videos
+├── extract-transcripts.mjs        # TS transcripts → shared/transcripts/*.json
 ├── process-transcript.mjs         # Whisper JSON → Remotion format
 ├── sync-transcripts.mjs           # Sync camera/screen recordings
 ├── extract-cursor.py              # Cursor tracking for zoom/pan
 └── generate-zoom-keyframes.mjs    # Generate zoom keyframes
 
 docs/
-├── PRODUCTION-WORKFLOW.md         # Complete step-by-step guide
-├── COMPONENTS.md                  # Component reference
+├── PRODUCTION-WORKFLOW.md         # Complete long-form workflow
+├── COMPONENTS.md                  # Remotion component reference
 └── SCRIPTS.md                     # Script reference
 ```
 

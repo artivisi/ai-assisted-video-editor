@@ -2,6 +2,12 @@ node_modules
 dist
 build
 temp/
+
+# HyperFrames render outputs (shorts + bumper experiments)
+shorts/renders/
+shorts/node_modules/
+bumpers-lab/renders/
+bumpers-lab/node_modules/
 .DS_Store
 .env
 
