@@ -1,0 +1,7 @@
+Microservices versus monolithic. Quick comparison.
+
+Monoliths ship fast: one codebase, one deploy, simple ops. The downside? Scaling means scaling everything, even parts that don't need it.
+
+Microservices scale independently. Different teams, different stacks, different release cadences. The cost: network latency, distributed tracing, and operational overhead that grows with every service.
+
+Most teams should start with a monolith. Split when the seams hurt.

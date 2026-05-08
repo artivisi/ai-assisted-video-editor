@@ -1,0 +1,388 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" href="data:," />
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Rajdhani:wght@500;600;700&display=swap");
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html, body {
+        width: 1920px; height: 1080px;
+        overflow: hidden; background: #000;
+        font-family: "Rajdhani", sans-serif;
+      }
+    </style>
+  </head>
+  <body>
+    <div data-composition-id="hud-faithful-iron-man-narrated" data-start="0" data-duration="25" data-width="1920" data-height="1080">
+      <div class="video-wrap">
+        <video
+          id="bg-vid"
+          data-start="0"
+          data-duration="25"
+          data-track-index="0"
+          data-has-audio="true"
+          data-volume="0.18"
+          src="assets/narration-clip.mp4"
+          playsinline
+        ></video>
+      </div>
+      <audio
+        id="narr"
+        data-start="0"
+        data-duration="25"
+        data-track-index="2"
+        data-volume="1"
+        src="assets/narration.wav"
+      ></audio>
+
+      <div class="hud-layer">
+        <svg class="frame-svg" viewBox="0 0 1920 1080" width="1920" height="1080" aria-hidden="true">
+          <g class="frame-corners" stroke="#ff8c00" stroke-width="2.5" fill="none"
+             stroke-linecap="round" stroke-linejoin="round"
+             style="filter: drop-shadow(0 0 6px rgba(255, 140, 0, 0.7));">
+            <polyline points="40,140 40,40 140,40" />
+            <polyline points="60,160 60,60 160,60" />
+            <line x1="40" y1="40" x2="50" y2="40" stroke-width="3" />
+
+            <polyline points="1880,140 1880,40 1780,40" />
+            <polyline points="1860,160 1860,60 1760,60" />
+            <line x1="1880" y1="40" x2="1870" y2="40" stroke-width="3" />
+
+            <polyline points="40,940 40,1040 140,1040" />
+            <polyline points="60,920 60,1020 160,1020" />
+
+            <polyline points="1880,940 1880,1040 1780,1040" />
+            <polyline points="1860,920 1860,1020 1760,1020" />
+          </g>
+        </svg>
+
+        <div class="brand-strip">
+          <span class="bs-label">SYS</span>
+          <span class="bs-val">ARCHITECTURE</span>
+          <span class="bs-sep">/</span>
+          <span class="bs-mod">DECISION</span>
+        </div>
+
+        <div class="title-big" id="title-big">
+          <div class="tb-tag">// SYSTEM CALL</div>
+          <div class="tb-line">
+            <span class="kw-mono">MONOLITH</span>
+            <span class="op">VS</span>
+            <span class="kw-micro">MICROSERVICES</span>
+          </div>
+        </div>
+        <div class="title-small" id="title-small">
+          <span class="kw-mono">MONOLITH</span>
+          <span class="op">/</span>
+          <span class="kw-micro">MICROSERVICES</span>
+        </div>
+
+        <div class="stage">
+          <div class="col col-mono" id="col-mono">
+            <div class="col-head">
+              <span class="col-tag">[ A ]</span>
+              <span class="col-name">MONOLITH</span>
+            </div>
+            <div class="item ok"   data-step="0"><span class="dot"></span>FAST DEPLOY</div>
+            <div class="item ok"   data-step="1"><span class="dot"></span>SINGLE CODEBASE</div>
+            <div class="item ok"   data-step="2"><span class="dot"></span>SIMPLE OPS</div>
+            <div class="item warn" data-step="3"><span class="dot warn-dot"></span>SCALE LOCKED</div>
+          </div>
+
+          <div class="col col-micro" id="col-micro">
+            <div class="col-head">
+              <span class="col-tag">[ B ]</span>
+              <span class="col-name">MICROSERVICES</span>
+            </div>
+            <div class="item ok"   data-step="0"><span class="dot"></span>INDEPENDENT SCALE</div>
+            <div class="item ok"   data-step="1"><span class="dot"></span>MULTI-TEAM</div>
+            <div class="item ok"   data-step="2"><span class="dot"></span>MULTI-STACK</div>
+            <div class="item ok"   data-step="3"><span class="dot"></span>MULTI-RELEASE</div>
+            <div class="item warn" data-step="4"><span class="dot warn-dot"></span>NETWORK LATENCY</div>
+            <div class="item warn" data-step="5"><span class="dot warn-dot"></span>TRACE OVERHEAD</div>
+            <div class="item warn" data-step="6"><span class="dot warn-dot"></span>OPS COMPLEXITY</div>
+          </div>
+        </div>
+
+        <div class="verdict" id="verdict">
+          <div class="vtag">&gt; VERDICT</div>
+          <div class="vline" id="vline1">START AS <span class="vmono">MONOLITH</span></div>
+          <div class="vline" id="vline2">SPLIT WHEN <span class="vmicro">SEAMS HURT</span></div>
+        </div>
+
+        <div class="caption-band" id="caption-band"></div>
+
+        <div class="scan-line"></div>
+      </div>
+
+      <style>
+        [data-composition-id="hud-faithful-iron-man-narrated"] {
+          position: relative; width: 1920px; height: 1080px;
+          overflow: hidden;
+          color: #ff8c00;
+          font-family: "Rajdhani", sans-serif;
+        }
+        [data-composition-id="hud-faithful-iron-man-narrated"] .video-wrap { position: absolute; inset: 0; z-index: 1; }
+        [data-composition-id="hud-faithful-iron-man-narrated"] .video-wrap video { width: 1920px; height: 1080px; object-fit: cover; }
+        [data-composition-id="hud-faithful-iron-man-narrated"] .hud-layer { position: absolute; inset: 0; z-index: 2; pointer-events: none; }
+        [data-composition-id="hud-faithful-iron-man-narrated"] .frame-svg { position: absolute; inset: 0; }
+
+        [data-composition-id="hud-faithful-iron-man-narrated"] .brand-strip {
+          position: absolute; top: 90px; left: 110px;
+          background: rgba(0, 0, 0, 0.6);
+          border-left: 3px solid #ff8c00;
+          padding: 10px 22px;
+          font-family: "Orbitron", sans-serif;
+          font-size: 22px; font-weight: 700; letter-spacing: 4px;
+          color: #ff8c00;
+          text-shadow: 0 0 8px rgba(255, 140, 0, 0.7), 0 1px 0 #000;
+        }
+        [data-composition-id="hud-faithful-iron-man-narrated"] .bs-label { opacity: 0.7; margin-right: 12px; }
+        [data-composition-id="hud-faithful-iron-man-narrated"] .bs-val { color: #fff; text-shadow: 0 0 10px rgba(255, 140, 0, 0.9), 0 1px 0 #000; }
+        [data-composition-id="hud-faithful-iron-man-narrated"] .bs-sep { opacity: 0.5; margin: 0 10px; }
+        [data-composition-id="hud-faithful-iron-man-narrated"] .bs-mod { color: #00ffff; text-shadow: 0 0 8px rgba(0, 255, 255, 0.7), 0 1px 0 #000; }
+
+        [data-composition-id="hud-faithful-iron-man-narrated"] .title-big {
+          position: absolute; top: 340px; left: 0; right: 0;
+          text-align: center;
+          font-family: "Orbitron", sans-serif;
+          opacity: 0;
+        }
+        [data-composition-id="hud-faithful-iron-man-narrated"] .tb-tag {
+          font-size: 28px; font-weight: 600; letter-spacing: 8px;
+          color: #00ffff; opacity: 0.9;
+          text-shadow: 0 0 8px rgba(0, 255, 255, 0.7), 0 1px 0 #000;
+          margin-bottom: 18px;
+        }
+        [data-composition-id="hud-faithful-iron-man-narrated"] .tb-line {
+          font-size: 100px; font-weight: 900; line-height: 1.05; letter-spacing: 4px;
+        }
+        [data-composition-id="hud-faithful-iron-man-narrated"] .kw-mono  { color: #ff8c00; text-shadow: 0 0 18px rgba(255, 140, 0, 0.95), 0 0 3px #000; }
+        [data-composition-id="hud-faithful-iron-man-narrated"] .kw-micro { color: #fff; text-shadow: 0 0 18px rgba(255, 140, 0, 0.85), 0 0 3px #000; }
+        [data-composition-id="hud-faithful-iron-man-narrated"] .op { color: #00ffff; margin: 0 22px; opacity: 0.95; text-shadow: 0 0 12px rgba(0, 255, 255, 0.85), 0 1px 0 #000; }
+
+        [data-composition-id="hud-faithful-iron-man-narrated"] .title-small {
+          position: absolute; top: 90px; right: 110px;
+          font-family: "Orbitron", sans-serif;
+          font-size: 26px; font-weight: 700; letter-spacing: 3px;
+          background: rgba(0, 0, 0, 0.55);
+          border-right: 3px solid #ff8c00;
+          padding: 10px 22px;
+          opacity: 0;
+        }
+        [data-composition-id="hud-faithful-iron-man-narrated"] .title-small .kw-mono,
+        [data-composition-id="hud-faithful-iron-man-narrated"] .title-small .kw-micro {
+          font-size: 26px; font-weight: 700;
+        }
+
+        [data-composition-id="hud-faithful-iron-man-narrated"] .stage {
+          position: absolute;
+          top: 250px; left: 100px; right: 100px;
+          height: 600px;
+          display: flex; gap: 80px; justify-content: center;
+        }
+        [data-composition-id="hud-faithful-iron-man-narrated"] .col {
+          flex: 1; max-width: 800px;
+          background: rgba(0, 0, 0, 0.6);
+          padding: 28px 36px;
+          opacity: 0;
+        }
+        [data-composition-id="hud-faithful-iron-man-narrated"] .col-mono { border-left: 4px solid #ff8c00; }
+        [data-composition-id="hud-faithful-iron-man-narrated"] .col-micro { border-left: 4px solid #00ffff; }
+
+        [data-composition-id="hud-faithful-iron-man-narrated"] .col-head {
+          display: flex; align-items: baseline; gap: 16px;
+          font-family: "Orbitron", sans-serif;
+          padding-bottom: 16px; margin-bottom: 16px;
+          border-bottom: 1px solid rgba(255, 140, 0, 0.4);
+        }
+        [data-composition-id="hud-faithful-iron-man-narrated"] .col-tag {
+          font-family: "Rajdhani", sans-serif;
+          font-size: 24px; font-weight: 700; color: #ff8c00; letter-spacing: 2px;
+          text-shadow: 0 0 8px rgba(255, 140, 0, 0.7), 0 1px 0 #000;
+        }
+        [data-composition-id="hud-faithful-iron-man-narrated"] .col-name {
+          font-size: 42px; font-weight: 900; letter-spacing: 4px;
+          color: #fff;
+        }
+        [data-composition-id="hud-faithful-iron-man-narrated"] .col-mono .col-name { text-shadow: 0 0 14px #ff8c00, 0 0 3px #000; }
+        [data-composition-id="hud-faithful-iron-man-narrated"] .col-micro .col-name { text-shadow: 0 0 14px #ff8c00, 0 0 3px #000; }
+
+        [data-composition-id="hud-faithful-iron-man-narrated"] .item {
+          font-family: "Orbitron", sans-serif;
+          font-size: 30px; font-weight: 700; letter-spacing: 2px;
+          padding: 8px 0; opacity: 0;
+          color: #fff;
+          text-shadow: 0 0 8px rgba(255, 140, 0, 0.65), 0 1px 0 #000;
+          display: flex; align-items: center; gap: 14px;
+        }
+        [data-composition-id="hud-faithful-iron-man-narrated"] .dot {
+          width: 12px; height: 12px;
+          background: #ff8c00; border-radius: 50%;
+          box-shadow: 0 0 12px #ff8c00, 0 0 2px #000;
+          flex-shrink: 0;
+        }
+        [data-composition-id="hud-faithful-iron-man-narrated"] .warn-dot {
+          background: #ff3030;
+          box-shadow: 0 0 12px #ff3030, 0 0 2px #000;
+        }
+        [data-composition-id="hud-faithful-iron-man-narrated"] .item.warn {
+          color: #ffd0c0;
+          text-shadow: 0 0 8px rgba(255, 60, 60, 0.6), 0 1px 0 #000;
+        }
+
+        [data-composition-id="hud-faithful-iron-man-narrated"] .verdict {
+          position: absolute;
+          top: 870px; left: 0; right: 0;
+          text-align: center;
+          font-family: "Orbitron", sans-serif;
+          opacity: 0;
+        }
+        [data-composition-id="hud-faithful-iron-man-narrated"] .vtag {
+          font-size: 18px; letter-spacing: 8px; color: #00ffff;
+          text-shadow: 0 0 8px rgba(0, 255, 255, 0.7), 0 1px 0 #000;
+          margin-bottom: 8px;
+        }
+        [data-composition-id="hud-faithful-iron-man-narrated"] .vline {
+          font-size: 36px; font-weight: 700; letter-spacing: 3px; line-height: 1.3;
+          color: #fff;
+          text-shadow: 0 0 10px rgba(255, 140, 0, 0.65), 0 1px 0 #000;
+        }
+        [data-composition-id="hud-faithful-iron-man-narrated"] .vmono  { color: #ff8c00; text-shadow: 0 0 14px #ff8c00, 0 1px 0 #000; }
+        [data-composition-id="hud-faithful-iron-man-narrated"] .vmicro { color: #00ffff; text-shadow: 0 0 14px #00ffff, 0 1px 0 #000; }
+        [data-composition-id="hud-faithful-iron-man-narrated"] #vline2 { opacity: 0; }
+
+        [data-composition-id="hud-faithful-iron-man-narrated"] .caption-band {
+          position: absolute;
+          left: 0; right: 0; bottom: 130px;
+          text-align: center;
+          pointer-events: none;
+        }
+        [data-composition-id="hud-faithful-iron-man-narrated"] .caption-group {
+          display: inline-block;
+          background: rgba(0, 0, 0, 0.7);
+          border-left: 3px solid #ff8c00;
+          border-right: 3px solid #ff8c00;
+          padding: 14px 36px;
+          font-family: "Rajdhani", sans-serif;
+          font-size: 42px; font-weight: 700; letter-spacing: 1px;
+          color: #fff;
+          text-shadow: 0 0 10px rgba(255, 140, 0, 0.65), 0 1px 0 #000;
+          opacity: 0;
+          max-width: 1500px;
+        }
+
+        [data-composition-id="hud-faithful-iron-man-narrated"] .scan-line {
+          position: absolute; left: 0; right: 0; top: 0;
+          height: 110px; transform: translateY(-110px);
+          background: linear-gradient(180deg,
+            rgba(255, 140, 0, 0) 0%,
+            rgba(255, 140, 0, 0.12) 50%,
+            rgba(255, 140, 0, 0) 100%);
+          mix-blend-mode: screen;
+          will-change: transform;
+        }
+      </style>
+
+      <script>
+        window.__timelines = window.__timelines || {};
+        const tl = gsap.timeline({ paused: true });
+
+        // --- Frame entrance ---
+        tl.from(".frame-corners > *", { opacity: 0, scale: 0.7, transformOrigin: "center", duration: 0.5, ease: "expo.out", stagger: 0.04 }, 0.15);
+        tl.from(".brand-strip", { x: -30, opacity: 0, duration: 0.5, ease: "power3.out" }, 0.3);
+
+        // --- Big title ---
+        tl.to("#title-big", { opacity: 1, duration: 0.5, ease: "power2.out" }, 0.3);
+        tl.from("#title-big .tb-tag",  { y: -20, opacity: 0, duration: 0.4, ease: "power2.out" }, 0.4);
+        tl.from("#title-big .tb-line", { scale: 0.85, opacity: 0, duration: 0.7, ease: "back.out(1.6)", transformOrigin: "center" }, 0.55);
+        tl.to("#title-big", { opacity: 0, scale: 0.92, duration: 0.4, ease: "power2.in", transformOrigin: "center" }, 2.6);
+
+        // --- Small title persists ---
+        tl.to("#title-small", { opacity: 1, duration: 0.4, ease: "power2.out" }, 3.0);
+        tl.from("#title-small", { x: 30, duration: 0.4, ease: "power2.out" }, 3.0);
+
+        // --- Mono column ---
+        tl.to("#col-mono", { opacity: 1, duration: 0.5, ease: "power3.out" }, 3.5);
+        tl.from("#col-mono .col-head", { x: -20, opacity: 0, duration: 0.4, ease: "power3.out" }, 3.6);
+
+        const monoItems = [
+          { sel: '#col-mono .item[data-step="0"]', t: 4.2 },
+          { sel: '#col-mono .item[data-step="1"]', t: 4.95 },
+          { sel: '#col-mono .item[data-step="2"]', t: 6.05 },
+          { sel: '#col-mono .item[data-step="3"]', t: 7.7 },
+        ];
+        monoItems.forEach(it => {
+          tl.to(it.sel, { opacity: 1, duration: 0.45, ease: "power2.out" }, it.t);
+          tl.from(it.sel, { x: -16, duration: 0.45, ease: "power2.out" }, it.t);
+        });
+
+        // --- Micro column ---
+        tl.to("#col-micro", { opacity: 1, duration: 0.5, ease: "power3.out" }, 10.9);
+        tl.from("#col-micro .col-head", { x: -20, opacity: 0, duration: 0.4, ease: "power3.out" }, 11.0);
+
+        const microItems = [
+          { sel: '#col-micro .item[data-step="0"]', t: 11.5 },
+          { sel: '#col-micro .item[data-step="1"]', t: 12.95 },
+          { sel: '#col-micro .item[data-step="2"]', t: 13.65 },
+          { sel: '#col-micro .item[data-step="3"]', t: 14.4 },
+          { sel: '#col-micro .item[data-step="4"]', t: 16.6 },
+          { sel: '#col-micro .item[data-step="5"]', t: 17.6 },
+          { sel: '#col-micro .item[data-step="6"]', t: 18.7 },
+        ];
+        microItems.forEach(it => {
+          tl.to(it.sel, { opacity: 1, duration: 0.4, ease: "power2.out" }, it.t);
+          tl.from(it.sel, { x: -16, duration: 0.4, ease: "power2.out" }, it.t);
+        });
+
+        // --- Verdict ---
+        tl.to("#verdict", { opacity: 1, duration: 0.4, ease: "power2.out" }, 21.5);
+        tl.from("#verdict .vtag", { y: -10, duration: 0.4, ease: "power2.out" }, 21.5);
+        tl.from("#vline1", { y: 18, duration: 0.5, ease: "power3.out" }, 21.6);
+        tl.to("#vline2", { opacity: 1, duration: 0.4, ease: "power2.out" }, 23.6);
+        tl.from("#vline2", { y: 18, duration: 0.4, ease: "power2.out" }, 23.6);
+
+        // --- Scan line: 6 sweeps, period 3.7s ---
+        tl.fromTo(".scan-line",
+          { y: -110 },
+          { y: 1080, duration: 1.6, ease: "power2.in", repeat: 5, repeatDelay: 2.1 },
+          1.0);
+
+        // --- Captions ---
+        const CAPTIONS = [
+          { start: 0.20, end: 1.96, text: "Microservices vs monolithic" },
+          { start: 2.28, end: 3.30, text: "Quick comparison" },
+          { start: 3.66, end: 4.74, text: "Monoliths ship fast" },
+          { start: 4.76, end: 6.80, text: "One codebase, one deploy, simple ops" },
+          { start: 6.84, end: 7.70, text: "The downside?" },
+          { start: 7.80, end: 9.46, text: "Scaling means scaling everything" },
+          { start: 9.52, end: 10.80, text: "Even parts that don't need it" },
+          { start: 10.96, end: 12.62, text: "Microservices scale independently" },
+          { start: 12.92, end: 15.58, text: "Different teams, stacks, cadences" },
+          { start: 15.90, end: 17.50, text: "The cost: network latency" },
+          { start: 17.55, end: 18.95, text: "Distributed tracing" },
+          { start: 18.96, end: 21.20, text: "Operational overhead per service" },
+          { start: 21.52, end: 23.45, text: "Start with a monolith" },
+          { start: 23.66, end: 24.95, text: "Split when the seams hurt" },
+        ];
+
+        const captionBand = document.getElementById("caption-band");
+        CAPTIONS.forEach((c, i) => {
+          const el = document.createElement("div");
+          el.id = "cg-" + i;
+          el.className = "caption-group";
+          el.textContent = c.text;
+          captionBand.appendChild(el);
+          tl.to("#cg-" + i, { opacity: 1, duration: 0.18, ease: "power2.out" }, c.start);
+          tl.from("#cg-" + i, { y: 12, duration: 0.22, ease: "power2.out" }, c.start);
+          tl.to("#cg-" + i, { opacity: 0, duration: 0.14, ease: "power2.in" }, c.end - 0.14);
+          tl.set("#cg-" + i, { opacity: 0, visibility: "hidden" }, c.end);
+        });
+
+        window.__timelines["hud-faithful-iron-man-narrated"] = tl;
+      </script>
+    </div>
+  </body>
+</html>

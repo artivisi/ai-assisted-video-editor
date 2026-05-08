@@ -1,0 +1,321 @@
+{
+  "text": "Microservices versus monolithic. Quick comparison. Monolith ship fast, one code base, one deploy, simple ops. The downside, scaling means scaling everything, even parts that don't need it. Microservices scale independently. Different teams, different stacks, different release cadences. The cost, network latency, distributed tracing and operational overhead that grows with every service. Most teams should start with a monolith. Split when the seams hurt.",
+  "words": [
+    {
+      "word": "Microservices",
+      "start": 0.0,
+      "end": 0.66
+    },
+    {
+      "word": "versus",
+      "start": 0.66,
+      "end": 1.14
+    },
+    {
+      "word": "monolithic.",
+      "start": 1.14,
+      "end": 1.76
+    },
+    {
+      "word": "Quick",
+      "start": 2.28,
+      "end": 2.34
+    },
+    {
+      "word": "comparison.",
+      "start": 2.34,
+      "end": 2.86
+    },
+    {
+      "word": "Monolith",
+      "start": 3.66,
+      "end": 3.92
+    },
+    {
+      "word": "ship",
+      "start": 3.92,
+      "end": 4.2
+    },
+    {
+      "word": "fast,",
+      "start": 4.2,
+      "end": 4.54
+    },
+    {
+      "word": "one",
+      "start": 4.76,
+      "end": 4.88
+    },
+    {
+      "word": "code",
+      "start": 4.88,
+      "end": 5.14
+    },
+    {
+      "word": "base,",
+      "start": 5.14,
+      "end": 5.36
+    },
+    {
+      "word": "one",
+      "start": 5.48,
+      "end": 5.6
+    },
+    {
+      "word": "deploy,",
+      "start": 5.6,
+      "end": 5.88
+    },
+    {
+      "word": "simple",
+      "start": 6.06,
+      "end": 6.32
+    },
+    {
+      "word": "ops.",
+      "start": 6.32,
+      "end": 6.6
+    },
+    {
+      "word": "The",
+      "start": 6.84,
+      "end": 6.92
+    },
+    {
+      "word": "downside,",
+      "start": 6.92,
+      "end": 7.38
+    },
+    {
+      "word": "scaling",
+      "start": 7.8,
+      "end": 8.08
+    },
+    {
+      "word": "means",
+      "start": 8.08,
+      "end": 8.38
+    },
+    {
+      "word": "scaling",
+      "start": 8.38,
+      "end": 8.84
+    },
+    {
+      "word": "everything,",
+      "start": 8.84,
+      "end": 9.26
+    },
+    {
+      "word": "even",
+      "start": 9.52,
+      "end": 9.6
+    },
+    {
+      "word": "parts",
+      "start": 9.6,
+      "end": 9.86
+    },
+    {
+      "word": "that",
+      "start": 9.86,
+      "end": 10.04
+    },
+    {
+      "word": "don't",
+      "start": 10.04,
+      "end": 10.24
+    },
+    {
+      "word": "need",
+      "start": 10.24,
+      "end": 10.44
+    },
+    {
+      "word": "it.",
+      "start": 10.44,
+      "end": 10.6
+    },
+    {
+      "word": "Microservices",
+      "start": 10.96,
+      "end": 11.48
+    },
+    {
+      "word": "scale",
+      "start": 11.48,
+      "end": 11.88
+    },
+    {
+      "word": "independently.",
+      "start": 11.88,
+      "end": 12.42
+    },
+    {
+      "word": "Different",
+      "start": 12.92,
+      "end": 13.12
+    },
+    {
+      "word": "teams,",
+      "start": 13.12,
+      "end": 13.44
+    },
+    {
+      "word": "different",
+      "start": 13.62,
+      "end": 13.82
+    },
+    {
+      "word": "stacks,",
+      "start": 13.82,
+      "end": 14.16
+    },
+    {
+      "word": "different",
+      "start": 14.34,
+      "end": 14.56
+    },
+    {
+      "word": "release",
+      "start": 14.56,
+      "end": 14.86
+    },
+    {
+      "word": "cadences.",
+      "start": 14.86,
+      "end": 15.38
+    },
+    {
+      "word": "The",
+      "start": 15.9,
+      "end": 16.02
+    },
+    {
+      "word": "cost,",
+      "start": 16.02,
+      "end": 16.32
+    },
+    {
+      "word": "network",
+      "start": 16.58,
+      "end": 16.82
+    },
+    {
+      "word": "latency,",
+      "start": 16.82,
+      "end": 17.42
+    },
+    {
+      "word": "distributed",
+      "start": 17.58,
+      "end": 17.96
+    },
+    {
+      "word": "tracing",
+      "start": 17.96,
+      "end": 18.4
+    },
+    {
+      "word": "and",
+      "start": 18.4,
+      "end": 18.66
+    },
+    {
+      "word": "operational",
+      "start": 18.66,
+      "end": 19.12
+    },
+    {
+      "word": "overhead",
+      "start": 19.12,
+      "end": 19.66
+    },
+    {
+      "word": "that",
+      "start": 19.66,
+      "end": 19.9
+    },
+    {
+      "word": "grows",
+      "start": 19.9,
+      "end": 20.14
+    },
+    {
+      "word": "with",
+      "start": 20.14,
+      "end": 20.38
+    },
+    {
+      "word": "every",
+      "start": 20.38,
+      "end": 20.64
+    },
+    {
+      "word": "service.",
+      "start": 20.64,
+      "end": 21.04
+    },
+    {
+      "word": "Most",
+      "start": 21.52,
+      "end": 21.7
+    },
+    {
+      "word": "teams",
+      "start": 21.7,
+      "end": 22.06
+    },
+    {
+      "word": "should",
+      "start": 22.06,
+      "end": 22.28
+    },
+    {
+      "word": "start",
+      "start": 22.28,
+      "end": 22.54
+    },
+    {
+      "word": "with",
+      "start": 22.54,
+      "end": 22.68
+    },
+    {
+      "word": "a",
+      "start": 22.68,
+      "end": 22.8
+    },
+    {
+      "word": "monolith.",
+      "start": 22.8,
+      "end": 23.28
+    },
+    {
+      "word": "Split",
+      "start": 23.66,
+      "end": 23.9
+    },
+    {
+      "word": "when",
+      "start": 23.9,
+      "end": 24.06
+    },
+    {
+      "word": "the",
+      "start": 24.06,
+      "end": 24.22
+    },
+    {
+      "word": "seams",
+      "start": 24.22,
+      "end": 24.42
+    },
+    {
+      "word": "hurt.",
+      "start": 24.42,
+      "end": 24.74
+    }
+  ],
+  "duration": 24.74
+}

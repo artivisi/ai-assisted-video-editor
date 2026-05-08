@@ -1,0 +1,263 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" href="data:," />
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Orbitron:wght@500;700;900&display=swap");
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html, body {
+        width: 1920px; height: 1080px;
+        overflow: hidden; background: #000;
+        font-family: "JetBrains Mono", monospace;
+      }
+    </style>
+  </head>
+  <body>
+    <div data-composition-id="hud-coding-iron-man" data-start="0" data-width="1920" data-height="1080">
+      <div class="video-wrap">
+        <video
+          id="bg-vid"
+          data-start="0"
+          data-duration="8"
+          data-track-index="0"
+          data-has-audio="true"
+          src="assets/sample-clip.mp4"
+          playsinline
+        ></video>
+      </div>
+
+      <div class="hud-layer">
+        <div class="bracket bracket-tl"></div>
+        <div class="bracket bracket-tr"></div>
+        <div class="bracket bracket-bl"></div>
+        <div class="bracket bracket-br"></div>
+
+        <div class="panel tl-commit">
+          <div class="panel-label">COMMIT</div>
+          <div class="panel-value mono">7a4f9c2</div>
+          <div class="panel-meta">branch &middot; main</div>
+        </div>
+
+        <div class="panel tr-build">
+          <div class="row"><span class="check">&check;</span> TESTS <b>47/47</b></div>
+          <div class="row">BUILD <b>2.4<span class="unit">ms</span></b></div>
+          <div class="row sub">node v22.4.1</div>
+        </div>
+
+        <div class="trace bl-trace">
+          <div class="trace-row">&gt; renderHUD()</div>
+          <div class="trace-row">&gt;&nbsp; compositeFrame()</div>
+          <div class="trace-row">&gt;&nbsp;&nbsp; shaders.glow()</div>
+          <div class="trace-row trace-tail">&gt;&nbsp;&nbsp;&nbsp; <span class="ms">[12.4ms]</span></div>
+        </div>
+
+        <div class="panel br-deploy">
+          <div class="panel-label">DEPLOY</div>
+          <div class="status-pulse"></div>
+          <div class="panel-value">READY</div>
+        </div>
+
+        <svg class="reticle" viewBox="0 0 200 200" width="220" height="220" aria-hidden="true">
+          <polygon points="100,16 173,58 173,142 100,184 27,142 27,58"
+                   fill="none" stroke="#00d9ff" stroke-width="2" />
+          <g class="reticle-spinner">
+            <polygon points="100,46 142,70 142,130 100,154 58,130 58,70"
+                     fill="none" stroke="#ff8a3d" stroke-width="1.4"
+                     stroke-dasharray="6 4"
+                     transform="translate(-100 -100)" style="transform-box: fill-box; transform-origin: center;" />
+          </g>
+          <line x1="100" y1="0"   x2="100" y2="20"  stroke="#00d9ff" stroke-width="2"/>
+          <line x1="100" y1="180" x2="100" y2="200" stroke="#00d9ff" stroke-width="2"/>
+          <line x1="0"   y1="100" x2="20"  y2="100" stroke="#00d9ff" stroke-width="2"/>
+          <line x1="180" y1="100" x2="200" y2="100" stroke="#00d9ff" stroke-width="2"/>
+          <circle cx="100" cy="100" r="3" fill="#ff8a3d"/>
+        </svg>
+
+        <div class="scan-line"></div>
+      </div>
+
+      <style>
+        [data-composition-id="hud-coding-iron-man"] {
+          position: relative; width: 1920px; height: 1080px;
+          overflow: hidden;
+          font-family: "JetBrains Mono", monospace;
+          color: #00d9ff;
+        }
+        [data-composition-id="hud-coding-iron-man"] .video-wrap {
+          position: absolute; inset: 0; z-index: 1;
+        }
+        [data-composition-id="hud-coding-iron-man"] .video-wrap video {
+          width: 1920px; height: 1080px; object-fit: cover;
+        }
+        [data-composition-id="hud-coding-iron-man"] .hud-layer {
+          position: absolute; inset: 0; z-index: 2; pointer-events: none;
+        }
+
+        [data-composition-id="hud-coding-iron-man"] .bracket {
+          position: absolute; width: 90px; height: 90px;
+        }
+        [data-composition-id="hud-coding-iron-man"] .bracket-tl {
+          top: 24px; left: 24px;
+          border-top: 3px solid #ff8a3d; border-left: 3px solid #ff8a3d;
+          filter: drop-shadow(0 0 6px rgba(255, 138, 61, 0.6));
+        }
+        [data-composition-id="hud-coding-iron-man"] .bracket-tr {
+          top: 24px; right: 24px;
+          border-top: 3px solid #ff8a3d; border-right: 3px solid #ff8a3d;
+          filter: drop-shadow(0 0 6px rgba(255, 138, 61, 0.6));
+        }
+        [data-composition-id="hud-coding-iron-man"] .bracket-bl {
+          bottom: 24px; left: 24px;
+          border-bottom: 3px solid #ff8a3d; border-left: 3px solid #ff8a3d;
+          filter: drop-shadow(0 0 6px rgba(255, 138, 61, 0.6));
+        }
+        [data-composition-id="hud-coding-iron-man"] .bracket-br {
+          bottom: 24px; right: 24px;
+          border-bottom: 3px solid #ff8a3d; border-right: 3px solid #ff8a3d;
+          filter: drop-shadow(0 0 6px rgba(255, 138, 61, 0.6));
+        }
+
+        [data-composition-id="hud-coding-iron-man"] .panel {
+          position: absolute;
+          background: rgba(0, 14, 26, 0.72);
+          border: 1px solid rgba(0, 217, 255, 0.55);
+          padding: 18px 24px;
+          color: #00d9ff;
+          text-shadow: 0 0 6px rgba(0, 217, 255, 0.65), 0 1px 0 #000;
+          letter-spacing: 0.5px;
+        }
+        [data-composition-id="hud-coding-iron-man"] .panel::before,
+        [data-composition-id="hud-coding-iron-man"] .panel::after {
+          content: ""; position: absolute; width: 14px; height: 14px;
+        }
+        [data-composition-id="hud-coding-iron-man"] .panel::before {
+          top: -2px; left: -2px;
+          border-top: 2px solid #ff8a3d; border-left: 2px solid #ff8a3d;
+        }
+        [data-composition-id="hud-coding-iron-man"] .panel::after {
+          bottom: -2px; right: -2px;
+          border-bottom: 2px solid #ff8a3d; border-right: 2px solid #ff8a3d;
+        }
+
+        [data-composition-id="hud-coding-iron-man"] .tl-commit {
+          top: 80px; left: 80px; min-width: 300px;
+        }
+        [data-composition-id="hud-coding-iron-man"] .tr-build {
+          top: 80px; right: 80px; min-width: 320px; text-align: right;
+        }
+        [data-composition-id="hud-coding-iron-man"] .br-deploy {
+          bottom: 80px; right: 80px; min-width: 220px; text-align: center;
+        }
+
+        [data-composition-id="hud-coding-iron-man"] .panel-label {
+          font-size: 20px; opacity: 0.7; font-weight: 500; letter-spacing: 3px;
+        }
+        [data-composition-id="hud-coding-iron-man"] .panel-value {
+          font-size: 42px; font-weight: 700;
+          font-family: "Orbitron", sans-serif;
+          margin-top: 4px;
+          font-variant-numeric: tabular-nums;
+          color: #ffffff;
+          text-shadow: 0 0 10px rgba(0, 217, 255, 0.9), 0 0 2px #000;
+        }
+        [data-composition-id="hud-coding-iron-man"] .panel-value.mono {
+          font-family: "JetBrains Mono", monospace;
+          font-size: 38px;
+        }
+        [data-composition-id="hud-coding-iron-man"] .panel-meta {
+          font-size: 18px; opacity: 0.65; margin-top: 6px;
+        }
+        [data-composition-id="hud-coding-iron-man"] .row {
+          font-size: 26px; line-height: 1.5; font-weight: 500;
+        }
+        [data-composition-id="hud-coding-iron-man"] .row.sub {
+          font-size: 18px; opacity: 0.65; margin-top: 4px;
+        }
+        [data-composition-id="hud-coding-iron-man"] .row b {
+          font-family: "Orbitron", sans-serif; font-weight: 700;
+          color: #ffffff; text-shadow: 0 0 8px #00d9ff, 0 0 2px #000;
+          font-variant-numeric: tabular-nums; margin-left: 6px;
+        }
+        [data-composition-id="hud-coding-iron-man"] .row .unit {
+          font-size: 18px; opacity: 0.7;
+        }
+        [data-composition-id="hud-coding-iron-man"] .row .check {
+          color: #00ff88; text-shadow: 0 0 8px #00ff88, 0 0 2px #000;
+          margin-right: 6px; font-weight: 700;
+        }
+
+        [data-composition-id="hud-coding-iron-man"] .trace.bl-trace {
+          position: absolute; bottom: 80px; left: 80px;
+          font-family: "JetBrains Mono", monospace;
+          font-size: 24px; line-height: 1.4;
+        }
+        [data-composition-id="hud-coding-iron-man"] .trace-row {
+          background: rgba(0, 14, 26, 0.7);
+          border-left: 3px solid #ff8a3d;
+          padding: 6px 16px; margin-top: 6px;
+          color: #00d9ff;
+          text-shadow: 0 0 6px rgba(0, 217, 255, 0.65), 0 1px 0 #000;
+          white-space: pre;
+        }
+        [data-composition-id="hud-coding-iron-man"] .trace-tail .ms {
+          color: #ff8a3d; text-shadow: 0 0 6px rgba(255, 138, 61, 0.7), 0 1px 0 #000;
+        }
+
+        [data-composition-id="hud-coding-iron-man"] .reticle {
+          position: absolute; top: 50%; left: 50%;
+          transform: translate(-50%, -50%);
+          opacity: 0.85;
+          filter: drop-shadow(0 0 8px #00d9ff);
+        }
+
+        [data-composition-id="hud-coding-iron-man"] .status-pulse {
+          width: 16px; height: 16px; border-radius: 50%;
+          background: #00ff88;
+          margin: 8px auto;
+          box-shadow: 0 0 14px #00ff88, 0 0 2px #000;
+        }
+
+        [data-composition-id="hud-coding-iron-man"] .scan-line {
+          position: absolute; left: 0; right: 0; top: 0;
+          height: 90px; transform: translateY(-90px);
+          background: linear-gradient(180deg,
+            rgba(0, 217, 255, 0) 0%,
+            rgba(0, 217, 255, 0.12) 45%,
+            rgba(0, 217, 255, 0.22) 50%,
+            rgba(0, 217, 255, 0.12) 55%,
+            rgba(0, 217, 255, 0) 100%);
+          mix-blend-mode: screen;
+          will-change: transform;
+        }
+      </style>
+
+      <script>
+        window.__timelines = window.__timelines || {};
+        const tl = gsap.timeline({ paused: true });
+
+        tl.from(".bracket", { scale: 0.4, opacity: 0, duration: 0.5, ease: "back.out(2)", stagger: 0.05 }, 0.15);
+        tl.from(".tl-commit", { x: -40, opacity: 0, duration: 0.5, ease: "power3.out" }, 0.3);
+        tl.from(".tr-build",  { x:  40, opacity: 0, duration: 0.5, ease: "power3.out" }, 0.4);
+        tl.from(".br-deploy", { y:  30, opacity: 0, duration: 0.5, ease: "power2.out" }, 0.55);
+        tl.from(".reticle",   { scale: 0.6, opacity: 0, duration: 0.6, ease: "expo.out" }, 0.5);
+        tl.from(".trace-row", { x: -20, opacity: 0, duration: 0.4, stagger: 0.18, ease: "power2.out" }, 1.0);
+
+        // Reticle inner ring rotation: full 360 over 8s
+        tl.to(".reticle-spinner", { rotation: 360, transformOrigin: "100px 100px", duration: 8, ease: "none" }, 0);
+
+        // Status pulse: 5 blinks (yoyo), running 1.0s..5.0s
+        tl.to(".status-pulse", { opacity: 0.25, duration: 0.4, ease: "sine.inOut", yoyo: true, repeat: 9 }, 1.0);
+
+        // Scan line: 3 sweeps top->bottom, period 2.6s starting at 0.6s
+        tl.fromTo(".scan-line",
+          { y: -90 },
+          { y: 1080, duration: 1.3, ease: "power1.in", repeat: 2, repeatDelay: 1.3 },
+          0.6);
+
+        window.__timelines["hud-coding-iron-man"] = tl;
+      </script>
+    </div>
+  </body>
+</html>

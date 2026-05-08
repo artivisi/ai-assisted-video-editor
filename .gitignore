@@ -3,11 +3,16 @@ dist
 build
 temp/
 
-# HyperFrames render outputs and node_modules (shorts + bumper experiments)
+# HyperFrames render outputs and node_modules (shorts + bumper experiments + vlog HUD)
 shorts/**/renders/
 shorts/**/node_modules/
 bumpers-lab/**/renders/
 bumpers-lab/**/node_modules/
+vlog-hud/**/renders/
+vlog-hud/**/node_modules/
+
+# Vlog HUD derivative assets (regenerated from narration.txt + ../vlog source MOV)
+vlog-hud/narration.wav
 .DS_Store
 .env
 

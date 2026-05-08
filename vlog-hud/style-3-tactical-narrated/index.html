@@ -1,0 +1,378 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" href="data:," />
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&display=swap");
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html, body {
+        width: 1920px; height: 1080px;
+        overflow: hidden; background: #000;
+        font-family: "JetBrains Mono", monospace;
+      }
+    </style>
+  </head>
+  <body>
+    <div data-composition-id="hud-tactical-narrated" data-start="0" data-duration="25" data-width="1920" data-height="1080">
+      <div class="video-wrap">
+        <video
+          id="bg-vid"
+          data-start="0"
+          data-duration="25"
+          data-track-index="0"
+          data-has-audio="true"
+          data-volume="0.18"
+          src="assets/narration-clip.mp4"
+          playsinline
+        ></video>
+      </div>
+      <audio
+        id="narr"
+        data-start="0"
+        data-duration="25"
+        data-track-index="2"
+        data-volume="1"
+        src="assets/narration.wav"
+      ></audio>
+
+      <div class="hud-layer">
+        <div class="corner corner-tl"></div>
+        <div class="corner corner-tr"></div>
+        <div class="corner corner-bl"></div>
+        <div class="corner corner-br"></div>
+
+        <div class="brand-strip">
+          <span class="bs-tag">[REC]</span>
+          <span class="bs-mod">DECISION-LOG</span>
+          <span class="bs-id">/ ARCH-001</span>
+        </div>
+
+        <div class="title-big" id="title-big">
+          <div class="tb-pre">// ADVISORY :: ARCHITECTURE</div>
+          <div class="tb-line">
+            <span class="kw-mono">MONOLITH</span>
+            <span class="op">VS</span>
+            <span class="kw-micro">MICROSERVICES</span>
+          </div>
+        </div>
+        <div class="title-small" id="title-small">
+          [ MONOLITH / MICROSERVICES ]
+        </div>
+
+        <div class="stage">
+          <div class="col col-mono" id="col-mono">
+            <div class="col-head">
+              <span class="col-tag">A</span>
+              <span class="col-name">MONOLITH</span>
+              <span class="col-meta">[ 4 NOTES ]</span>
+            </div>
+            <div class="item ok"   data-step="0"><span class="bullet">+</span><span class="key">DEPLOY</span><span class="sep">::</span><span class="val">FAST</span></div>
+            <div class="item ok"   data-step="1"><span class="bullet">+</span><span class="key">BASE  </span><span class="sep">::</span><span class="val">SINGLE</span></div>
+            <div class="item ok"   data-step="2"><span class="bullet">+</span><span class="key">OPS   </span><span class="sep">::</span><span class="val">SIMPLE</span></div>
+            <div class="item warn" data-step="3"><span class="bullet warn-b">!</span><span class="key">SCALE </span><span class="sep">::</span><span class="val">COUPLED</span></div>
+          </div>
+
+          <div class="col col-micro" id="col-micro">
+            <div class="col-head">
+              <span class="col-tag">B</span>
+              <span class="col-name">MICROSERVICES</span>
+              <span class="col-meta">[ 7 NOTES ]</span>
+            </div>
+            <div class="item ok"   data-step="0"><span class="bullet">+</span><span class="key">SCALE   </span><span class="sep">::</span><span class="val">PER-SVC</span></div>
+            <div class="item ok"   data-step="1"><span class="bullet">+</span><span class="key">TEAMS   </span><span class="sep">::</span><span class="val">MULTI</span></div>
+            <div class="item ok"   data-step="2"><span class="bullet">+</span><span class="key">STACKS  </span><span class="sep">::</span><span class="val">MULTI</span></div>
+            <div class="item ok"   data-step="3"><span class="bullet">+</span><span class="key">RELEASE </span><span class="sep">::</span><span class="val">MULTI</span></div>
+            <div class="item warn" data-step="4"><span class="bullet warn-b">!</span><span class="key">LATENCY </span><span class="sep">::</span><span class="val">+50MS</span></div>
+            <div class="item warn" data-step="5"><span class="bullet warn-b">!</span><span class="key">TRACING </span><span class="sep">::</span><span class="val">REQ</span></div>
+            <div class="item warn" data-step="6"><span class="bullet warn-b">!</span><span class="key">OVERHEAD</span><span class="sep">::</span><span class="val">O(N)</span></div>
+          </div>
+        </div>
+
+        <div class="verdict" id="verdict">
+          <div class="vtag">[ ADVISORY ]</div>
+          <div class="vline" id="vline1">
+            <span class="vop">START &gt;&gt;</span>
+            <span class="vmono">MONOLITH</span>
+          </div>
+          <div class="vline" id="vline2">
+            <span class="vop">SPLIT &gt;&gt;</span>
+            <span class="vmicro">WHEN SEAMS HURT</span>
+          </div>
+        </div>
+
+        <div class="caption-band" id="caption-band"></div>
+
+        <div class="crt-line"></div>
+      </div>
+
+      <style>
+        [data-composition-id="hud-tactical-narrated"] {
+          position: relative; width: 1920px; height: 1080px;
+          overflow: hidden;
+          color: #00ff66;
+          font-family: "JetBrains Mono", monospace;
+          text-shadow: 0 0 6px rgba(0, 255, 102, 0.5), 0 1px 0 #000;
+        }
+        [data-composition-id="hud-tactical-narrated"] .video-wrap { position: absolute; inset: 0; z-index: 1; }
+        [data-composition-id="hud-tactical-narrated"] .video-wrap video { width: 1920px; height: 1080px; object-fit: cover; }
+        [data-composition-id="hud-tactical-narrated"] .hud-layer { position: absolute; inset: 0; z-index: 2; pointer-events: none; }
+
+        [data-composition-id="hud-tactical-narrated"] .corner { position: absolute; width: 70px; height: 70px; }
+        [data-composition-id="hud-tactical-narrated"] .corner-tl { top: 30px; left: 30px; border-top: 2px solid #00ff66; border-left: 2px solid #00ff66; }
+        [data-composition-id="hud-tactical-narrated"] .corner-tr { top: 30px; right: 30px; border-top: 2px solid #00ff66; border-right: 2px solid #00ff66; }
+        [data-composition-id="hud-tactical-narrated"] .corner-bl { bottom: 30px; left: 30px; border-bottom: 2px solid #00ff66; border-left: 2px solid #00ff66; }
+        [data-composition-id="hud-tactical-narrated"] .corner-br { bottom: 30px; right: 30px; border-bottom: 2px solid #00ff66; border-right: 2px solid #00ff66; }
+
+        [data-composition-id="hud-tactical-narrated"] .brand-strip {
+          position: absolute; top: 70px; left: 80px;
+          background: rgba(0, 0, 0, 0.55);
+          border: 1px solid rgba(0, 255, 102, 0.5);
+          padding: 8px 16px;
+          font-size: 18px; font-weight: 500; letter-spacing: 1.5px;
+        }
+        [data-composition-id="hud-tactical-narrated"] .bs-tag { color: #ff3030; font-weight: 700; margin-right: 10px; text-shadow: 0 0 6px #ff3030, 0 1px 0 #000; }
+        [data-composition-id="hud-tactical-narrated"] .bs-mod { color: #fff; font-weight: 700; text-shadow: 0 0 8px #00ff66, 0 1px 0 #000; }
+        [data-composition-id="hud-tactical-narrated"] .bs-id { color: #00aa44; margin-left: 10px; }
+
+        [data-composition-id="hud-tactical-narrated"] .title-big {
+          position: absolute; top: 380px; left: 0; right: 0;
+          text-align: center;
+          opacity: 0;
+        }
+        [data-composition-id="hud-tactical-narrated"] .tb-pre {
+          font-size: 24px; opacity: 0.7; letter-spacing: 5px;
+          color: #00aa44; margin-bottom: 16px;
+        }
+        [data-composition-id="hud-tactical-narrated"] .tb-line {
+          font-size: 88px; font-weight: 700; line-height: 1.1; letter-spacing: 3px;
+          color: #00ff66;
+        }
+        [data-composition-id="hud-tactical-narrated"] .kw-mono  { color: #fff; text-shadow: 0 0 16px #00ff66, 0 0 3px #000; }
+        [data-composition-id="hud-tactical-narrated"] .kw-micro { color: #fff; text-shadow: 0 0 16px #00ff66, 0 0 3px #000; }
+        [data-composition-id="hud-tactical-narrated"] .op { color: #00ff66; opacity: 0.85; margin: 0 22px; }
+
+        [data-composition-id="hud-tactical-narrated"] .title-small {
+          position: absolute; top: 70px; right: 80px;
+          background: rgba(0, 0, 0, 0.55);
+          border: 1px solid rgba(0, 255, 102, 0.5);
+          padding: 8px 18px;
+          font-size: 20px; font-weight: 700; letter-spacing: 2px;
+          color: #fff;
+          text-shadow: 0 0 8px #00ff66, 0 1px 0 #000;
+          opacity: 0;
+        }
+
+        [data-composition-id="hud-tactical-narrated"] .stage {
+          position: absolute;
+          top: 200px; left: 100px; right: 100px;
+          height: 660px;
+          display: flex; gap: 60px; justify-content: center;
+        }
+        [data-composition-id="hud-tactical-narrated"] .col {
+          flex: 1; max-width: 800px;
+          background: rgba(0, 0, 0, 0.6);
+          border: 1px solid rgba(0, 255, 102, 0.5);
+          padding: 20px 28px;
+          opacity: 0;
+        }
+
+        [data-composition-id="hud-tactical-narrated"] .col-head {
+          display: flex; align-items: baseline; gap: 14px;
+          padding-bottom: 12px; margin-bottom: 14px;
+          border-bottom: 1px dashed rgba(0, 255, 102, 0.4);
+        }
+        [data-composition-id="hud-tactical-narrated"] .col-tag {
+          font-size: 22px; font-weight: 700; color: #00aa44;
+          background: rgba(0, 255, 102, 0.15);
+          border: 1px solid rgba(0, 255, 102, 0.5);
+          padding: 2px 14px;
+        }
+        [data-composition-id="hud-tactical-narrated"] .col-name {
+          font-size: 32px; font-weight: 700; letter-spacing: 3px;
+          color: #fff;
+          text-shadow: 0 0 12px #00ff66, 0 0 3px #000;
+          flex: 1;
+        }
+        [data-composition-id="hud-tactical-narrated"] .col-meta {
+          font-size: 16px; color: #00aa44; letter-spacing: 1.5px;
+        }
+
+        [data-composition-id="hud-tactical-narrated"] .item {
+          font-size: 26px; line-height: 1.55;
+          padding: 5px 0; opacity: 0;
+          color: #00ff66;
+          font-variant-numeric: tabular-nums;
+          display: flex; align-items: center; gap: 10px;
+          white-space: pre;
+        }
+        [data-composition-id="hud-tactical-narrated"] .bullet {
+          color: #00aa44; font-weight: 700; width: 24px; text-align: center;
+        }
+        [data-composition-id="hud-tactical-narrated"] .warn-b {
+          color: #ff3030; text-shadow: 0 0 8px #ff3030, 0 1px 0 #000;
+        }
+        [data-composition-id="hud-tactical-narrated"] .key {
+          color: #00aa44; font-weight: 500;
+        }
+        [data-composition-id="hud-tactical-narrated"] .sep { color: #008833; opacity: 0.8; }
+        [data-composition-id="hud-tactical-narrated"] .val {
+          color: #fff; font-weight: 700;
+          text-shadow: 0 0 8px #00ff66, 0 0 2px #000;
+        }
+        [data-composition-id="hud-tactical-narrated"] .item.warn .val {
+          color: #ffd0d0; text-shadow: 0 0 8px #ff3030, 0 0 2px #000;
+        }
+
+        [data-composition-id="hud-tactical-narrated"] .verdict {
+          position: absolute;
+          top: 880px; left: 0; right: 0;
+          text-align: center;
+          opacity: 0;
+        }
+        [data-composition-id="hud-tactical-narrated"] .vtag {
+          font-size: 16px; letter-spacing: 6px; color: #00aa44;
+          margin-bottom: 10px;
+        }
+        [data-composition-id="hud-tactical-narrated"] .vline {
+          font-size: 30px; font-weight: 700; letter-spacing: 2px; line-height: 1.4;
+          font-family: "JetBrains Mono", monospace;
+          color: #00ff66;
+        }
+        [data-composition-id="hud-tactical-narrated"] .vop {
+          color: #00aa44; margin-right: 10px;
+        }
+        [data-composition-id="hud-tactical-narrated"] .vmono  { color: #fff; text-shadow: 0 0 12px #00ff66, 0 1px 0 #000; }
+        [data-composition-id="hud-tactical-narrated"] .vmicro { color: #fff; text-shadow: 0 0 12px #00ff66, 0 1px 0 #000; }
+        [data-composition-id="hud-tactical-narrated"] #vline2 { opacity: 0; }
+
+        [data-composition-id="hud-tactical-narrated"] .caption-band {
+          position: absolute;
+          left: 0; right: 0; bottom: 110px;
+          text-align: center;
+          pointer-events: none;
+        }
+        [data-composition-id="hud-tactical-narrated"] .caption-group {
+          display: inline-block;
+          background: rgba(0, 0, 0, 0.7);
+          border: 1px solid rgba(0, 255, 102, 0.55);
+          padding: 12px 28px;
+          font-family: "JetBrains Mono", monospace;
+          font-size: 36px; font-weight: 500; letter-spacing: 0.5px;
+          color: #fff;
+          text-shadow: 0 0 8px #00ff66, 0 1px 0 #000;
+          opacity: 0;
+          max-width: 1500px;
+        }
+
+        [data-composition-id="hud-tactical-narrated"] .crt-line {
+          position: absolute; left: 0; right: 0; top: 0;
+          height: 4px;
+          background: linear-gradient(180deg, rgba(0,255,102,0) 0%, rgba(0,255,102,0.25) 50%, rgba(0,255,102,0) 100%);
+          mix-blend-mode: screen;
+          transform: translateY(-4px);
+          will-change: transform;
+        }
+      </style>
+
+      <script>
+        window.__timelines = window.__timelines || {};
+        const tl = gsap.timeline({ paused: true });
+
+        // --- Frame entrance ---
+        tl.from(".corner", { scale: 0.4, opacity: 0, duration: 0.4, ease: "back.out(2)", stagger: 0.04 }, 0.15);
+        tl.from(".brand-strip", { x: -30, opacity: 0, duration: 0.45, ease: "power2.out" }, 0.3);
+
+        // --- Big title ---
+        tl.to("#title-big", { opacity: 1, duration: 0.4, ease: "power2.out" }, 0.3);
+        tl.from("#title-big .tb-pre",  { y: -20, opacity: 0, duration: 0.4, ease: "power2.out" }, 0.4);
+        tl.from("#title-big .tb-line", { opacity: 0, scale: 0.92, duration: 0.6, ease: "power3.out", transformOrigin: "center" }, 0.55);
+        tl.to("#title-big", { opacity: 0, duration: 0.4, ease: "power2.in" }, 2.7);
+
+        // --- Small title ---
+        tl.to("#title-small", { opacity: 1, duration: 0.4, ease: "power2.out" }, 3.0);
+        tl.from("#title-small", { x: 30, duration: 0.4, ease: "power2.out" }, 3.0);
+
+        // --- Mono column ---
+        tl.to("#col-mono", { opacity: 1, duration: 0.4, ease: "power2.out" }, 3.5);
+        tl.from("#col-mono .col-head", { x: -16, opacity: 0, duration: 0.4, ease: "power2.out" }, 3.6);
+
+        const monoItems = [
+          { sel: '#col-mono .item[data-step="0"]', t: 4.2 },
+          { sel: '#col-mono .item[data-step="1"]', t: 4.95 },
+          { sel: '#col-mono .item[data-step="2"]', t: 6.05 },
+          { sel: '#col-mono .item[data-step="3"]', t: 7.7 },
+        ];
+        monoItems.forEach(it => {
+          tl.to(it.sel, { opacity: 1, duration: 0.35, ease: "power2.out" }, it.t);
+          tl.from(it.sel, { x: -12, duration: 0.35, ease: "power2.out" }, it.t);
+        });
+
+        // --- Micro column ---
+        tl.to("#col-micro", { opacity: 1, duration: 0.4, ease: "power2.out" }, 10.9);
+        tl.from("#col-micro .col-head", { x: -16, opacity: 0, duration: 0.4, ease: "power2.out" }, 11.0);
+
+        const microItems = [
+          { sel: '#col-micro .item[data-step="0"]', t: 11.5 },
+          { sel: '#col-micro .item[data-step="1"]', t: 12.95 },
+          { sel: '#col-micro .item[data-step="2"]', t: 13.65 },
+          { sel: '#col-micro .item[data-step="3"]', t: 14.4 },
+          { sel: '#col-micro .item[data-step="4"]', t: 16.6 },
+          { sel: '#col-micro .item[data-step="5"]', t: 17.6 },
+          { sel: '#col-micro .item[data-step="6"]', t: 18.7 },
+        ];
+        microItems.forEach(it => {
+          tl.to(it.sel, { opacity: 1, duration: 0.35, ease: "power2.out" }, it.t);
+          tl.from(it.sel, { x: -12, duration: 0.35, ease: "power2.out" }, it.t);
+        });
+
+        // --- Verdict ---
+        tl.to("#verdict", { opacity: 1, duration: 0.4, ease: "power2.out" }, 21.5);
+        tl.from("#verdict .vtag", { y: -8, duration: 0.4, ease: "power2.out" }, 21.5);
+        tl.from("#vline1", { y: 14, duration: 0.4, ease: "power3.out" }, 21.6);
+        tl.to("#vline2", { opacity: 1, duration: 0.4, ease: "power2.out" }, 23.6);
+        tl.from("#vline2", { y: 14, duration: 0.4, ease: "power2.out" }, 23.6);
+
+        // --- Slow CRT scan over full duration ---
+        tl.fromTo(".crt-line",
+          { y: -4 },
+          { y: 1080, duration: 23.5, ease: "none" },
+          0.8);
+
+        // --- Captions ---
+        const CAPTIONS = [
+          { start: 0.20, end: 1.96, text: "MICROSERVICES VS MONOLITHIC" },
+          { start: 2.28, end: 3.30, text: "QUICK COMPARISON" },
+          { start: 3.66, end: 4.74, text: "MONOLITHS SHIP FAST" },
+          { start: 4.76, end: 6.80, text: "ONE CODEBASE / ONE DEPLOY / SIMPLE OPS" },
+          { start: 6.84, end: 7.70, text: "THE DOWNSIDE?" },
+          { start: 7.80, end: 9.46, text: "SCALING MEANS SCALING EVERYTHING" },
+          { start: 9.52, end: 10.80, text: "EVEN PARTS THAT DON'T NEED IT" },
+          { start: 10.96, end: 12.62, text: "MICROSERVICES SCALE INDEPENDENTLY" },
+          { start: 12.92, end: 15.58, text: "DIFFERENT TEAMS / STACKS / CADENCES" },
+          { start: 15.90, end: 17.50, text: "THE COST :: NETWORK LATENCY" },
+          { start: 17.55, end: 18.95, text: "DISTRIBUTED TRACING" },
+          { start: 18.96, end: 21.20, text: "OPS OVERHEAD PER SERVICE" },
+          { start: 21.52, end: 23.45, text: "START WITH A MONOLITH" },
+          { start: 23.66, end: 24.95, text: "SPLIT WHEN THE SEAMS HURT" },
+        ];
+
+        const captionBand = document.getElementById("caption-band");
+        CAPTIONS.forEach((c, i) => {
+          const el = document.createElement("div");
+          el.id = "cg-" + i;
+          el.className = "caption-group";
+          el.textContent = c.text;
+          captionBand.appendChild(el);
+          tl.to("#cg-" + i, { opacity: 1, duration: 0.18, ease: "power2.out" }, c.start);
+          tl.from("#cg-" + i, { y: 12, duration: 0.22, ease: "power2.out" }, c.start);
+          tl.to("#cg-" + i, { opacity: 0, duration: 0.14, ease: "power2.in" }, c.end - 0.14);
+          tl.set("#cg-" + i, { opacity: 0, visibility: "hidden" }, c.end);
+        });
+
+        window.__timelines["hud-tactical-narrated"] = tl;
+      </script>
+    </div>
+  </body>
+</html>

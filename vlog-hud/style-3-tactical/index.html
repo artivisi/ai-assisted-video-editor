@@ -1,0 +1,313 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" href="data:," />
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&display=swap");
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html, body {
+        width: 1920px; height: 1080px;
+        overflow: hidden; background: #000;
+        font-family: "JetBrains Mono", monospace;
+      }
+    </style>
+  </head>
+  <body>
+    <div data-composition-id="hud-tactical" data-start="0" data-width="1920" data-height="1080">
+      <div class="video-wrap">
+        <video
+          id="bg-vid"
+          data-start="0"
+          data-duration="8"
+          data-track-index="0"
+          data-has-audio="true"
+          src="assets/sample-clip.mp4"
+          playsinline
+        ></video>
+      </div>
+
+      <div class="hud-layer">
+        <div class="corner corner-tl"></div>
+        <div class="corner corner-tr"></div>
+        <div class="corner corner-bl"></div>
+        <div class="corner corner-br"></div>
+
+        <div class="compass-bar">
+          <div class="compass-strip">
+            <span class="cdir">W</span>
+            <span class="ctk"></span><span class="ctk"></span>
+            <span class="ctk lg"></span>
+            <span class="ctk"></span><span class="ctk"></span>
+            <span class="cdir bold">N</span>
+            <span class="ctk"></span><span class="ctk"></span>
+            <span class="ctk lg"></span>
+            <span class="ctk"></span><span class="ctk"></span>
+            <span class="cdir">E</span>
+            <span class="ctk"></span><span class="ctk"></span>
+            <span class="ctk lg"></span>
+            <span class="ctk"></span><span class="ctk"></span>
+            <span class="cdir">S</span>
+          </div>
+          <div class="compass-pointer">&#9660;</div>
+          <div class="compass-readout">218&deg;</div>
+        </div>
+
+        <div class="block tl-block">
+          <div class="b-row"><span class="b-lbl">LAT</span><span class="b-val">06.2147&deg;S</span></div>
+          <div class="b-row"><span class="b-lbl">LON</span><span class="b-val">106.8412&deg;E</span></div>
+          <div class="b-row"><span class="b-lbl">ALT</span><span class="b-val">12 M</span></div>
+        </div>
+
+        <div class="block tr-block">
+          <div class="b-row b-stack"><span class="b-time">12:34:08</span><span class="b-tz">UTC+7</span></div>
+          <div class="b-row"><span class="b-lock">GPS LOCK</span><span class="b-sat">6 SAT</span></div>
+        </div>
+
+        <div class="block bl-block">
+          <div class="signal-bars">
+            <span class="bar b1"></span>
+            <span class="bar b2"></span>
+            <span class="bar b3"></span>
+            <span class="bar b4"></span>
+            <span class="bar b5"></span>
+          </div>
+          <div class="rec-row">
+            <span class="rec-dot"></span>
+            <span class="rec-label">REC</span>
+            <span class="rec-time">00:08:34</span>
+          </div>
+        </div>
+
+        <div class="block br-block">
+          <div class="b-row"><span class="b-lbl">BRG</span><span class="b-val">218&deg;</span></div>
+          <div class="b-row"><span class="b-lbl">SPD</span><span class="b-val">65 kph</span></div>
+        </div>
+
+        <div class="crosshair">
+          <span class="ch-h"></span>
+          <span class="ch-v"></span>
+          <span class="ch-dot"></span>
+        </div>
+
+        <div class="crt-line"></div>
+      </div>
+
+      <style>
+        [data-composition-id="hud-tactical"] {
+          position: relative; width: 1920px; height: 1080px;
+          overflow: hidden;
+          color: #00ff66;
+          font-family: "JetBrains Mono", monospace;
+          text-shadow: 0 0 6px rgba(0, 255, 102, 0.5), 0 1px 0 #000;
+        }
+        [data-composition-id="hud-tactical"] .video-wrap {
+          position: absolute; inset: 0; z-index: 1;
+        }
+        [data-composition-id="hud-tactical"] .video-wrap video {
+          width: 1920px; height: 1080px; object-fit: cover;
+        }
+        [data-composition-id="hud-tactical"] .hud-layer {
+          position: absolute; inset: 0; z-index: 2; pointer-events: none;
+        }
+
+        [data-composition-id="hud-tactical"] .corner {
+          position: absolute; width: 70px; height: 70px;
+        }
+        [data-composition-id="hud-tactical"] .corner-tl {
+          top: 30px; left: 30px;
+          border-top: 2px solid #00ff66; border-left: 2px solid #00ff66;
+        }
+        [data-composition-id="hud-tactical"] .corner-tr {
+          top: 30px; right: 30px;
+          border-top: 2px solid #00ff66; border-right: 2px solid #00ff66;
+        }
+        [data-composition-id="hud-tactical"] .corner-bl {
+          bottom: 30px; left: 30px;
+          border-bottom: 2px solid #00ff66; border-left: 2px solid #00ff66;
+        }
+        [data-composition-id="hud-tactical"] .corner-br {
+          bottom: 30px; right: 30px;
+          border-bottom: 2px solid #00ff66; border-right: 2px solid #00ff66;
+        }
+
+        [data-composition-id="hud-tactical"] .compass-bar {
+          position: absolute; top: 70px; left: 50%;
+          transform: translateX(-50%);
+          width: 720px; text-align: center;
+          background: rgba(0, 0, 0, 0.55);
+          border: 1px solid rgba(0, 255, 102, 0.5);
+          padding: 10px 20px 14px;
+        }
+        [data-composition-id="hud-tactical"] .compass-strip {
+          display: flex; justify-content: space-between; align-items: center;
+          gap: 4px; height: 30px;
+        }
+        [data-composition-id="hud-tactical"] .cdir {
+          font-size: 22px; font-weight: 700;
+          color: #00ff66;
+          font-family: "JetBrains Mono", monospace;
+          letter-spacing: 1px;
+        }
+        [data-composition-id="hud-tactical"] .cdir.bold {
+          color: #ffffff; font-size: 26px;
+          text-shadow: 0 0 10px #00ff66, 0 0 2px #000;
+        }
+        [data-composition-id="hud-tactical"] .ctk {
+          width: 2px; height: 12px; background: rgba(0, 255, 102, 0.65);
+          display: inline-block;
+        }
+        [data-composition-id="hud-tactical"] .ctk.lg {
+          height: 18px; background: #00ff66;
+        }
+        [data-composition-id="hud-tactical"] .compass-pointer {
+          position: absolute; top: 32px; left: 50%;
+          transform: translateX(-50%);
+          color: #00ff66; font-size: 16px; line-height: 1;
+        }
+        [data-composition-id="hud-tactical"] .compass-readout {
+          margin-top: 8px; font-size: 22px; font-weight: 700;
+          color: #ffffff;
+          font-variant-numeric: tabular-nums;
+          letter-spacing: 2px;
+          text-shadow: 0 0 8px #00ff66, 0 0 2px #000;
+        }
+
+        [data-composition-id="hud-tactical"] .block {
+          position: absolute;
+          background: rgba(0, 0, 0, 0.55);
+          border: 1px solid rgba(0, 255, 102, 0.5);
+          padding: 14px 20px;
+          font-family: "JetBrains Mono", monospace;
+        }
+        [data-composition-id="hud-tactical"] .tl-block { top: 70px; left: 70px; min-width: 280px; }
+        [data-composition-id="hud-tactical"] .tr-block { top: 70px; right: 70px; min-width: 240px; text-align: right; }
+        [data-composition-id="hud-tactical"] .bl-block { bottom: 70px; left: 70px; min-width: 240px; }
+        [data-composition-id="hud-tactical"] .br-block { bottom: 70px; right: 70px; min-width: 220px; text-align: right; }
+
+        [data-composition-id="hud-tactical"] .b-row {
+          display: flex; justify-content: space-between; align-items: baseline;
+          gap: 18px;
+          font-size: 22px; line-height: 1.55;
+          color: #00ff66;
+          font-variant-numeric: tabular-nums;
+        }
+        [data-composition-id="hud-tactical"] .tr-block .b-row { justify-content: flex-end; }
+        [data-composition-id="hud-tactical"] .br-block .b-row { justify-content: flex-end; }
+        [data-composition-id="hud-tactical"] .b-lbl { color: #00aa44; font-weight: 500; letter-spacing: 1.5px; }
+        [data-composition-id="hud-tactical"] .b-val {
+          color: #ffffff; font-weight: 700;
+          text-shadow: 0 0 8px #00ff66, 0 0 2px #000;
+        }
+
+        [data-composition-id="hud-tactical"] .b-stack { flex-direction: column; align-items: flex-end; gap: 0; }
+        [data-composition-id="hud-tactical"] .b-time {
+          font-size: 28px; font-weight: 700; color: #ffffff;
+          font-variant-numeric: tabular-nums; letter-spacing: 2px;
+          text-shadow: 0 0 10px #00ff66, 0 0 2px #000;
+        }
+        [data-composition-id="hud-tactical"] .b-tz {
+          font-size: 16px; color: #00aa44; letter-spacing: 1.5px;
+        }
+        [data-composition-id="hud-tactical"] .b-lock {
+          color: #00ff66; font-weight: 700; letter-spacing: 1.5px;
+          text-shadow: 0 0 8px #00ff66, 0 0 2px #000;
+        }
+        [data-composition-id="hud-tactical"] .b-sat { color: #00aa44; margin-left: 12px; }
+
+        [data-composition-id="hud-tactical"] .signal-bars {
+          display: flex; align-items: flex-end; gap: 4px; height: 26px;
+          margin-bottom: 8px;
+        }
+        [data-composition-id="hud-tactical"] .bar {
+          width: 8px; background: #00ff66;
+          box-shadow: 0 0 6px rgba(0, 255, 102, 0.7);
+        }
+        [data-composition-id="hud-tactical"] .b1 { height: 8px; }
+        [data-composition-id="hud-tactical"] .b2 { height: 12px; }
+        [data-composition-id="hud-tactical"] .b3 { height: 18px; }
+        [data-composition-id="hud-tactical"] .b4 { height: 22px; }
+        [data-composition-id="hud-tactical"] .b5 { height: 26px; opacity: 0.4; }
+
+        [data-composition-id="hud-tactical"] .rec-row {
+          display: flex; align-items: center; gap: 10px;
+          font-size: 20px;
+        }
+        [data-composition-id="hud-tactical"] .rec-dot {
+          width: 12px; height: 12px; border-radius: 50%;
+          background: #ff3030;
+          box-shadow: 0 0 10px #ff3030, 0 0 2px #000;
+        }
+        [data-composition-id="hud-tactical"] .rec-label { color: #ff6060; font-weight: 700; letter-spacing: 1.5px; }
+        [data-composition-id="hud-tactical"] .rec-time {
+          color: #ffffff; font-variant-numeric: tabular-nums; letter-spacing: 1.5px;
+          text-shadow: 0 0 8px #00ff66, 0 0 2px #000;
+        }
+
+        [data-composition-id="hud-tactical"] .crosshair {
+          position: absolute; top: 50%; left: 50%;
+          transform: translate(-50%, -50%);
+          width: 60px; height: 60px;
+          opacity: 0.85;
+          filter: drop-shadow(0 0 6px rgba(0, 255, 102, 0.8));
+        }
+        [data-composition-id="hud-tactical"] .ch-h, [data-composition-id="hud-tactical"] .ch-v {
+          position: absolute; background: #00ff66;
+        }
+        [data-composition-id="hud-tactical"] .ch-h {
+          top: 50%; left: 0; right: 0; height: 2px; transform: translateY(-50%);
+        }
+        [data-composition-id="hud-tactical"] .ch-v {
+          left: 50%; top: 0; bottom: 0; width: 2px; transform: translateX(-50%);
+        }
+        [data-composition-id="hud-tactical"] .ch-dot {
+          position: absolute; top: 50%; left: 50%;
+          transform: translate(-50%, -50%);
+          width: 8px; height: 8px;
+          border: 2px solid #00ff66;
+          border-radius: 50%;
+        }
+
+        [data-composition-id="hud-tactical"] .crt-line {
+          position: absolute; left: 0; right: 0; top: 0;
+          height: 4px;
+          background: linear-gradient(180deg, rgba(0,255,102,0) 0%, rgba(0,255,102,0.3) 50%, rgba(0,255,102,0) 100%);
+          mix-blend-mode: screen;
+          transform: translateY(-4px);
+          will-change: transform;
+        }
+      </style>
+
+      <script>
+        window.__timelines = window.__timelines || {};
+        const tl = gsap.timeline({ paused: true });
+
+        tl.from(".corner", { scale: 0.4, opacity: 0, duration: 0.4, ease: "back.out(2)", stagger: 0.04 }, 0.15);
+        tl.fromTo(".compass-bar",
+          { xPercent: -50, y: -30, opacity: 0 },
+          { xPercent: -50, y: 0, opacity: 1, duration: 0.5, ease: "power2.out" },
+          0.3);
+        tl.from(".tl-block",  { x: -30, opacity: 0, duration: 0.45, ease: "power2.out" }, 0.35);
+        tl.from(".tr-block",  { x:  30, opacity: 0, duration: 0.45, ease: "power2.out" }, 0.4);
+        tl.from(".bl-block",  { x: -30, opacity: 0, duration: 0.45, ease: "power2.out" }, 0.45);
+        tl.from(".br-block",  { x:  30, opacity: 0, duration: 0.45, ease: "power2.out" }, 0.5);
+        tl.from(".crosshair", { scale: 0.5, opacity: 0, duration: 0.4, ease: "back.out(1.6)" }, 0.55);
+
+        // REC dot blink (1Hz, 8 blinks across 8s)
+        tl.to(".rec-dot", { opacity: 0.25, duration: 0.5, ease: "sine.inOut", yoyo: true, repeat: 13 }, 1.0);
+
+        // Signal bar 5 (weak signal) flicker
+        tl.to(".bar.b5", { opacity: 0.15, duration: 0.6, ease: "sine.inOut", yoyo: true, repeat: 9 }, 1.2);
+
+        // Single slow CRT pass: 0.8s -> 7.6s (full sweep, no repeat)
+        tl.fromTo(".crt-line",
+          { y: -4 },
+          { y: 1080, duration: 6.8, ease: "none" },
+          0.8);
+
+        window.__timelines["hud-tactical"] = tl;
+      </script>
+    </div>
+  </body>
+</html>
